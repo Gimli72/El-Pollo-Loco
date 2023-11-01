@@ -1,3 +1,5 @@
+import { BackGroundObject, Character, Chicken, Cloud, MovableObject } from './index';
+
 export class World {
   backgroundObjects = [
     new BackGroundObject('./img/5_background/layers/air.png'),
@@ -11,6 +13,10 @@ export class World {
   canvas;
   ctx;
 
+  /**
+   * 
+   * @param {HTMLCanvasElement} canvas 
+   */
   constructor(canvas) {
     this.ctx = canvas.getContext('2d');
     this.canvas = canvas;
@@ -18,7 +24,7 @@ export class World {
   }
 
   draw() {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.ctx?.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     this.addObjectsToMap(this.backgroundObjects);
     this.addObjectsToMap(this.clouds);  
@@ -33,14 +39,22 @@ export class World {
     });
   }
 
+  /**
+   * 
+   * @param {MovableObject[]} objects 
+   */
   addObjectsToMap(objects) {
     objects.forEach(object => {
       this.addToMap(object);
     });
   }
 
+  /**
+   * 
+   * @param {MovableObject} movableObject 
+   */
   addToMap(movableObject) {
-      this.ctx.drawImage(movableObject.img, movableObject.x, movableObject.y, movableObject.width, movableObject.height);
+      this.ctx?.drawImage(movableObject.img, movableObject.x, movableObject.y, movableObject.width, movableObject.height);
   }
   
 }
