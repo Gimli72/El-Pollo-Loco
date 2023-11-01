@@ -14,9 +14,9 @@ export class World {
   ctx;
 
   /**
-   * 
-   * @param {HTMLCanvasElement} canvas 
-   */
+  * 
+  * @param {HTMLCanvasElement} canvas 
+  */
   constructor(canvas) {
     this.ctx = canvas.getContext('2d');
     this.canvas = canvas;
@@ -50,9 +50,9 @@ export class World {
   }
 
   /**
-   * 
-   * @param {MovableObject} movableObject 
-   */
+ * 
+ * @param {MovableObject} movableObject 
+ */
   addToMap(movableObject) {
       this.ctx?.drawImage(movableObject.img, movableObject.x, movableObject.y, movableObject.width, movableObject.height);
   }
