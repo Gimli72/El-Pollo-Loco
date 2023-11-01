@@ -1,10 +1,17 @@
-class BackGroundObject extends MovableObject {
+import { MovableObject } from "./movable-object.class";
+
+export class BackGroundObject extends MovableObject {
   x = 0;
   y = 0;
   width = 720;
   height = 480;
 
+  /**
+   * 
+   * @param {string} imagePath 
+   */
   constructor(imagePath) {
-    super().loadImage(imagePath);
+    super();
+    this.loadImage(imagePath);
   }
 }

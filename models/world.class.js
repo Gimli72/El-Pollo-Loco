@@ -1,4 +1,4 @@
-class World {
+export class World {
   backgroundObjects = [
     new BackGroundObject('./img/5_background/layers/air.png'),
     new BackGroundObject('./img/5_background/layers/3_third_layer/1.png'),
