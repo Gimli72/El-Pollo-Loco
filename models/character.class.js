@@ -1,4 +1,4 @@
-import { MovableObject } from "./movable-object.class";
+import { MovableObject } from "./movable-object.class.js";
 export class Character extends MovableObject {
     constructor() {
         super();

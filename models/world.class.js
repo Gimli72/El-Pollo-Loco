@@ -1,4 +1,4 @@
-import { BackGroundObject, Character, Chicken, Cloud, MovableObject } from './index';
+import { BackGroundObject, Character, Chicken, Cloud, MovableObject } from './index.js';
 
 export class World {
   backgroundObjects = [

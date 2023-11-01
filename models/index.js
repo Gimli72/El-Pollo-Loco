@@ -1,9 +1,9 @@
-import { MovableObject } from "./movable-object.class";
-import { Character } from "./character.class";
-import { Air } from "./air.class";
-import { Cloud } from "./cloud.class";
-import { BackGroundObject } from "./background-object.class";
-import { Chicken } from "./chicken.class";
-import { World } from "./world.class";
+import { MovableObject } from "./movable-object.class.js";
+import { Character } from "./character.class.js";
+import { Air } from "./air.class.js";
+import { Cloud } from "./cloud.class.js";
+import { BackGroundObject } from "./background-object.class.js";
+import { Chicken } from "./chicken.class.js";
+import { World } from "./world.class.js";
 
 export { MovableObject, Character, Air, Cloud, BackGroundObject, Chicken, World }

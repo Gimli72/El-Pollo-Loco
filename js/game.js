@@ -1,4 +1,4 @@
-import { World } from "../models/index";
+import { World } from "../models/index.js";
 
 /** @type {HTMLCanvasElement} */
 let canvas;
