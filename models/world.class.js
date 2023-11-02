@@ -1,4 +1,4 @@
-import { BackGroundObject, Character, Chicken, Cloud, MovableObject } from './index.js';
+import { BackGroundObject, Character, Chicken, Cloud, MovableObject,Keyboard } from './index.js';
 
 export class World {
   backgroundObjects = [
@@ -10,23 +10,31 @@ export class World {
   character = new Character();
   enemies = [new Chicken(), new Chicken(), new Chicken()];
   clouds = [new Cloud()];
+  keyboard;
   canvas;
   ctx;
 
   /**
-  * 
+  * @param {Keyboard} keyboard
   * @param {HTMLCanvasElement} canvas 
   */
-  constructor(canvas) {
+  constructor(canvas, keyboard) {
     this.ctx = canvas.getContext('2d');
     this.canvas = canvas;
+    this.keyboard = keyboard;
+    this.setWorld();
     this.draw();
+  }
+
+  setWorld() {
+    this.character.world = this;
   }
 
   draw() {
     this.ctx?.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     this.addObjectsToMap(this.backgroundObjects);
+
     this.addObjectsToMap(this.clouds);  
     this.addObjectsToMap(this.enemies);
 
@@ -35,6 +43,7 @@ export class World {
     // Draw() wird immer wieder aufgerufen
     let self = this;
     requestAnimationFrame(function () {
+      
       self.draw();
     });
   }

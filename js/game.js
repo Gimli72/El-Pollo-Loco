@@ -1,37 +1,64 @@
-import { World } from "../models/index.js";
+import { Keyboard, World } from "../models/index.js";
 
 /** @type {HTMLCanvasElement} */
 let canvas;
 /** @type {World} */
 let world;
 
+let keyboard = new Keyboard();
+
 window.addEventListener('load', init);
 
 function init() {
   // @ts-expect-error - HTMLCanvasElement
   canvas = document.getElementById('canvas');
-  world = new World(canvas);
+  world = new World(canvas, keyboard);
   console.log('My Character is', world.character);
   console.log('My Enemies is', world.enemies);
   console.log('My World is', world);
+  console.log('Cloud', world.clouds[0].x)
 
 }
 
 // 
-window.addEventListener("keydown", function (event) {
+window.addEventListener("keydown", (event) => {
   switch (event.key) {
     case "ArrowLeft":
-      world.enemies[0].x -= 1;
+      keyboard.LEFT = true;
       break;
     case "ArrowRight":
-      world.enemies[0].x += 1;
+      keyboard.RIGHT = true;
       break;
     case "ArrowUp":
-      world.enemies[0].y -= 1;
+      keyboard.UP = true;
       break;
     case "ArrowDown":
-      world.enemies[0].y += 1;
+      keyboard.DOWN = true;
+      break;
+    case " ":
+      keyboard.SPACE = true;
       break;
   }
-  console.log("x: ", world.enemies[0].x, "// y: ", world.enemies[0].y)
 });
+
+//
+window.addEventListener("keyup", (event) => {
+  switch (event.key) {
+    case "ArrowLeft":
+      keyboard.LEFT = false;
+      break;
+    case "ArrowRight":
+      keyboard.RIGHT = false;
+      break;
+    case "ArrowUp":
+      keyboard.UP = false;
+      break;
+    case "ArrowDown":
+      keyboard.DOWN = false;
+      break;
+    case " ":
+      keyboard.SPACE = false;
+      break;
+  }
+});
+

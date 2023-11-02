@@ -4,5 +4,6 @@ import { Chicken } from "./chicken.class.js";
 import { World } from "./world.class.js";
 import { BackGroundObject } from "./background-object.class.js";
 import { Cloud } from "./cloud.class.js";
+import { Keyboard } from "./keyboard.class.js";
 
-export { MovableObject, Character, Cloud, BackGroundObject, Chicken, World }
+export { MovableObject, Character, Cloud, BackGroundObject, Chicken, World, Keyboard }
