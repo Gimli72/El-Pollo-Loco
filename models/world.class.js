@@ -3,16 +3,24 @@ import { BackGroundObject, Character, Chicken, Cloud, MovableObject,Keyboard } f
 export class World {
   backgroundObjects = [
     new BackGroundObject('./img/5_background/layers/air.png'),
-    new BackGroundObject('./img/5_background/layers/3_third_layer/1.png'),
-    new BackGroundObject('./img/5_background/layers/2_second_layer/1.png'),
-    new BackGroundObject('./img/5_background/layers/1_first_layer/1.png'),
+    new BackGroundObject('./img/5_background/layers/3_third_layer/full.png'),
+    new BackGroundObject('./img/5_background/layers/2_second_layer/full.png'),
+    new BackGroundObject('./img/5_background/layers/1_first_layer/full.png'),
+    new BackGroundObject('./img/5_background/layers/air.png', 1439),
+    new BackGroundObject('./img/5_background/layers/3_third_layer/full.png', 1439),
+    new BackGroundObject('./img/5_background/layers/2_second_layer/full.png', 1439),
+    new BackGroundObject('./img/5_background/layers/1_first_layer/full.png', 1439),
   ];
   character = new Character();
   enemies = [new Chicken(), new Chicken(), new Chicken()];
   clouds = [new Cloud()];
+
   keyboard;
   canvas;
   ctx;
+  camera_x = 0;
+
+  fps = 60;
 
   /**
   * @param {Keyboard} keyboard
@@ -33,12 +41,17 @@ export class World {
   draw() {
     this.ctx?.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
+    this.ctx?.translate(this.camera_x, 0);
+
     this.addObjectsToMap(this.backgroundObjects);
 
     this.addObjectsToMap(this.clouds);  
     this.addObjectsToMap(this.enemies);
 
     this.addToMap(this.character);
+
+    this.ctx?.translate(-this.camera_x, 0);
+
 
     // Draw() wird immer wieder aufgerufen
     let self = this;
@@ -63,7 +76,17 @@ export class World {
  * @param {MovableObject} movableObject 
  */
   addToMap(movableObject) {
-      this.ctx?.drawImage(movableObject.img, movableObject.x, movableObject.y, movableObject.width, movableObject.height);
+    if (movableObject.otherDirection) {
+      this.ctx?.save();
+      this.ctx?.translate(movableObject.width, 0);
+      this.ctx?.scale(-1, 1);      
+      movableObject.x = movableObject.x * -1;
+    }
+    this.ctx?.drawImage(movableObject.img, movableObject.x, movableObject.y, movableObject.width, movableObject.height);
+    if (movableObject.otherDirection) {
+      movableObject.x = movableObject.x * -1;
+      this.ctx?.restore();
+    }
   }
   
 }

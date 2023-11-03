@@ -3,15 +3,16 @@ import { MovableObject } from "./movable-object.class.js";
 export class BackGroundObject extends MovableObject {
   x = 0;
   y = 0;
-  width = 720;
+  width = 1440;
   height = 480;
 
   /**
    * 
    * @param {string} imagePath 
    */
-  constructor(imagePath) {
+  constructor(imagePath, x = 0) {
     super();
     this.loadImage(imagePath);
+    this.x = x;
   }
 }

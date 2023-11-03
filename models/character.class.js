@@ -13,6 +13,8 @@ export class Character extends MovableObject {
 
     /** @type {World} */
     world;
+    speed = 10;
+  
 
     constructor() {
         super();
@@ -23,14 +25,33 @@ export class Character extends MovableObject {
     }
 
     animate() {
+
         setInterval(() => {
             if (this.world.keyboard.RIGHT) {
+                this.x += this.speed;
+                this.otherDirection = false;                
+            }
+
+            if (this.world.keyboard.LEFT) {
+                this.x -= this.speed;
+                this.otherDirection = true;
+            }
+            this.world.camera_x = -this.x;
+
+            if (this.world.camera_x > 0) {
+                this.world.camera_x = 0;
+            }
+        }, 1000 / this.fps);
+
+        setInterval(() => {
+            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+                // Walk animation
                 let index = this.currentImage % this.IMAGES_WALKING.length;
                 let path = this.IMAGES_WALKING[index];
                 this.img = this.imageCache[path];
                 this.currentImage++;
             }
-         }, 240);
+        }, 60);
     }
 
     jump() {
