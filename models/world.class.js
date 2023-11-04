@@ -1,20 +1,12 @@
-import { BackGroundObject, Character, Chicken, Cloud, MovableObject,Keyboard } from './index.js';
+import { Character, MovableObject, Keyboard} from './index.js';
+import { level1 } from '../levels/level1.js';
 
 export class World {
-  backgroundObjects = [
-    new BackGroundObject('./img/5_background/layers/air.png'),
-    new BackGroundObject('./img/5_background/layers/3_third_layer/full.png'),
-    new BackGroundObject('./img/5_background/layers/2_second_layer/full.png'),
-    new BackGroundObject('./img/5_background/layers/1_first_layer/full.png'),
-    new BackGroundObject('./img/5_background/layers/air.png', 1439),
-    new BackGroundObject('./img/5_background/layers/3_third_layer/full.png', 1439),
-    new BackGroundObject('./img/5_background/layers/2_second_layer/full.png', 1439),
-    new BackGroundObject('./img/5_background/layers/1_first_layer/full.png', 1439),
-  ];
-  character = new Character();
-  enemies = [new Chicken(), new Chicken(), new Chicken()];
-  clouds = [new Cloud()];
+  backgroundObjects = level1.backgroundObjects;
+  enemies = level1.enemies;
+  clouds = level1.clouds;
 
+  character = new Character();
   keyboard;
   canvas;
   ctx;
