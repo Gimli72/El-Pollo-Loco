@@ -2,9 +2,10 @@ import { Character, MovableObject, Keyboard} from './index.js';
 import { level1 } from '../levels/level1.js';
 
 export class World {
-  backgroundObjects = level1.backgroundObjects;
-  enemies = level1.enemies;
-  clouds = level1.clouds;
+  level = level1;
+  // backgroundObjects = level1.backgroundObjects;
+  // enemies = level1.enemies;
+  // clouds = level1.clouds;
 
   character = new Character();
   keyboard;
@@ -35,10 +36,10 @@ export class World {
 
     this.ctx?.translate(this.camera_x, 0);
 
-    this.addObjectsToMap(this.backgroundObjects);
+    this.addObjectsToMap(this.level.backgroundObjects);
 
-    this.addObjectsToMap(this.clouds);  
-    this.addObjectsToMap(this.enemies);
+    this.addObjectsToMap(this.level.clouds);  
+    this.addObjectsToMap(this.level.enemies);
 
     this.addToMap(this.character);
 
