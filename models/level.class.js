@@ -1,3 +1,4 @@
+import { BackGroundObject, Chicken, Cloud } from "./index.js";
 export class Level {
     backgroundObjects;
     enemies;

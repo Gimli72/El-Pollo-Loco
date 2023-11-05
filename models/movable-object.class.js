@@ -34,6 +34,16 @@ export class MovableObject {
     })
   }
 
+  /**
+   * 
+   * @param {Array} images 
+   */
+  playAnimation(images) {
+    let index = this.currentImage % images.length;
+    let path = images[index];
+    this.img = this.imageCache[path];
+  }
+
   moveRight() {
     console.log('Moving right');
   }
