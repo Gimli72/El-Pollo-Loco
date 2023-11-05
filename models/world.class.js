@@ -48,8 +48,7 @@ export class World {
 
     // Draw() wird immer wieder aufgerufen
     let self = this;
-    requestAnimationFrame(function () {
-      
+    requestAnimationFrame(function () {      
       self.draw();
     });
   }

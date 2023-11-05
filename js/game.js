@@ -13,7 +13,7 @@ function init() {
   // @ts-expect-error - HTMLCanvasElement
   canvas = document.getElementById('canvas');
   world = new World(canvas, keyboard);
-  // console.log('My Character is', world.character);
+  console.log('My Character is', world.character);
   // console.log('My Enemies is', world.enemies);
   // console.log('My World is', world);
   // console.log('Cloud', world.clouds[0].x)

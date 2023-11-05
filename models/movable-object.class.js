@@ -1,16 +1,34 @@
 export class MovableObject {
   x = 50;
-  y = 130;
+  y = 0;
   /** @type {HTMLImageElement} */
   img;
-  height = 300;
-  width = 150;
+  // height = 300;
+  // width = 150;
   imageCache = {};
   currentImage = 0;
   speed = 0.15;
   otherDirection = false;
   repeat = false // Restart cloud true or false
   fps = 60;
+  speedY = 0;
+  acceleration = 2.5;
+
+  applyGravity() {
+    setInterval(() => {
+      if (this.isAboveGround() || this.speedY > 0) {
+        this.y -= this.speedY;
+        if (this.y > 125) {
+          this.y = 125;
+        }
+        this.speedY -= this.acceleration;
+      }
+    }, 1000 / 25);
+  }
+
+  isAboveGround() {
+    return this.y < 125;
+  }
 
   /**
    * @param {number} x 
