@@ -1,11 +1,8 @@
-import { Character, MovableObject, Keyboard, Chicken} from './index.js';
+import { Character, MovableObject, Keyboard, Chicken } from './index.js';
 import { level1 } from '../levels/level1.js';
 
 export class World {
   level = level1;
-  // backgroundObjects = level1.backgroundObjects;
-  // enemies = level1.enemies;
-  // clouds = level1.clouds;
 
   character = new Character();
   keyboard;
@@ -25,10 +22,21 @@ export class World {
     this.keyboard = keyboard;
     this.setWorld();
     this.draw();
+    this.checkCollisions();
   }
 
   setWorld() {
     this.character.world = this;
+  }
+
+  checkCollisions() {
+    setInterval(() => {
+      this.level.enemies.forEach((enemy) => {
+        if (this.character.isColliding(enemy) && !this.character.isDead()) {
+          this.character.hit();          
+        };
+      })      
+    }, 200);
   }
 
   draw() {
@@ -64,9 +72,9 @@ export class World {
   }
 
   /**
- * 
- * @param {MovableObject} movableObject 
- */
+   * 
+   * @param {MovableObject} movableObject 
+   */
   addToMap(movableObject) {
     if (this.ctx) {
       if (movableObject.otherDirection) {

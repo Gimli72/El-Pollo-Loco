@@ -17,6 +17,8 @@ export class MovableObject {
   fps = 60;
   speedY = 0;
   acceleration = 2.5;
+  energy = 100;
+  lastHit = 0;
 
   applyGravity() {
     setInterval(() => {
@@ -33,6 +35,33 @@ export class MovableObject {
   isAboveGround() {
     return this.y < 125;
   }
+  
+  isColliding(movableObject) {
+    return (this.x + this.width) >= movableObject.x &&
+      (this.y + this.height) >= movableObject.y &&
+      this.x < movableObject.x &&
+      this.y < (movableObject.y + movableObject.height)
+  }
+
+  hit() {
+    // The energy must not fall below 0
+    this.energy -= 5;
+    if (this.energy < 0) {
+      this.energy = 0;
+    } else {
+      this.lastHit = new Date().getTime();
+    }
+  }
+
+  isDead() {
+    return this.energy == 0;
+  }
+
+  isHurt() {
+    let timePassed = new Date().getTime() - this.lastHit;
+    timePassed /= 1000;
+    return timePassed < 1;
+  }
 
   /**
    * @param {number} x 
@@ -46,10 +75,10 @@ export class MovableObject {
 
   /**
    * 
-   * @param {array} array 
+   * @param {array} images
    */
-  loadImages(array) {
-    array.forEach((path) => {
+  loadImages(images) {
+    images.forEach((path) => {
       let img = new Image();
       img.src = path;
       this.imageCache[path] = img;
@@ -58,7 +87,7 @@ export class MovableObject {
 
   /**
    * 
-   * @param {Object} ctx 
+   * @param {CanvasRenderingContext2D} ctx 
    */
   draw(ctx) {
     ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
@@ -66,7 +95,7 @@ export class MovableObject {
 
   /**
    * 
-   * @param {Object} ctx 
+   * @param {CanvasRenderingContext2D} ctx 
    */
   drawFrame(ctx) {
     if (this instanceof Character || this instanceof Chicken) {

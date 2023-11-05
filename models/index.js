@@ -8,5 +8,4 @@ import { Keyboard } from "./keyboard.class.js";
 import { Level } from "./level.class.js";
 import { Endboss } from "./endboss.class.js";
 
-
 export { MovableObject, Character, Cloud, BackGroundObject, Chicken, World, Keyboard, Level, Endboss }

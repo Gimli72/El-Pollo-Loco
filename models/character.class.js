@@ -1,5 +1,4 @@
-import { World } from "./index.js";
-import { MovableObject } from "./movable-object.class.js";
+import { World, MovableObject } from "./index.js";
 export class Character extends MovableObject {
 
     height = 300;
@@ -43,7 +42,7 @@ export class Character extends MovableObject {
         'img/2_character_pepe/1_idle/long_idle/I-20.png'
     ];
 
-    IMAGE_JUMPING = [
+    IMAGES_JUMPING = [
         'img/2_character_pepe/3_jump/J-31.png',
         'img/2_character_pepe/3_jump/J-32.png',
         'img/2_character_pepe/3_jump/J-33.png',
@@ -55,10 +54,27 @@ export class Character extends MovableObject {
         'img/2_character_pepe/3_jump/J-39.png',
     ];
 
+    IMAGES_HURT = [
+        'img/2_character_pepe/4_hurt/H-41.png',
+        'img/2_character_pepe/4_hurt/H-42.png',
+        'img/2_character_pepe/4_hurt/H-43.png',
+    ];
+
+    IMAGES_DEAD = [
+        'img/2_character_pepe/5_dead/D-51.png',
+        'img/2_character_pepe/5_dead/D-52.png',
+        'img/2_character_pepe/5_dead/D-53.png',
+        'img/2_character_pepe/5_dead/D-54.png',
+        'img/2_character_pepe/5_dead/D-55.png',
+        'img/2_character_pepe/5_dead/D-56.png',
+        'img/2_character_pepe/5_dead/D-57.png',
+    ];
+
+
     /** @type {World} */
     world;
 
-    idleCounter = 0;  
+    idleCounter = 0;
     goInSleepMode = 20;
 
     constructor() {
@@ -67,45 +83,53 @@ export class Character extends MovableObject {
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_LONG_IDLE);
-        this.loadImages(this.IMAGE_JUMPING);
+        this.loadImages(this.IMAGES_JUMPING);
+        this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_DEAD);
         this.applyGravity();
         this.animate();
     }
 
+
     animate() {
 
         setInterval(() => {
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-                this.moveRight(); 
-                this.otherDirection = false; 
-            }            
-            if (this.world.keyboard.LEFT && this.x > 0) {
-                this.moveLeft();
-                this.otherDirection = true; 
+            if(!this.isDead()) {
+                if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+                    this.moveRight();
+                    this.otherDirection = false;
+                }
+                if (this.world.keyboard.LEFT && this.x > 0) {
+                    this.moveLeft();
+                    this.otherDirection = true;
+                }
+                if (this.world.keyboard.SPACE && !this.isAboveGround()) {
+                    this.jump();
+                }
+                    this.world.camera_x = -this.x + 100;
             }
-            if (this.world.keyboard.SPACE && !this.isAboveGround()) {
-                this.jump();
-            }
-            this.world.camera_x = -this.x + 100;
         }, 1000 / this.fps);
 
         setInterval(() => {
-            if (this.isAboveGround()) {
+            if (this.isDead()) {
+                this.playAnimation(this.IMAGES_DEAD);
+                this.loadImage('img/2_character_pepe/5_dead/D-57.png');
+            } else if (this.isHurt()) {
+                this.playAnimation(this.IMAGES_HURT);
+            } else if (this.isAboveGround()) {
                 this.idleCounter = 0;
-                this.playAnimation(this.IMAGE_JUMPING);
-            } else {
-                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                    // Walk animation
-                    this.playAnimation(this.IMAGES_WALKING);
-                    this.currentImage++;
-                    this.idleCounter = 0;
+                this.playAnimation(this.IMAGES_JUMPING);
+                } else {
+                    if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+                        this.playAnimation(this.IMAGES_WALKING);
+                        this.currentImage++;
+                        this.idleCounter = 0;
+                    }
                 }
-            }
-
         }, 60);
 
         setInterval(() => {
-            if (this.world.keyboard.IDLE) {
+            if (this.world.keyboard.IDLE && !this.isDead()) {
                 // IDLE & LONG_IDLE animation
                 this.idleCounter += 1;
                 this.idleCounter == 20 ? this.currentImage = 0 : this.currentImage++;
