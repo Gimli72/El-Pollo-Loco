@@ -2,9 +2,9 @@ import { MovableObject } from "./movable-object.class.js";
 
 export class Cloud extends MovableObject {
     
-    height = 250;
+    height = 420;
     width = 1000;
-    y = 20;
+    y = 0;
 
     /**
      * 
@@ -19,7 +19,9 @@ export class Cloud extends MovableObject {
     }
 
     animate() {
-        this.moveLeft();
+        setInterval(() => {
+            this.moveLeft();
+        }, 1000 / this.fps);  
     }
 
 }

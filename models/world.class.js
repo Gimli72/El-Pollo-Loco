@@ -1,4 +1,4 @@
-import { Character, MovableObject, Keyboard} from './index.js';
+import { Character, MovableObject, Keyboard, Chicken} from './index.js';
 import { level1 } from '../levels/level1.js';
 
 export class World {
@@ -68,17 +68,41 @@ export class World {
  * @param {MovableObject} movableObject 
  */
   addToMap(movableObject) {
-    if (movableObject.otherDirection) {
-      this.ctx?.save();
-      this.ctx?.translate(movableObject.width, 0);
-      this.ctx?.scale(-1, 1);      
-      movableObject.x = movableObject.x * -1;
-    }
-    this.ctx?.drawImage(movableObject.img, movableObject.x, movableObject.y, movableObject.width, movableObject.height);
-    if (movableObject.otherDirection) {
-      movableObject.x = movableObject.x * -1;
-      this.ctx?.restore();
+    if (this.ctx) {
+      if (movableObject.otherDirection) {
+        this.flipImage(movableObject);
+      }
+
+      movableObject.draw(this.ctx);
+      movableObject.drawFrame(this.ctx);
+
+      if (movableObject.otherDirection) {
+        this.flipImageBack(movableObject);
+      }
     }
   }
-  
+
+  /**
+  * 
+  * @param {MovableObject} movableObject 
+  */
+  flipImage(movableObject) {
+    if (this.ctx) {      
+        this.ctx.save();
+        this.ctx.translate(movableObject.width, 0);
+        this.ctx.scale(-1, 1);
+        movableObject.x = movableObject.x * -1;   
+    }
+  }
+
+  /**
+  * 
+  * @param {MovableObject} movableObject 
+  */
+  flipImageBack(movableObject) {
+    if (this.ctx) {
+      movableObject.x = movableObject.x * -1;
+      this.ctx.restore();
+    }
+  }
 }

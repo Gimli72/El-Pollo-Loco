@@ -1,10 +1,14 @@
+import { Character, Chicken } from "./index.js";
 export class MovableObject {
   x = 50;
   y = 0;
   /** @type {HTMLImageElement} */
   img;
-  // height = 300;
-  // width = 150;
+  /** @type {Number} */
+  height;
+  /** @type {Number} */
+  width;
+
   imageCache = {};
   currentImage = 0;
   speed = 0.15;
@@ -54,6 +58,28 @@ export class MovableObject {
 
   /**
    * 
+   * @param {Object} ctx 
+   */
+  draw(ctx) {
+    ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+  }
+
+  /**
+   * 
+   * @param {Object} ctx 
+   */
+  drawFrame(ctx) {
+    if (this instanceof Character || this instanceof Chicken) {
+      ctx.beginPath();
+      ctx.strokeStyle = 'blue';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(this.x, this.y, this.width, this.height);
+      ctx.stroke();
+    };
+  }
+
+  /**
+   * 
    * @param {Array} images 
    */
   playAnimation(images) {
@@ -63,15 +89,15 @@ export class MovableObject {
   }
 
   moveRight() {
-    console.log('Moving right');
+    this.x += this.speed;
   }
 
+
   moveLeft() {
-    setInterval(() => {
-      this.x -= this.speed;
-      if (this.x < -500 && this.repeat) {
-        this.x = 720;
-      }
-    }, 1000 / this.fps);
+    this.x -= this.speed;
+  }
+
+  jump() {
+    this.speedY = 30;
   }
 }
