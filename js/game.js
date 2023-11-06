@@ -72,3 +72,22 @@ window.addEventListener("keyup", (event) => {
   }
 });
 
+let percentage = 100;
+
+console.log(Math.round(percentage / 20));
+
+percentage = 61;
+
+console.log(Math.round(percentage / 20));
+
+percentage = 41;
+
+console.log(Math.round(percentage / 20));
+
+percentage = 21;
+
+console.log(Math.round(percentage / 20));
+
+percentage = 0;
+
+console.log(Math.round(percentage / 20));
