@@ -23,71 +23,59 @@ function init() {
 // 
 window.addEventListener("keydown", (event) => {
   switch (event.key) {
-    case "ArrowLeft":
-      keyboard.LEFT = true;
-      keyboard.IDLE = false;
-      break;
-    case "ArrowRight":
-      keyboard.RIGHT = true;
-      keyboard.IDLE = false;
-      break;
-    case "ArrowUp":
-      keyboard.UP = true;
-      keyboard.IDLE = false;
-      break;
-    case "ArrowDown":
-      keyboard.DOWN = true;
-      keyboard.IDLE = false;
-      break;
-    case " ":
-      keyboard.SPACE = true;
-      keyboard.IDLE = false;
-      break;
+      case 'ArrowLeft':
+          keyboard.LEFT = true;
+          keyboard.IDLE = false;
+          break;
+      case 'ArrowRight':
+          keyboard.RIGHT = true;
+          keyboard.IDLE = false;
+          break;
+      case 'ArrowUp':
+          keyboard.UP = true;
+          keyboard.IDLE = false;
+          break;
+      case 'ArrowDown':
+          keyboard.DOWN = true;
+          keyboard.IDLE = false;
+          break;
+      case ' ':
+          keyboard.SPACE = true;
+          keyboard.IDLE = false;
+          break;
+      case 'd':
+          keyboard.D = true;
+          keyboard.IDLE = false;
+          break;
   }
 });
 
 //
 window.addEventListener("keyup", (event) => {
   switch (event.key) {
-    case "ArrowLeft":
-      keyboard.LEFT = false;
-      keyboard.IDLE = true;
-      break;
-    case "ArrowRight":
-      keyboard.RIGHT = false;
-      keyboard.IDLE = true;
-      break;
-    case "ArrowUp":
-      keyboard.UP = false;
-      keyboard.IDLE = true;
-      break;
-    case "ArrowDown":
-      keyboard.DOWN = false;
-      keyboard.IDLE = true;
-      break;
-    case " ":
-      keyboard.SPACE = false;
-      keyboard.IDLE = true;
-      break;
+      case 'ArrowLeft':
+          keyboard.LEFT = false;
+          keyboard.IDLE = true;
+          break;
+      case 'ArrowRight':
+          keyboard.RIGHT = false;
+          keyboard.IDLE = true;
+          break;
+      case 'ArrowUp':
+          keyboard.UP = false;
+          keyboard.IDLE = true;
+          break;
+      case 'ArrowDown':
+          keyboard.DOWN = false;
+          keyboard.IDLE = true;
+          break;
+      case ' ':
+          keyboard.SPACE = false;
+          keyboard.IDLE = true;
+          break;
+      case 'd':
+          keyboard.D = false;
+          keyboard.IDLE = false;
+          break;
   }
 });
-
-let percentage = 100;
-
-console.log(Math.round(percentage / 20));
-
-percentage = 61;
-
-console.log(Math.round(percentage / 20));
-
-percentage = 41;
-
-console.log(Math.round(percentage / 20));
-
-percentage = 21;
-
-console.log(Math.round(percentage / 20));
-
-percentage = 0;
-
-console.log(Math.round(percentage / 20));

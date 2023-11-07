@@ -1,4 +1,4 @@
-import { Character, MovableObject, Keyboard, StatusBar } from './index.js';
+import { Character, MovableObject, Keyboard, StatusBar, ThrowableObject } from './index.js';
 import { level1 } from '../levels/level1.js';
 
 export class World {
@@ -10,6 +10,7 @@ export class World {
     ctx;
     camera_x = 0;
     statusBar = new StatusBar();
+    throwableObjects = [];
 
     fps = 60;
 
@@ -23,22 +24,35 @@ export class World {
         this.keyboard = keyboard;
         this.setWorld();
         this.draw();
-        this.checkCollisions();
+        this.run();
     }
 
     setWorld() {
         this.character.world = this;
     }
 
-    checkCollisions() {
+    run() {
         setInterval(() => {
-            this.level.enemies.forEach((enemy) => {
-                if (this.character.isColliding(enemy) && !this.character.isDead()) {
-                  this.character.hit();
-                  this.statusBar.setPercentage(this.character.energy);
-                }
-            });
+            // Check collision
+            this.checkCollisions();
+            this.checkThrowObjects();
         }, 200);
+    }
+
+    checkThrowObjects() {
+        if (this.keyboard.D) {
+            let bottle = new ThrowableObject((this.character.x + 100), (this.character.y + 80));
+            this.throwableObjects.push(bottle);
+        }
+    }
+
+    checkCollisions() {
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy) && !this.character.isDead()) {
+                this.character.hit();
+                this.statusBar.setPercentage(this.character.energy);
+            }
+        });
     }
 
     draw() {
@@ -50,6 +64,8 @@ export class World {
 
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.throwableObjects);
+
         this.ctx?.translate(-this.camera_x, 0);
         this.addToMapStatusBar(this.statusBar);
         this.ctx?.translate(this.camera_x, 0);

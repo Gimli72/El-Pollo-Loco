@@ -1,6 +1,5 @@
-import { World, MovableObject } from "./index.js";
+import { World, MovableObject } from './index.js';
 export class Character extends MovableObject {
-
     height = 300;
     width = 150;
     y = 130;
@@ -13,7 +12,7 @@ export class Character extends MovableObject {
         'img/2_character_pepe/2_walk/W-23.png',
         'img/2_character_pepe/2_walk/W-24.png',
         'img/2_character_pepe/2_walk/W-25.png',
-        'img/2_character_pepe/2_walk/W-26.png'
+        'img/2_character_pepe/2_walk/W-26.png',
     ];
 
     IMAGES_IDLE = [
@@ -26,7 +25,7 @@ export class Character extends MovableObject {
         'img/2_character_pepe/1_idle/idle/I-7.png',
         'img/2_character_pepe/1_idle/idle/I-8.png',
         'img/2_character_pepe/1_idle/idle/I-9.png',
-        'img/2_character_pepe/1_idle/idle/I-10.png'
+        'img/2_character_pepe/1_idle/idle/I-10.png',
     ];
 
     IMAGES_LONG_IDLE = [
@@ -39,7 +38,7 @@ export class Character extends MovableObject {
         'img/2_character_pepe/1_idle/long_idle/I-17.png',
         'img/2_character_pepe/1_idle/long_idle/I-18.png',
         'img/2_character_pepe/1_idle/long_idle/I-19.png',
-        'img/2_character_pepe/1_idle/long_idle/I-20.png'
+        'img/2_character_pepe/1_idle/long_idle/I-20.png',
     ];
 
     IMAGES_JUMPING = [
@@ -70,7 +69,6 @@ export class Character extends MovableObject {
         'img/2_character_pepe/5_dead/D-57.png',
     ];
 
-
     /** @type {World} */
     world;
 
@@ -90,11 +88,9 @@ export class Character extends MovableObject {
         this.animate();
     }
 
-
     animate() {
-
         setInterval(() => {
-            if(!this.isDead()) {
+            if (!this.isDead()) {
                 if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                     this.moveRight();
                     this.otherDirection = false;
@@ -106,7 +102,7 @@ export class Character extends MovableObject {
                 if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                     this.jump();
                 }
-                    this.world.camera_x = -this.x + 100;
+                this.world.camera_x = -this.x + 100;
             }
         }, 1000 / this.fps);
 
@@ -118,20 +114,20 @@ export class Character extends MovableObject {
             } else if (this.isAboveGround()) {
                 this.idleCounter = 0;
                 this.playAnimation(this.IMAGES_JUMPING);
-                } else {
-                    if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                        this.playAnimation(this.IMAGES_WALKING);
-                        this.currentImage++;
-                        this.idleCounter = 0;
-                    }
+            } else {
+                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+                    this.playAnimation(this.IMAGES_WALKING);
+                    this.currentImage++;
+                    this.idleCounter = 0;
                 }
+            }
         }, 60);
 
         setInterval(() => {
             if (this.world.keyboard.IDLE && !this.isDead()) {
                 // IDLE & LONG_IDLE animation
                 this.idleCounter += 1;
-                this.idleCounter == 20 ? this.currentImage = 0 : this.currentImage++;
+                this.idleCounter == 20 ? (this.currentImage = 0) : this.currentImage++;
                 if (this.idleCounter > this.goInSleepMode) {
                     this.playAnimation(this.IMAGES_LONG_IDLE);
                 } else {

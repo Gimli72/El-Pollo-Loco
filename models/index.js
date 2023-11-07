@@ -9,6 +9,7 @@ import { Cloud } from './cloud.class.js';
 import { Keyboard } from './keyboard.class.js';
 import { Level } from './level.class.js';
 import { Endboss } from './endboss.class.js';
+import { ThrowableObject } from './throwable-object.class.js';
 
 export {
     MovableObject,
@@ -22,4 +23,5 @@ export {
     Endboss,
     DrawableObject,
     StatusBar,
+    ThrowableObject,
 };

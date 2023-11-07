@@ -1,4 +1,4 @@
-import { Character, Chicken } from './index.js';
+import { Character, Chicken, ThrowableObject } from './index.js';
 
 export class DrawableObject {
     x = 50;
@@ -49,7 +49,7 @@ export class DrawableObject {
      * @param {CanvasRenderingContext2D} ctx
      */
     drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Chicken) {
+        if (this instanceof Character || this instanceof Chicken || this instanceof ThrowableObject) {
             ctx.beginPath();
             ctx.strokeStyle = 'blue';
             ctx.lineWidth = 2;

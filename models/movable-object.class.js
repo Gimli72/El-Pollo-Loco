@@ -1,4 +1,4 @@
-import { Character, Chicken, DrawableObject, World } from "./index.js";
+import { Character, Chicken, DrawableObject, ThrowableObject, World } from './index.js';
 export class MovableObject extends DrawableObject {
     repeat = false; // Restart cloud true or false
     fps = 60;
@@ -18,16 +18,20 @@ export class MovableObject extends DrawableObject {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
-                if (this.y > 125) {
-                    this.y = 125;
-                }
+                // if (this.y > 125) {
+                //     this.y = 125;
+                // }
                 this.speedY -= this.acceleration;
             }
         }, 1000 / 25);
     }
 
     isAboveGround() {
-        return this.y < 125;
+        if (this instanceof ThrowableObject) {
+            return true;
+        } else {
+            return this.y < 125;
+        }
     }
 
     isColliding(movableObject) {
