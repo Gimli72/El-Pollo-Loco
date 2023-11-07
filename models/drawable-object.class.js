@@ -11,7 +11,9 @@ export class DrawableObject {
     /** @type {Number} */
     width;
 
+    /** @type {Record<string, HTMLImageElement>} */
     imageCache = {};
+    
     currentImage = 0;
 
     /**
@@ -26,10 +28,10 @@ export class DrawableObject {
 
     /**
      *
-     * @param {string[]} images
+     * @param {string[]} imagesPaths
      */
-    loadImages(images) {
-        images.forEach((path) => {
+    loadImages(imagesPaths) {
+        imagesPaths.forEach((path) => {
             let img = new Image();
             img.src = path;
             this.imageCache[path] = img;
