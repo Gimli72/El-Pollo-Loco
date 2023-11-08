@@ -23,6 +23,10 @@ export class MovableObject extends DrawableObject {
         }, 1000 / 25);
     }
 
+    /**
+     *
+     * @returns {Boolean}
+     */
     isAboveGround() {
         if (this instanceof ThrowableObject) {
             return true;
@@ -31,18 +35,23 @@ export class MovableObject extends DrawableObject {
         }
     }
 
+    /**
+     *
+     * @param {MovableObject} movableObject
+     * @returns {Boolean}
+     */
     isColliding(movableObject) {
         return (
-            this.x + this.width >= movableObject.x &&
-            this.y + this.height >= movableObject.y &&
-            this.x < movableObject.x &&
-            this.y < movableObject.y + movableObject.height
+            this.x + this.width - this.offset.right > movableObject.x - movableObject.offset.left &&
+            this.y + this.height - this.offset.bottom > movableObject.y - movableObject.offset.top &&
+            this.x + this.offset.left < movableObject.x + movableObject.width - movableObject.offset.right &&
+            this.y + this.offset.top < movableObject.y + movableObject.height - movableObject.offset.bottom
         );
     }
 
     hit() {
         // The energy must not fall below 0
-        this.energy -= 5;
+        this.energy -= 0; // zurück auf 5 setzen
         if (this.energy < 0) {
             this.energy = 0;
         } else {
@@ -50,10 +59,18 @@ export class MovableObject extends DrawableObject {
         }
     }
 
+    /**
+     *
+     * @returns {Boolean}
+     */
     isDead() {
         return this.energy == 0;
     }
 
+    /**
+     * 
+     * @returns {Boolean}
+     */
     isHurt() {
         let timePassed = new Date().getTime() - this.lastHit;
         timePassed /= 1000;

@@ -50,6 +50,6 @@ export class ThrowableObject extends MovableObject {
         setInterval(() => {
             this.playAnimation(this.IMAGES_BOTTLE_ROTATION);
             this.currentImage++;
-        }, 240);
+        }, 80);
     }
 }

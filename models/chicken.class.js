@@ -5,19 +5,21 @@ export class Chicken extends MovableObject {
     width = 90;
     y = 335;
 
+    offset = {
+        left: 0,
+        top: 5,
+        right: 0,
+        bottom: 5,
+    };
+
     IMAGES_WALKING = Array.from({ length: 3 }, (_, index) => {
         return `img/3_enemies_chicken/chicken_normal/1_walk/${index + 1}_w.png`;
     });
-
-    // IMAGES_WALKING = [
-    //   'img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
-    //   'img/3_enemies_chicken/chicken_normal/1_walk/2_w.png',
-    //   'img/3_enemies_chicken/chicken_normal/1_walk/3_w.png'
-    // ];
+    
 
     constructor(start_x = 200) {
         super();
-        this.loadImage("img/3_enemies_chicken/chicken_normal/1_walk/1_w.png");
+        this.loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
 
         this.x = start_x + Math.random() * 2200; // Zahl zwischen 200 und 700

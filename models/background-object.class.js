@@ -1,7 +1,6 @@
 import { MovableObject } from "./index.js";
 
 export class BackGroundObject extends MovableObject {
-  x = 0;
   y = 0;
   width = 1440;
   height = 480;

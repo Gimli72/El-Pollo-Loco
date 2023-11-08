@@ -41,7 +41,7 @@ export class World {
 
     checkThrowObjects() {
         if (this.keyboard.D) {
-            let bottle = new ThrowableObject((this.character.x + 100), (this.character.y + 80));
+            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 80);
             this.throwableObjects.push(bottle);
             this.character.idleCounter = 0;
         }
@@ -49,6 +49,9 @@ export class World {
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
+                console.log("Auf Feind gesprungen");
+            }
             if (this.character.isColliding(enemy) && !this.character.isDead()) {
                 // When damage and character sleeps wake up
                 this.character.idleCounter = 0;

@@ -13,8 +13,15 @@ export class DrawableObject {
 
     /** @type {Record<string, HTMLImageElement>} */
     imageCache = {};
-    
+
     currentImage = 0;
+
+    offset = {
+        left: 0,
+        top: 0,
+        right: 0,
+        bottom: 0,
+    };
 
     /**
      * @param {number} x
@@ -52,11 +59,19 @@ export class DrawableObject {
      */
     drawFrame(ctx) {
         if (this instanceof Character || this instanceof Chicken || this instanceof ThrowableObject) {
-            ctx.beginPath();
+            // ctx.beginPath();
             ctx.strokeStyle = 'blue';
             ctx.lineWidth = 2;
             ctx.strokeRect(this.x, this.y, this.width, this.height);
-            ctx.stroke();
+            // ctx.stroke();
+            ctx.strokeStyle = 'red';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(
+                this.x + this.offset.right,
+                this.y + this.offset.top,
+                this.width - 2 * this.offset.left,
+                this.height - (this.offset.top + this.offset.bottom)
+            );
         }
     }
 }

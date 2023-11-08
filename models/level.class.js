@@ -6,10 +6,10 @@ export class Level {
     level_end_x = 2240;
 
     /**
-     * 
-     * @param {Array} backgroundObjects 
-     * @param {Array} enemies 
-     * @param {Array} clouds 
+     *
+     * @param {BackGroundObject[]} backgroundObjects
+     * @param {Chicken[]} enemies
+     * @param {Cloud[]} clouds
      */
     constructor(backgroundObjects, enemies, clouds) {
         this.backgroundObjects = backgroundObjects;
