@@ -60,9 +60,9 @@ export class DrawableObject {
     drawFrame(ctx) {
         if (this instanceof Character || this instanceof Chicken || this instanceof ThrowableObject) {
             // ctx.beginPath();
-            ctx.strokeStyle = 'blue';
-            ctx.lineWidth = 2;
-            ctx.strokeRect(this.x, this.y, this.width, this.height);
+            // ctx.strokeStyle = 'blue';
+            // ctx.lineWidth = 2;
+            // ctx.strokeRect(this.x, this.y, this.width, this.height);
             // ctx.stroke();
             ctx.strokeStyle = 'red';
             ctx.lineWidth = 2;

@@ -51,7 +51,7 @@ export class MovableObject extends DrawableObject {
 
     hit() {
         // The energy must not fall below 0
-        this.energy -= 0; // zurück auf 5 setzen
+        this.energy -= 1; // zurück auf 5 setzen
         if (this.energy < 0) {
             this.energy = 0;
         } else {

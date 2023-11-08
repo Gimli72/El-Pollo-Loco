@@ -1,4 +1,4 @@
-import { Character, MovableObject, Keyboard, StatusBar, ThrowableObject } from './index.js';
+import { Character, MovableObject, Keyboard, StatusBar, ThrowableObject, StatusBarHealth, StatusBarCoin, StatusBarBottle } from './index.js';
 import { level1 } from '../levels/level1.js';
 
 export class World {
@@ -9,7 +9,9 @@ export class World {
     canvas;
     ctx;
     camera_x = 0;
-    statusBar = new StatusBar();
+    statusBarHealth = new StatusBarHealth();
+    statusBarCoin = new StatusBarCoin();
+    statusBarBottle = new StatusBarBottle();
     throwableObjects = [];
 
     fps = 60;
@@ -50,13 +52,13 @@ export class World {
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
-                console.log("Auf Feind gesprungen");
+                console.log('Auf Feind gesprungen');
             }
             if (this.character.isColliding(enemy) && !this.character.isDead()) {
                 // When damage and character sleeps wake up
                 this.character.idleCounter = 0;
                 this.character.hit();
-                this.statusBar.setPercentage(this.character.energy);
+                this.statusBarHealth.setPercentage(this.character.energy, this.statusBarHealth.IMAGES_HEALTH);
             }
         });
     }
@@ -73,7 +75,10 @@ export class World {
         this.addObjectsToMap(this.throwableObjects);
 
         this.ctx?.translate(-this.camera_x, 0);
-        this.addToMapStatusBar(this.statusBar);
+        this.addToMapStatusBar(this.statusBarHealth);
+        this.addToMapStatusBar(this.statusBarCoin);
+        this.addToMapStatusBar(this.statusBarBottle);
+
         this.ctx?.translate(this.camera_x, 0);
 
         this.addToMapMovableObject(this.character);
