@@ -50,6 +50,8 @@ export class World {
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && !this.character.isDead()) {
+                // When damage and character sleeps wake up
+                this.character.idleCounter = 0;
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
             }

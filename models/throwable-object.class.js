@@ -46,7 +46,7 @@ export class ThrowableObject extends MovableObject {
         }, 40)
     }
 
-    animateBottle() {
+    animateBottle() {        
         setInterval(() => {
             this.playAnimation(this.IMAGES_BOTTLE_ROTATION);
             this.currentImage++;
