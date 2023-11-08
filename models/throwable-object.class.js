@@ -29,12 +29,13 @@ export class ThrowableObject extends MovableObject {
     constructor(x, y) {
         super();
         this.loadImage('img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
-        // this.loadImages(this.IMAGES_BOTTLE_ROTATION);
+        this.loadImages(this.IMAGES_BOTTLE_ROTATION);
         this.x = x;
         this.y = y;
         this.width = 60;
         this.height = 40;
         this.throw();
+        this.animateBottle();
     }
 
     throw() {
@@ -43,5 +44,12 @@ export class ThrowableObject extends MovableObject {
         setInterval(() => {   
             this.x += 15;
         }, 40)
+    }
+
+    animateBottle() {
+        setInterval(() => {
+            this.playAnimation(this.IMAGES_BOTTLE_ROTATION);
+            this.currentImage++;
+        }, 240);
     }
 }

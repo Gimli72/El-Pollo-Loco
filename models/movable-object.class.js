@@ -62,7 +62,7 @@ export class MovableObject extends DrawableObject {
 
     /**
      *
-     * @param {Array} images
+     * @param {String[]} images
      */
     playAnimation(images) {
         let index = this.currentImage % images.length;
