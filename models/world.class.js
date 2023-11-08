@@ -43,6 +43,7 @@ export class World {
         if (this.keyboard.D) {
             let bottle = new ThrowableObject((this.character.x + 100), (this.character.y + 80));
             this.throwableObjects.push(bottle);
+            this.character.idleCounter = 0;
         }
     }
 

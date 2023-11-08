@@ -75,7 +75,7 @@ window.addEventListener("keyup", (event) => {
           break;
       case 'd':
           keyboard.D = false;
-          keyboard.IDLE = false;
+          keyboard.IDLE = true;
           break;
   }
 });
