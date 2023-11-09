@@ -38,7 +38,7 @@ export class World {
             // Check collision
             this.checkCollisions();
             this.checkThrowObjects();
-        }, 200);
+        }, 100);
     }
 
     checkThrowObjects() {
@@ -51,10 +51,11 @@ export class World {
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
-                console.log('Auf Feind gesprungen');
+            if (this.character.isColliding(enemy) && this.character.isAboveGround() && this.character.fallingDown) { 
+                enemy.stopAnimate();
+                enemy.alive = false;                      
             }
-            if (this.character.isColliding(enemy) && !this.character.isDead()) {
+            if (this.character.isColliding(enemy) && !this.character.isDead() && enemy.alive) {
                 // When damage and character sleeps wake up
                 this.character.idleCounter = 0;
                 this.character.hit();
@@ -72,6 +73,7 @@ export class World {
 
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.endboss);
         this.addObjectsToMap(this.throwableObjects);
 
         this.ctx?.translate(-this.camera_x, 0);

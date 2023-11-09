@@ -9,6 +9,7 @@ export class MovableObject extends DrawableObject {
     acceleration = 2.5;
     energy = 100;
     lastHit = 0;
+    fallingDown = false;
 
     constructor() {
         super();
@@ -19,6 +20,12 @@ export class MovableObject extends DrawableObject {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
+                if (this.y === -65) {
+                    this.fallingDown = true;
+                }
+                if (this.fallingDown && this.y > 120) {
+                    this.fallingDown = false;
+                } 
             }
         }, 1000 / 25);
     }
@@ -68,7 +75,7 @@ export class MovableObject extends DrawableObject {
     }
 
     /**
-     * 
+     *
      * @returns {Boolean}
      */
     isHurt() {
