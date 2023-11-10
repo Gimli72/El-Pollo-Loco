@@ -1,4 +1,4 @@
-import { Character, MovableObject, Keyboard, StatusBar, ThrowableObject, StatusBarHealth, StatusBarCoin, StatusBarBottle } from './index.js';
+import { Character, MovableObject, Keyboard, StatusBar, ThrowableObject, StatusBarHealth, StatusBarCoin, StatusBarBottle, StatusBarHealthEndboss } from './index.js';
 import { level1 } from '../levels/level1.js';
 
 export class World {
@@ -12,6 +12,7 @@ export class World {
     statusBarHealth = new StatusBarHealth();
     statusBarCoin = new StatusBarCoin();
     statusBarBottle = new StatusBarBottle();
+    statusBarHealthEndboss = new StatusBarHealthEndboss();
     throwableObjects = [];
 
     fps = 60;
@@ -80,6 +81,7 @@ export class World {
         this.addToMapStatusBar(this.statusBarHealth);
         this.addToMapStatusBar(this.statusBarCoin);
         this.addToMapStatusBar(this.statusBarBottle);
+        this.character.x > 1700 ? this.addToMapStatusBar(this.statusBarHealthEndboss) : "";
 
         this.ctx?.translate(this.camera_x, 0);
 
