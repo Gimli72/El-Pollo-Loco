@@ -39,7 +39,7 @@ export const level1 = new Level(
  * @description Random arrangement of bottles (7 to max. 12 pieces)
  */
 function bottlePush() {
-    // Get number of bootles (random)
+    // Get number of bottles (random)
     const quantity = Math.max(7, Math.round(Math.random() * 12));
     // Calculate the space between the bottles
     const space = 1300 / quantity;    
