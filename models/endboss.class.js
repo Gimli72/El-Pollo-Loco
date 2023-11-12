@@ -55,7 +55,6 @@ export class Endboss extends MovableObject {
                 } else {
                     this.playAnimation(this.IMAGES_DEAD);
                     this.currentImage++;
-                    console.log(this.currentImage, this.IMAGES_DEAD.length);
                     if (this.currentImage === this.IMAGES_DEAD.length) {
                         this.stopAnimate();
                         this.loadImage('img/3_enemies_chicken/chicken_normal/2_dead/dead.png', this.x);

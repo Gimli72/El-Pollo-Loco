@@ -49,29 +49,35 @@ export class World {
         setInterval(() => {
             // Check collision
             this.checkCollisions();
+            this.checkCollisionsItems();
             this.checkThrowObjects();
         }, 150);
     }
 
     checkThrowObjects() {
-        if (this.keyboard.D) {
+        if (this.keyboard.D && this.statusBarBottle.levelStatusBar > 0) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 80);
             this.throwableObjects.push(bottle);
+            this.statusBarBottle.levelStatusBar -= 20;
             this.character.idleCounter = 0;
+            this.statusBarBottle.setPercentage(this.statusBarBottle.levelStatusBar, this.statusBarBottle.IMAGES_BOTTLE);
         }
     }
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
-            this.throwableObjects.forEach((bottle, index) => { 
+            this.throwableObjects.forEach((bottle, index) => {
                 if (enemy.isColliding(bottle)) {
                     enemy.stopAnimate();
                     enemy.alive = false;
                 }
                 if (this.endboss.isColliding(bottle) && !bottle.hitEnemy) {
                     bottle.hitEnemy = true;
-                    this.endboss.hit();
-                    this.statusBarHealthEndboss.setPercentage(this.endboss.energy, this.statusBarHealthEndboss.IMAGES_HEALTH);
+                    this.endboss.hit(20);
+                    this.statusBarHealthEndboss.setPercentage(
+                        this.endboss.energy,
+                        this.statusBarHealthEndboss.IMAGES_HEALTH
+                    );
                 }
             });
             if (this.character.isColliding(enemy) && this.character.isAboveGround() && this.character.fallingDown) {
@@ -87,6 +93,16 @@ export class World {
         });
     }
 
+    checkCollisionsItems() {
+        this.level.bottles.forEach((bottle, index) => {
+            if (this.character.isColliding(bottle) && this.statusBarBottle.levelStatusBar < 100) {
+                this.statusBarBottle.levelStatusBar >= 100 ? '' : (this.statusBarBottle.levelStatusBar += 20);
+                this.statusBarBottle.setPercentage(this.statusBarBottle.levelStatusBar, this.statusBarBottle.IMAGES_BOTTLE);
+                this.level.bottles.splice(index, 1);
+            }
+        });
+    }
+
     draw() {
         this.ctx?.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -97,6 +113,7 @@ export class World {
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.endboss);
+        this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.throwableObjects);
 
         this.ctx?.translate(-this.camera_x, 0);

@@ -4,6 +4,7 @@ export class Level {
     enemies;
     clouds;
     endboss;
+    bottles;
     level_end_x = 2240;
 
     /**
@@ -13,10 +14,11 @@ export class Level {
      * @param {Cloud[]} clouds
      * @param {Endboss[]} endboss
      */
-    constructor(backgroundObjects, enemies, clouds, endboss) {
+    constructor(backgroundObjects, enemies, clouds, endboss, bottles) {
         this.backgroundObjects = backgroundObjects;
         this.enemies = enemies;
         this.clouds = clouds;
         this.endboss = endboss;
+        this.bottles = bottles
     }
 }

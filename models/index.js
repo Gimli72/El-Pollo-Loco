@@ -4,6 +4,7 @@ import { StatusBarHealth } from './status-bar-health.class.js';
 import { StatusBarCoin } from './status-bar-coin.class.js';
 import { StatusBarBottle } from './status-bar-bottle.class.js';
 import { StatusBarHealthEndboss } from './status-bar-health-endboss.class.js';
+import { Bottle } from './bottle.class.js';
 import { MovableObject } from './movable-object.class.js';
 import { BackGroundObject } from './background-object.class.js';
 import { Character } from './character.class.js';
@@ -32,4 +33,5 @@ export {
     StatusBarCoin,
     StatusBarBottle,
     StatusBarHealthEndboss,
+    Bottle,
 };

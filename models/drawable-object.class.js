@@ -1,4 +1,4 @@
-import { Character, Chicken, Endboss, ThrowableObject } from './index.js';
+import { Character, Chicken, Endboss, ThrowableObject, Bottle } from './index.js';
 
 export class DrawableObject {
     x = 50;
@@ -66,7 +66,8 @@ export class DrawableObject {
             this instanceof Character ||
             this instanceof Chicken ||
             this instanceof ThrowableObject ||
-            this instanceof Endboss
+            this instanceof Endboss ||
+            this instanceof Bottle
         ) {
             // ctx.beginPath();
             // ctx.strokeStyle = 'blue';

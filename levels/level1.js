@@ -1,4 +1,4 @@
-import { BackGroundObject, Chicken, Cloud, Level, Endboss } from '../models/index.js';
+import { BackGroundObject, Chicken, Cloud, Level, Endboss, Bottle } from '../models/index.js';
 
 export const level1 = new Level(
     [-1439, 0, 1439].map((x) => [
@@ -26,6 +26,25 @@ export const level1 = new Level(
     ],
     [
         new Endboss(),
+    ],
+    [
+        new Bottle(400)
     ]
 );
 
+/**
+ * @description Random arrangement of bottles (7 to max. 12 pieces)
+ */
+function bottlePush() {
+    const quantity = Math.max(7, Math.round(Math.random() * 12));
+    const space = 1300 / quantity;
+
+    for (let i = 1; i < quantity; i++) {
+        level1.bottles.push(new Bottle(400 + i * space));
+    }
+}
+
+bottlePush();
+
+
+            
