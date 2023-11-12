@@ -1,5 +1,8 @@
 import { BackGroundObject, Chicken, Cloud, Level, Endboss, Bottle } from '../models/index.js';
 
+/**
+ * @description Structure of level architecture
+ */
 export const level1 = new Level(
     [-1439, 0, 1439].map((x) => [
         new BackGroundObject('./img/5_background/layers/air.png', x),
@@ -36,15 +39,14 @@ export const level1 = new Level(
  * @description Random arrangement of bottles (7 to max. 12 pieces)
  */
 function bottlePush() {
+    // Get number of bootles (random)
     const quantity = Math.max(7, Math.round(Math.random() * 12));
-    const space = 1300 / quantity;
-
+    // Calculate the space between the bottles
+    const space = 1300 / quantity;    
+    // Create X (quantity) new bottles with a Y (space) spacing
     for (let i = 1; i < quantity; i++) {
         level1.bottles.push(new Bottle(400 + i * space));
     }
 }
 
-bottlePush();
-
-
-            
+bottlePush();            
