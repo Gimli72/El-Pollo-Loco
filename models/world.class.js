@@ -1,8 +1,19 @@
-import { Character, MovableObject, Keyboard, StatusBar, ThrowableObject, StatusBarHealth, StatusBarCoin, StatusBarBottle, StatusBarHealthEndboss } from './index.js';
+import {
+    Character,
+    MovableObject,
+    Keyboard,
+    StatusBar,
+    ThrowableObject,
+    StatusBarHealth,
+    StatusBarCoin,
+    StatusBarBottle,
+    StatusBarHealthEndboss,
+} from './index.js';
 import { level1 } from '../levels/level1.js';
 
 export class World {
     level = level1;
+    endboss = this.level.endboss[0];
 
     character = new Character();
     keyboard;
@@ -39,7 +50,7 @@ export class World {
             // Check collision
             this.checkCollisions();
             this.checkThrowObjects();
-        }, 100);
+        }, 150);
     }
 
     checkThrowObjects() {
@@ -52,9 +63,20 @@ export class World {
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && this.character.isAboveGround() && this.character.fallingDown) { 
+            this.throwableObjects.forEach((bottle, index) => { 
+                if (enemy.isColliding(bottle)) {
+                    enemy.stopAnimate();
+                    enemy.alive = false;
+                }
+                if (this.endboss.isColliding(bottle) && !bottle.hitEnemy) {
+                    bottle.hitEnemy = true;
+                    this.endboss.hit();
+                    this.statusBarHealthEndboss.setPercentage(this.endboss.energy, this.statusBarHealthEndboss.IMAGES_HEALTH);
+                }
+            });
+            if (this.character.isColliding(enemy) && this.character.isAboveGround() && this.character.fallingDown) {
                 enemy.stopAnimate();
-                enemy.alive = false;                      
+                enemy.alive = false;
             }
             if (this.character.isColliding(enemy) && !this.character.isDead() && enemy.alive) {
                 // When damage and character sleeps wake up
@@ -81,7 +103,7 @@ export class World {
         this.addToMapStatusBar(this.statusBarHealth);
         this.addToMapStatusBar(this.statusBarCoin);
         this.addToMapStatusBar(this.statusBarBottle);
-        this.character.x > 1700 ? this.addToMapStatusBar(this.statusBarHealthEndboss) : "";
+        this.character.x > 1700 ? this.addToMapStatusBar(this.statusBarHealthEndboss) : '';
 
         this.ctx?.translate(this.camera_x, 0);
 

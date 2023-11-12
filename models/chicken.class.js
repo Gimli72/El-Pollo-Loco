@@ -14,7 +14,7 @@ export class Chicken extends MovableObject {
 
     alive = true;
 
-    intervalIds = [];
+x
 
     IMAGES_WALKING = Array.from({ length: 3 }, (_, index) => {
         return `img/3_enemies_chicken/chicken_normal/1_walk/${index + 1}_w.png`;
