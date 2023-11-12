@@ -1,4 +1,4 @@
-import { Character, Chicken, Endboss, ThrowableObject, Bottle } from './index.js';
+import { Character, Chicken, Endboss, ThrowableObject, Bottle, Coin } from './index.js';
 
 export class DrawableObject {
     x = 50;
@@ -67,21 +67,23 @@ export class DrawableObject {
             this instanceof Chicken ||
             this instanceof ThrowableObject ||
             this instanceof Endboss ||
-            this instanceof Bottle
+            this instanceof Bottle ||
+            this instanceof Coin
         ) {
             // ctx.beginPath();
             // ctx.strokeStyle = 'blue';
             // ctx.lineWidth = 2;
             // ctx.strokeRect(this.x, this.y, this.width, this.height);
             // ctx.stroke();
-            ctx.strokeStyle = 'red';
-            ctx.lineWidth = 2;
-            ctx.strokeRect(
-                this.x + this.offset.right,
-                this.y + this.offset.top,
-                this.width - 2 * this.offset.left,
-                this.height - (this.offset.top + this.offset.bottom)
-            );
+            
+            // ctx.strokeStyle = 'red';
+            // ctx.lineWidth = 2;
+            // ctx.strokeRect(
+            //     this.x + this.offset.right,
+            //     this.y + this.offset.top,
+            //     this.width - 2 * this.offset.left,
+            //     this.height - (this.offset.top + this.offset.bottom)
+            // );
         }
     }
 }

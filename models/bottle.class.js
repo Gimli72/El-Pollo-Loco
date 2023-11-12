@@ -1,6 +1,6 @@
-import { DrawableObject } from './index.js';
+import { MovableObject } from './index.js';
 
-export class Bottle extends DrawableObject {
+export class Bottle extends MovableObject {
     
     imagePaths = [
         'img/6_salsa_bottle/2_salsa_bottle_on_ground.png',

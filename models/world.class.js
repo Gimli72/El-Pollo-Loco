@@ -101,6 +101,13 @@ export class World {
                 this.level.bottles.splice(index, 1);
             }
         });
+        this.level.coins.forEach((coin, index) => {
+            if (this.character.isColliding(coin)) {
+                this.statusBarCoin.levelStatusBar += 4;
+                this.statusBarCoin.setPercentage(this.statusBarCoin.levelStatusBar, this.statusBarCoin.IMAGES_COIN);
+                this.level.coins.splice(index, 1);
+            }
+        });
     }
 
     draw() {
@@ -114,6 +121,7 @@ export class World {
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.endboss);
         this.addObjectsToMap(this.level.bottles);
+        this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.throwableObjects);
 
         this.ctx?.translate(-this.camera_x, 0);
@@ -127,7 +135,6 @@ export class World {
         this.addToMapMovableObject(this.character);
 
         this.ctx?.translate(-this.camera_x, 0);
-
         // Draw() wird immer wieder aufgerufen
         let self = this;
         requestAnimationFrame(function () {

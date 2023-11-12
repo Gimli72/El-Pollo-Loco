@@ -1,15 +1,17 @@
-import { BackGroundObject, Chicken, Cloud, Level, Endboss, Bottle } from '../models/index.js';
+import { BackGroundObject, Chicken, Cloud, Level, Endboss, Bottle, Coin } from '../models/index.js';
 
 /**
  * @description Structure of level architecture
  */
 export const level1 = new Level(
-    [-1439, 0, 1439].map((x) => [
-        new BackGroundObject('./img/5_background/layers/air.png', x),
-        new BackGroundObject('./img/5_background/layers/3_third_layer/full.png', x),
-        new BackGroundObject('./img/5_background/layers/2_second_layer/full.png', x),
-        new BackGroundObject('./img/5_background/layers/1_first_layer/full.png', x),
-    ]).flat(),
+    [-1439, 0, 1439]
+        .map((x) => [
+            new BackGroundObject('./img/5_background/layers/air.png', x),
+            new BackGroundObject('./img/5_background/layers/3_third_layer/full.png', x),
+            new BackGroundObject('./img/5_background/layers/2_second_layer/full.png', x),
+            new BackGroundObject('./img/5_background/layers/1_first_layer/full.png', x),
+        ])
+        .flat(),
     [
         new Chicken(),
         new Chicken(),
@@ -28,11 +30,12 @@ export const level1 = new Level(
         new Cloud(3000)
     ],
     [
-        new Endboss(),
+        new Endboss()
     ],
     [
         new Bottle(400)
-    ]
+    ],
+    []
 );
 
 /**
@@ -49,4 +52,37 @@ function bottlePush() {
     }
 }
 
-bottlePush();            
+bottlePush(); 
+
+/**
+ * 
+ * @param {Number} startX 
+ */
+function coinsInSheet(startX) {
+    const coinOffsets = [120, 80, 40, 80, 120];
+
+    for (let i = 0; i < 5; i++) {
+        const position_x = startX + i * 50;
+        const position_y = coinOffsets[i];
+        level1.coins.push(new Coin(position_x, position_y));
+    }
+}
+
+/**
+ * 
+ * @param {Number} startX 
+ */
+function coinsInLine(startX) {
+
+    for (let i = 0; i < 5; i++) {
+        const position_x = startX;
+        const position_y = 20 + (i*45);
+        level1.coins.push(new Coin(position_x, position_y));
+    }
+}
+   
+coinsInSheet(300);  
+coinsInLine(750);
+coinsInSheet(1000);  
+coinsInLine(1400);
+coinsInSheet(1700);       
