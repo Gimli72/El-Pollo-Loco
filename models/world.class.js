@@ -54,6 +54,7 @@ export class World {
             this.checkCollisions();
             this.checkCollisionsItems();
             this.checkThrowObjects();
+            this.fullScreenCheck();
         }, 150);
     }
 
@@ -65,6 +66,17 @@ export class World {
             this.character.idleCounter = 0;
             this.statusBarBottle.setPercentage(this.statusBarBottle.levelStatusBar, this.statusBarBottle.IMAGES_BOTTLE);
         }
+    }
+
+    fullScreenCheck() {
+        if (this.keyboard.W && !this.isCanvasInFullscreen()) {
+            this.canvas.requestFullscreen();
+            this.keyboard.W = false;
+        }
+    }
+    
+    isCanvasInFullscreen() {
+        return document.fullscreenElement === this.canvas;
     }
 
     checkCollisions() {

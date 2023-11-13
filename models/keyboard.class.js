@@ -6,4 +6,5 @@ export class Keyboard {
     SPACE = false;
     D = false;
     IDLE = true;
+    W = false;
 }
