@@ -58,7 +58,7 @@ bottlePush();
  * 
  * @param {Number} startX 
  */
-function coinsInSheet(startX) {
+function coinsPyramid(startX) {
     const coinOffsets = [120, 80, 40, 80, 120];
 
     for (let i = 0; i < 5; i++) {
@@ -81,8 +81,8 @@ function coinsInLine(startX) {
     }
 }
    
-coinsInSheet(300);  
+coinsPyramid(300);  
 coinsInLine(750);
-coinsInSheet(1000);  
+coinsPyramid(1000);  
 coinsInLine(1400);
-coinsInSheet(1700);       
+coinsPyramid(1700);       
