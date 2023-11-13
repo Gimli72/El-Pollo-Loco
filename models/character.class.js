@@ -1,4 +1,5 @@
 import { World, MovableObject } from "./index.js";
+
 export class Character extends MovableObject {
     height = 300;
     width = 150;

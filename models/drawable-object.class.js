@@ -6,14 +6,15 @@ export class DrawableObject {
 
     /** @type {HTMLImageElement} */
     img;
-    /** @type {Number} */
+    /** @type {number} */
     height;
-    /** @type {Number} */
+    /** @type {number} */
     width;
 
     /** @type {Record<string, HTMLImageElement>} */
     imageCache = {};
 
+    /** @type {number} */
     currentImage = 0;
 
     offset = {
@@ -23,6 +24,7 @@ export class DrawableObject {
         bottom: 0,
     };
 
+    /** @type {number[]} */
     intervalIds = [];
 
     hitEnemy = false;

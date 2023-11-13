@@ -8,12 +8,12 @@ export class Cloud extends MovableObject {
 
     /**
      * 
-     * @param {Number} x 
+     * @param {number} start_x 
      */
-    constructor(x) {
+    constructor(start_x) {
         super();
         this.loadImage('img/5_background/layers/4_clouds/full.png');
-        this.x = x + (Math.random() * 500); // Zahl zwischen 200 und 700
+        this.x = start_x + (Math.random() * 500); // Zahl zwischen 200 und 700
         this.repeat = true; // Restart Cloud
         this.animate();
     }

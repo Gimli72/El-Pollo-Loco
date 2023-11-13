@@ -14,12 +14,14 @@ export class Chicken extends MovableObject {
 
     alive = true;
 
-x
-
     IMAGES_WALKING = Array.from({ length: 3 }, (_, index) => {
         return `img/3_enemies_chicken/chicken_normal/1_walk/${index + 1}_w.png`;
     });
 
+    /**
+     * 
+     * @param {number} start_x 
+     */
     constructor(start_x = 200) {
         super();
         this.loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');

@@ -9,8 +9,8 @@ export class StatusBar extends DrawableObject {
 
     /**
      * 
-     * @param {Number} levelStatusBar 
-     * @param {String[]} images 
+     * @param {number} levelStatusBar 
+     * @param {string[]} images 
      */
     setPercentage(levelStatusBar, images) {
         this.levelStatusBar = levelStatusBar;

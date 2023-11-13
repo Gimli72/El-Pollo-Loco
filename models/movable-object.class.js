@@ -32,7 +32,7 @@ export class MovableObject extends DrawableObject {
 
     /**
      *
-     * @returns {Boolean}
+     * @returns {boolean}
      */
     isAboveGround() {
         if (this instanceof ThrowableObject) {
@@ -45,7 +45,7 @@ export class MovableObject extends DrawableObject {
     /**
      *
      * @param {MovableObject} movableObject
-     * @returns {Boolean}
+     * @returns {boolean}
      */
     isColliding(movableObject) {
         return (
@@ -56,6 +56,10 @@ export class MovableObject extends DrawableObject {
         );
     }
 
+    /**
+     * 
+     * @param {number} damage 
+     */
     hit(damage = 5) {
         // The energy must not fall below 0
         this.energy -= damage; // zurück auf 5 setzen
@@ -68,7 +72,7 @@ export class MovableObject extends DrawableObject {
 
     /**
      *
-     * @returns {Boolean}
+     * @returns {boolean}
      */
     isDead() {
         return this.energy == 0;
@@ -76,7 +80,7 @@ export class MovableObject extends DrawableObject {
 
     /**
      *
-     * @returns {Boolean}
+     * @returns {boolean}
      */
     isHurt() {
         let timePassed = new Date().getTime() - this.lastHit;
@@ -86,7 +90,7 @@ export class MovableObject extends DrawableObject {
 
     /**
      *
-     * @param {String[]} images
+     * @param {string[]} images
      */
     playAnimation(images) {
         let index = this.currentImage % images.length;

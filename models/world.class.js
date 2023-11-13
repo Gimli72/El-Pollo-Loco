@@ -9,6 +9,7 @@ import {
     StatusBarBottle,
     StatusBarHealthEndboss,
 } from './index.js';
+
 import { level1 } from '../levels/level1.js';
 
 export class World {
@@ -24,6 +25,8 @@ export class World {
     statusBarCoin = new StatusBarCoin();
     statusBarBottle = new StatusBarBottle();
     statusBarHealthEndboss = new StatusBarHealthEndboss();
+
+    /** @type {ThrowableObject[]} */
     throwableObjects = [];
 
     fps = 60;

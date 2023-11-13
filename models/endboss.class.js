@@ -47,7 +47,7 @@ export class Endboss extends MovableObject {
     }
 
     animate() {
-        this.intervalIds.push(
+        this.intervalIds.push(            
             setInterval(() => {
                 if (!this.isDead()) {
                     this.playAnimation(this.IMAGES_ALERTNESS);

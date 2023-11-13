@@ -16,6 +16,10 @@ export class Bottle extends MovableObject {
         bottom: 10,
     };
 
+    /**
+     * 
+     * @param {number} start_x 
+     */
     constructor(start_x = 100) {
         super();
         this.x = start_x + Math.random() * 180;

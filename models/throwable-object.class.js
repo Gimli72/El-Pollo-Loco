@@ -9,6 +9,11 @@ export class ThrowableObject extends MovableObject {
         return `img/6_salsa_bottle/bottle_rotation/bottle_splash/${index + 1}_bottle_splash.png`;
     });
 
+    /**
+     * 
+     * @param {number} x 
+     * @param {number} y 
+     */
     constructor(x, y) {
         super();
         this.loadImage('img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
