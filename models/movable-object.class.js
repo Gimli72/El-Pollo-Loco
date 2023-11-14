@@ -11,6 +11,8 @@ export class MovableObject extends DrawableObject {
     lastHit = 0;
     fallingDown = false;
 
+    alive = true;
+
     constructor() {
         super();
     }
@@ -25,7 +27,7 @@ export class MovableObject extends DrawableObject {
                 }
                 if (this.fallingDown && this.y > 120) {
                     this.fallingDown = false;
-                } 
+                }
             }
         }, 1000 / 25);
     }
@@ -57,8 +59,8 @@ export class MovableObject extends DrawableObject {
     }
 
     /**
-     * 
-     * @param {number} damage 
+     *
+     * @param {number} damage
      */
     hit(damage = 5) {
         // The energy must not fall below 0
@@ -85,7 +87,7 @@ export class MovableObject extends DrawableObject {
     isHurt() {
         let timePassed = new Date().getTime() - this.lastHit;
         timePassed /= 1000;
-        return timePassed < 1;
+        return timePassed < 0.5;
     }
 
     /**

@@ -1,4 +1,6 @@
-import { BackGroundObject, Chicken, Cloud, Level, Endboss, Bottle, Coin } from '../models/index.js';
+import { BackGroundObject, Chicken, Cloud, Level, Endboss, Bottle, Coin, ChickenSmall } from '../models/index.js';
+
+//TODO: Funktionen ausgliedern in eigene Klasse !
 
 /**
  * @description Structure of level architecture
@@ -14,27 +16,16 @@ export const level1 = new Level(
         .flat(),
     [
         new Chicken(),
+        new ChickenSmall(),
+        new ChickenSmall(),
         new Chicken(),
         new Chicken(),
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
+        new ChickenSmall(),
         new Chicken(),
     ],
-    [
-        new Cloud(-400),
-        new Cloud(1000),
-        new Cloud(2000),
-        new Cloud(3000)
-    ],
-    [
-        new Endboss()
-    ],
-    [
-        new Bottle(400)
-    ],
+    [new Cloud(-400), new Cloud(1000), new Cloud(2000), new Cloud(3000)],
+    [new Endboss()],
+    [new Bottle(400)],
     []
 );
 

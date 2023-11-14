@@ -1,6 +1,7 @@
 import { MovableObject } from './index.js';
 
 export class ThrowableObject extends MovableObject {
+
     IMAGES_BOTTLE_ROTATION = Array.from({ length: 4 }, (_, index) => {
         return `img/6_salsa_bottle/bottle_rotation/${index + 1}_bottle_rotation.png`;
     });
@@ -21,8 +22,8 @@ export class ThrowableObject extends MovableObject {
         this.loadImages(this.IMAGES_BOTTLE_SPLASH);
         this.x = x;
         this.y = y;
-        this.width = 60;
-        this.height = 40;
+        this.width = 80;
+        this.height = 60;
         this.throw();
         this.animateBottle();
     }

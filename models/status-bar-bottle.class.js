@@ -2,7 +2,7 @@ import { StatusBar } from './index.js';
 
 export class StatusBarBottle extends StatusBar {
     IMAGES_BOTTLE = Array.from({ length: 6 }, (_, index) => {
-        return `img/7_statusbars/1_statusbar/3_statusbar_bottle/green/${index * 20}.png`;
+        return `img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/${index * 20}.png`;
     });
 
     levelStatusBar = 0;

@@ -1,4 +1,4 @@
-import { World, MovableObject } from "./index.js";
+import { World, MovableObject } from './index.js';
 
 export class Character extends MovableObject {
     height = 300;
@@ -96,7 +96,7 @@ export class Character extends MovableObject {
             if (this.world.keyboard.IDLE && !this.isDead()) {
                 // IDLE & LONG_IDLE animation
                 this.idleCounter += 1;
-                this.idleCounter == 20 ? (this.currentImage = 0) : this.currentImage++;
+                this.idleCounter == 30 ? (this.currentImage = 0) : this.currentImage++;
                 if (this.idleCounter > this.goInSleepMode) {
                     this.playAnimation(this.IMAGES_LONG_IDLE);
                 } else {
@@ -104,5 +104,11 @@ export class Character extends MovableObject {
                 }
             }
         }, 200);
+    }
+
+    damagedCharacter() {
+        // When damage and character sleeps wake up
+        this.idleCounter = 0;
+        this.hit();
     }
 }

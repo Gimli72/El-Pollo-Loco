@@ -2,7 +2,7 @@ import { StatusBar } from './index.js';
 
 export class StatusBarCoin extends StatusBar {
     IMAGES_COIN = Array.from({ length: 6 }, (_, index) => {
-        return `img/7_statusbars/1_statusbar/1_statusbar_coin/green/${index * 20}.png`;
+        return `img/7_statusbars/1_statusbar/1_statusbar_coin/orange/${index * 20}.png`;
     });
 
     levelStatusBar = 0;

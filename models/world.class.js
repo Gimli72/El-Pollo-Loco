@@ -14,7 +14,7 @@ import {
 export class World {
     // level = level1;
     // endboss = this.level.endboss[0];
-    
+
     keyboard;
     canvas;
     ctx;
@@ -49,6 +49,7 @@ export class World {
 
     setWorld() {
         this.character.world = this;
+        this.endboss.world = this;
     }
 
     run() {
@@ -56,9 +57,11 @@ export class World {
             // Check collision
             this.checkCollisions();
             this.checkCollisionsItems();
-            this.checkThrowObjects();
             this.fullScreenCheck();
-        }, 150);
+        }, 100);
+        setInterval(() => {
+            this.checkThrowObjects();
+        }, 250);
     }
 
     checkThrowObjects() {
@@ -77,7 +80,7 @@ export class World {
             this.keyboard.W = false;
         }
     }
-    
+
     isCanvasInFullscreen() {
         return document.fullscreenElement === this.canvas;
     }
@@ -98,17 +101,19 @@ export class World {
                     );
                 }
             });
-            if (this.character.isColliding(enemy) && this.character.isAboveGround() && this.character.fallingDown) {
-                enemy.stopAnimate();
+            if (this.character.isColliding(enemy) && enemy.alive && this.character.isAboveGround() && this.character.fallingDown) {
                 enemy.alive = false;
+                enemy.stopAnimate();
             }
             if (this.character.isColliding(enemy) && !this.character.isDead() && enemy.alive) {
-                // When damage and character sleeps wake up
-                this.character.idleCounter = 0;
-                this.character.hit();
+                this.character.damagedCharacter();
                 this.statusBarHealth.setPercentage(this.character.energy, this.statusBarHealth.IMAGES_HEALTH);
             }
         });
+        if (this.character.isColliding(this.endboss) && this.endboss.alive) {
+            this.character.damagedCharacter();
+            this.statusBarHealth.setPercentage(this.character.energy, this.statusBarHealth.IMAGES_HEALTH);
+        }
     }
 
     checkCollisionsItems() {
@@ -146,7 +151,7 @@ export class World {
         this.addToMapStatusBar(this.statusBarHealth);
         this.addToMapStatusBar(this.statusBarCoin);
         this.addToMapStatusBar(this.statusBarBottle);
-        this.character.x > 1700 ? this.addToMapStatusBar(this.statusBarHealthEndboss) : '';
+        this.character.x > 1900 || this.endboss.startEndBattle ? this.addToMapStatusBar(this.statusBarHealthEndboss) : '';
 
         this.ctx?.translate(this.camera_x, 0);
 

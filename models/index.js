@@ -10,6 +10,7 @@ import { Coin } from './coin.class.js';
 import { BackGroundObject } from './background-object.class.js';
 import { Character } from './character.class.js';
 import { Chicken } from './chicken.class.js';
+import { ChickenSmall } from './chicken-small.class.js';
 import { World } from './world.class.js';
 import { Cloud } from './cloud.class.js';
 import { Keyboard } from './keyboard.class.js';
@@ -23,6 +24,7 @@ export {
     Cloud,
     BackGroundObject,
     Chicken,
+    ChickenSmall,
     World,
     Keyboard,
     Level,

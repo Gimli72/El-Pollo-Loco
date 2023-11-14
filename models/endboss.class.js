@@ -1,4 +1,4 @@
-import { MovableObject } from './index.js';
+import { MovableObject, World } from './index.js';
 
 export class Endboss extends MovableObject {
     height = 400;
@@ -12,9 +12,9 @@ export class Endboss extends MovableObject {
         bottom: 13,
     };
 
-    alive = true;
-
     deadImages = 0;
+    hurtImages = 0;
+    attackTimer = 0;
 
     IMAGES_WALKING = Array.from({ length: 4 }, (_, index) => {
         return `img/4_enemie_boss_chicken/1_walk/G${index + 1}.png`;
@@ -36,6 +36,13 @@ export class Endboss extends MovableObject {
         return `img/4_enemie_boss_chicken/5_dead/G${index + 24}.png`;
     });
 
+    alive = true;
+    startEndBattle = false;
+    speed = 10;
+
+    /** @type {World} */
+    world;
+
     constructor() {
         super();
         this.loadImage(this.IMAGES_WALKING[0]);
@@ -49,36 +56,39 @@ export class Endboss extends MovableObject {
     }
 
     animate() {
-        this.intervalIds.push(            
-            setInterval(() => {
-                if (!this.isDead()) {
-                    this.playAnimation(this.IMAGES_ALERTNESS);
-                    this.currentImage++;
-                } else {
-                    this.playAnimation(this.IMAGES_DEAD);
-                    this.deadImages++;
-                    if (this.deadImages === this.IMAGES_DEAD.length) {
-                        this.stopAnimate();
-                        // this.loadImage('img/3_enemies_chicken/chicken_normal/2_dead/dead.png', this.x);
-                    }
-                }
-            }, 400)
-        );
-
         this.intervalIds.push(
             setInterval(() => {
-                if (this.isHurt()) {
-                    console.log('Endboss Hurt');
-                    this.playAnimation(this.IMAGES_HURT);
+                if (!this.startEndBattle) {
+                    this.playAnimation(this.IMAGES_ALERTNESS);
                     this.currentImage++;
+                    if (this.world.character.x > 1900) {
+                        this.startEndBattle = true;
+                    }
+                } else {
+                    if (this.isDead()) {
+                        this.playAnimation(this.IMAGES_DEAD);
+                        this.currentImage++;
+                        this.deadImages++;
+                        if (this.deadImages === this.IMAGES_DEAD.length * 2) {
+                            this.stopAnimate();
+                        }
+                    } else if (this.isHurt()) {
+                        this.playAnimation(this.IMAGES_HURT);
+                        this.currentImage++;
+                    } else {
+                        this.playAnimation(this.IMAGES_WALKING);
+                        this.currentImage++;
+                        this.moveLeft();
+                    }
                 }
-            }, 400)
+            }, 200)
         );
     }
 
     stopAnimate() {
         this.intervalIds.forEach(clearInterval);
-        // this.alive ? (this.y += 100) : '';
-        this.loadImage('img/4_enemie_boss_chicken/5_dead/G26.png', this.x);
+        this.alive ? (this.y += 90) : '';
+        this.alive = false;
+        this.loadImage('img/4_enemie_boss_chicken/5_dead/G27.png', this.x);
     }
 }
