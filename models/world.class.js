@@ -8,19 +8,19 @@ import {
     StatusBarCoin,
     StatusBarBottle,
     StatusBarHealthEndboss,
+    Level,
 } from './index.js';
 
-import { level1 } from '../levels/level1.js';
-
 export class World {
-    level = level1;
-    endboss = this.level.endboss[0];
-
-    character = new Character();
+    // level = level1;
+    // endboss = this.level.endboss[0];
+    
     keyboard;
     canvas;
     ctx;
     camera_x = 0;
+
+    character = new Character();
     statusBarHealth = new StatusBarHealth();
     statusBarCoin = new StatusBarCoin();
     statusBarBottle = new StatusBarBottle();
@@ -34,11 +34,14 @@ export class World {
     /**
      * @param {Keyboard} keyboard
      * @param {HTMLCanvasElement} canvas
+     * @param {Level} level
      */
-    constructor(canvas, keyboard) {
+    constructor(canvas, keyboard, level) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
+        this.level = level;
+        this.endboss = this.level.endboss[0];
         this.setWorld();
         this.draw();
         this.run();

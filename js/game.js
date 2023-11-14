@@ -1,10 +1,14 @@
-import { Keyboard, World } from "../models/index.js";
+import { Keyboard, Level, World } from "../models/index.js";
+
+import { level1 } from '../levels/level1.js';
 
 /** @type {HTMLCanvasElement} */
 let canvas;
 /** @type {World} */
 let world;
-
+/** @type {Level} */
+let level = level1;
+/** @type {Keyboard} */
 let keyboard = new Keyboard();
 
 window.addEventListener("load", init);
@@ -12,7 +16,7 @@ window.addEventListener("load", init);
 function init() {
     // @ts-expect-error - HTMLCanvasElement
     canvas = document.getElementById("canvas");
-    world = new World(canvas, keyboard);
+    world = new World(canvas, keyboard, level);
     // console.log('My Character is', world.character);
     // console.log('My Enemies is', world.enemies);
     // console.log('My World is', world);
