@@ -86,3 +86,11 @@ window.addEventListener("keyup", (event) => {
             break;
     }
 });
+
+document.getElementById("tryAgain").addEventListener("click", test);
+
+function test() {
+    canvas.closest;
+    world;
+    init();
+}

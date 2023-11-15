@@ -17,6 +17,7 @@ import { Keyboard } from './keyboard.class.js';
 import { Level } from './level.class.js';
 import { Endboss } from './endboss.class.js';
 import { ThrowableObject } from './throwable-object.class.js';
+import { GameOver } from './game-over.class.js';
 
 export {
     MovableObject,
@@ -38,4 +39,5 @@ export {
     StatusBarHealthEndboss,
     Bottle,
     Coin,
+    GameOver,
 };

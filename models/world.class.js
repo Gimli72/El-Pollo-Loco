@@ -9,6 +9,7 @@ import {
     StatusBarBottle,
     StatusBarHealthEndboss,
     Level,
+    GameOver,
 } from './index.js';
 
 export class World {
@@ -25,6 +26,7 @@ export class World {
     statusBarCoin = new StatusBarCoin();
     statusBarBottle = new StatusBarBottle();
     statusBarHealthEndboss = new StatusBarHealthEndboss();
+    gameOver = new GameOver();
 
     /** @type {ThrowableObject[]} */
     throwableObjects = [];
@@ -148,10 +150,11 @@ export class World {
         this.addObjectsToMap(this.throwableObjects);
 
         this.ctx?.translate(-this.camera_x, 0);
-        this.addToMapStatusBar(this.statusBarHealth);
-        this.addToMapStatusBar(this.statusBarCoin);
-        this.addToMapStatusBar(this.statusBarBottle);
-        this.character.x > 1900 || this.endboss.startEndBattle ? this.addToMapStatusBar(this.statusBarHealthEndboss) : '';
+        this.addStaticObjectToTheMap(this.statusBarHealth);
+        this.addStaticObjectToTheMap(this.statusBarCoin);
+        this.addStaticObjectToTheMap(this.statusBarBottle);
+        this.character.isDead() ? this.addStaticObjectToTheMap(this.gameOver) : '';
+        this.character.x > 1900 || this.endboss.startEndBattle ? this.addStaticObjectToTheMap(this.statusBarHealthEndboss) : '';
 
         this.ctx?.translate(this.camera_x, 0);
 
@@ -193,16 +196,17 @@ export class World {
             }
         }
     }
-
+    
     /**
      *
-     * @param {StatusBar} statusBar
+     * @param {StatusBar | GameOver} item
      */
-    addToMapStatusBar(statusBar) {
+    addStaticObjectToTheMap(item) {
         if (this.ctx) {
-            statusBar.draw(this.ctx);
+            item.draw(this.ctx);
         }
     }
+
 
     /**
      *

@@ -16,5 +16,35 @@ h1 {
 }
 
 canvas {
+
     background-color: black;
+}
+
+#canvasContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.try_again {
+    position: absolute;
+    top: 390px;
+    padding: 15px 40px;
+    background-color: rgba(255, 209, 17, 255);
+    border-radius: 20px;
+    border: 2px solid rgba(125, 47, 19, 255);
+    box-shadow: -3px 3px 1px rgba(125, 47, 19, 255);
+    font-size: 22px;
+    font-weight: bold;
+    color: rgba(125, 47, 19, 255);
+
+}
+
+.try_again:hover {
+    cursor: pointer;
+    border: 3px solid rgba(125, 47, 19, 255);
+
+    scale: 0.95;
 }
