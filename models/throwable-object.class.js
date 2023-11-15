@@ -14,8 +14,9 @@ export class ThrowableObject extends MovableObject {
      * 
      * @param {number} x 
      * @param {number} y 
+     * @param {boolean} direction
      */
-    constructor(x, y) {
+    constructor(x, y, direction) {
         super();
         this.loadImage('img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
         this.loadImages(this.IMAGES_BOTTLE_ROTATION);
@@ -24,6 +25,7 @@ export class ThrowableObject extends MovableObject {
         this.y = y;
         this.width = 80;
         this.height = 60;
+        this.direction = direction;
         this.throw();
         this.animateBottle();
     }
@@ -37,7 +39,8 @@ export class ThrowableObject extends MovableObject {
                 if (this.speedY <= -45) {
                     this.stopAnimate();
                 }
-                this.x += 15;
+                // + or - depends where the character looks
+                this.x += this.direction ? -15 : 15;
             }, 40)
         );
     }

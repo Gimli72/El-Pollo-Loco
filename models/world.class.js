@@ -68,7 +68,13 @@ export class World {
 
     checkThrowObjects() {
         if (this.keyboard.D && this.statusBarBottle.levelStatusBar > 0) {
-            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 80);
+            // + or - depends where the character looks
+            let addition = !this.character.otherDirection ? 100 : -30;
+            let bottle = new ThrowableObject(
+                this.character.x + addition,
+                this.character.y + 80,
+                this.character.otherDirection
+            );
             this.throwableObjects.push(bottle);
             this.statusBarBottle.levelStatusBar -= 20;
             this.character.idleCounter = 0;
@@ -148,7 +154,6 @@ export class World {
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.throwableObjects);
-
         this.ctx?.translate(-this.camera_x, 0);
         this.addStaticObjectToTheMap(this.statusBarHealth);
         this.addStaticObjectToTheMap(this.statusBarCoin);

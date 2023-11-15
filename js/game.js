@@ -21,7 +21,7 @@ function init() {
     // console.log('My Enemies is', world.enemies);
     // console.log('My World is', world);
     // console.log('Cloud', world.clouds[0].x)
-}
+} 
 
 //
 window.addEventListener("keydown", (event) => {
