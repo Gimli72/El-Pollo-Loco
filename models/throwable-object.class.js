@@ -2,6 +2,9 @@ import { MovableObject } from './index.js';
 
 export class ThrowableObject extends MovableObject {
 
+    audioBottleSplash = new Audio('../audio/audio_throwable-object_splash.mp3');
+    audioBottleBrokenGlas = new Audio('../audio/audio_throwable-object_broken-glas.mp3');
+
     IMAGES_BOTTLE_ROTATION = Array.from({ length: 4 }, (_, index) => {
         return `img/6_salsa_bottle/bottle_rotation/${index + 1}_bottle_rotation.png`;
     });
@@ -11,9 +14,9 @@ export class ThrowableObject extends MovableObject {
     });
 
     /**
-     * 
-     * @param {number} x 
-     * @param {number} y 
+     *
+     * @param {number} x
+     * @param {number} y
      * @param {boolean} direction
      */
     constructor(x, y, direction) {

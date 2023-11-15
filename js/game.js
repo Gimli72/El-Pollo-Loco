@@ -87,10 +87,10 @@ window.addEventListener("keyup", (event) => {
     }
 });
 
+//TODO: Prüfen
+
 document.getElementById("tryAgain").addEventListener("click", test);
 
 function test() {
-    canvas.closest;
-    world;
     init();
 }

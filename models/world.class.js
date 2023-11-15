@@ -98,10 +98,14 @@ export class World {
             this.throwableObjects.forEach((bottle, index) => {
                 if (enemy.isColliding(bottle)) {
                     enemy.stopAnimate();
+                    bottle.audioBottleSplash.play();
+                    bottle.audioBottleBrokenGlas.play();
                     enemy.alive = false;
                 }
                 if (this.endboss.isColliding(bottle) && !bottle.hitEnemy) {
                     bottle.hitEnemy = true;
+                    bottle.audioBottleSplash.play();
+                    bottle.audioBottleBrokenGlas.play();
                     this.endboss.hit(20);
                     this.statusBarHealthEndboss.setPercentage(
                         this.endboss.energy,
@@ -109,7 +113,12 @@ export class World {
                     );
                 }
             });
-            if (this.character.isColliding(enemy) && enemy.alive && this.character.isAboveGround() && this.character.fallingDown) {
+            if (
+                this.character.isColliding(enemy) &&
+                enemy.alive &&
+                this.character.isAboveGround() &&
+                this.character.fallingDown
+            ) {
                 enemy.alive = false;
                 enemy.stopAnimate();
             }
@@ -159,7 +168,9 @@ export class World {
         this.addStaticObjectToTheMap(this.statusBarCoin);
         this.addStaticObjectToTheMap(this.statusBarBottle);
         this.character.isDead() ? this.addStaticObjectToTheMap(this.gameOver) : '';
-        this.character.x > 1900 || this.endboss.startEndBattle ? this.addStaticObjectToTheMap(this.statusBarHealthEndboss) : '';
+        this.character.x > 1900 || this.endboss.startEndBattle
+            ? this.addStaticObjectToTheMap(this.statusBarHealthEndboss)
+            : '';
 
         this.ctx?.translate(this.camera_x, 0);
 
@@ -201,7 +212,7 @@ export class World {
             }
         }
     }
-    
+
     /**
      *
      * @param {StatusBar | GameOver} item
@@ -211,7 +222,6 @@ export class World {
             item.draw(this.ctx);
         }
     }
-
 
     /**
      *
