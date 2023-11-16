@@ -1,24 +1,21 @@
 import { MovableObject } from './index.js';
 
 export class Bottle extends MovableObject {
-    
-    imagePaths = [
-        'img/6_salsa_bottle/2_salsa_bottle_on_ground.png',
-        'img/6_salsa_bottle/1_salsa_bottle_on_ground.png'
-    ];
+
+    imagePaths = ['img/6_salsa_bottle/2_salsa_bottle_on_ground.png', 'img/6_salsa_bottle/1_salsa_bottle_on_ground.png'];
 
     randomImgIndex = Math.floor(Math.random() * this.imagePaths.length);
 
     offset = {
         left: 25,
         top: 15,
-        right: 25 + (this.randomImgIndex * 10),
+        right: 25 + this.randomImgIndex * 10,
         bottom: 10,
     };
 
     /**
-     * 
-     * @param {number} start_x 
+     *
+     * @param {number} start_x
      */
     constructor(start_x = 100) {
         super();

@@ -14,9 +14,9 @@ export class Coin extends MovableObject {
     };
 
     /**
-     * 
-     * @param {number} start_x 
-     * @param {number} start_y 
+     *
+     * @param {number} start_x
+     * @param {number} start_y
      */
     constructor(start_x, start_y) {
         super();

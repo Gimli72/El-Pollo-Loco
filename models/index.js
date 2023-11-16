@@ -1,4 +1,5 @@
 import { DrawableObject } from './drawable-object.class.js';
+import { Music } from './audio.class.js';
 import { StatusBar } from './status-bar.class.js';
 import { StatusBarHealth } from './status-bar-health.class.js';
 import { StatusBarCoin } from './status-bar-coin.class.js';
@@ -21,6 +22,7 @@ import { GameOver } from './game-over.class.js';
 
 export {
     MovableObject,
+    Music,
     Character,
     Cloud,
     BackGroundObject,

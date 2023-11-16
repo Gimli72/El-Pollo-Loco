@@ -1,16 +1,4 @@
-import {
-    Character,
-    MovableObject,
-    Keyboard,
-    StatusBar,
-    ThrowableObject,
-    StatusBarHealth,
-    StatusBarCoin,
-    StatusBarBottle,
-    StatusBarHealthEndboss,
-    Level,
-    GameOver,
-} from './index.js';
+import { Character, MovableObject, Keyboard, StatusBar, ThrowableObject, StatusBarHealth, StatusBarCoin, StatusBarBottle, StatusBarHealthEndboss, Level, GameOver } from './index.js';
 
 export class World {
     // level = level1;
@@ -70,11 +58,7 @@ export class World {
         if (this.keyboard.D && this.statusBarBottle.levelStatusBar > 0) {
             // + or - depends where the character looks
             let addition = !this.character.otherDirection ? 100 : -30;
-            let bottle = new ThrowableObject(
-                this.character.x + addition,
-                this.character.y + 80,
-                this.character.otherDirection
-            );
+            let bottle = new ThrowableObject(this.character.x + addition, this.character.y + 80, this.character.otherDirection);
             this.throwableObjects.push(bottle);
             this.statusBarBottle.levelStatusBar -= 20;
             this.character.idleCounter = 0;
@@ -98,28 +82,21 @@ export class World {
             this.throwableObjects.forEach((bottle, index) => {
                 if (enemy.isColliding(bottle)) {
                     enemy.stopAnimate();
-                    bottle.audioBottleSplash.play();
-                    bottle.audioBottleBrokenGlas.play();
+                    bottle.audio.playAudio('audioBottleSplash');
+                    bottle.audio.playAudio('audioBottleBrokenGlas');
                     enemy.alive = false;
                 }
                 if (this.endboss.isColliding(bottle) && !bottle.hitEnemy) {
                     bottle.hitEnemy = true;
-                    bottle.audioBottleSplash.play();
-                    bottle.audioBottleBrokenGlas.play();
+                    bottle.audio.playAudio('audioBottleSplash');
+                    bottle.audio.playAudio('audioBottleBrokenGlas');
                     this.endboss.hit(20);
-                    this.statusBarHealthEndboss.setPercentage(
-                        this.endboss.energy,
-                        this.statusBarHealthEndboss.IMAGES_HEALTH
-                    );
+                    this.statusBarHealthEndboss.setPercentage(this.endboss.energy, this.statusBarHealthEndboss.IMAGES_HEALTH);
                 }
             });
-            if (
-                this.character.isColliding(enemy) &&
-                enemy.alive &&
-                this.character.isAboveGround() &&
-                this.character.fallingDown
-            ) {
+            if (this.character.isColliding(enemy) && enemy.alive && this.character.isAboveGround() && this.character.fallingDown) {
                 enemy.alive = false;
+                enemy.audio.playAudio('audioChickenDead');
                 enemy.stopAnimate();
             }
             if (this.character.isColliding(enemy) && !this.character.isDead() && enemy.alive) {
@@ -135,14 +112,16 @@ export class World {
 
     checkCollisionsItems() {
         this.level.bottles.forEach((bottle, index) => {
-            if (this.character.isColliding(bottle) && this.statusBarBottle.levelStatusBar < 100) {
+            if (this.character.isColliding(bottle) && this.statusBarBottle.levelStatusBar < 100) {                
                 this.statusBarBottle.levelStatusBar >= 100 ? '' : (this.statusBarBottle.levelStatusBar += 20);
                 this.statusBarBottle.setPercentage(this.statusBarBottle.levelStatusBar, this.statusBarBottle.IMAGES_BOTTLE);
+                bottle.audio.playAudio('audioBottleCollect');
                 this.level.bottles.splice(index, 1);
             }
         });
         this.level.coins.forEach((coin, index) => {
             if (this.character.isColliding(coin)) {
+                coin.audio.playAudio('audioCoins');
                 this.statusBarCoin.levelStatusBar += 4;
                 this.statusBarCoin.setPercentage(this.statusBarCoin.levelStatusBar, this.statusBarCoin.IMAGES_COIN);
                 this.level.coins.splice(index, 1);
@@ -167,10 +146,12 @@ export class World {
         this.addStaticObjectToTheMap(this.statusBarHealth);
         this.addStaticObjectToTheMap(this.statusBarCoin);
         this.addStaticObjectToTheMap(this.statusBarBottle);
-        this.character.isDead() ? this.addStaticObjectToTheMap(this.gameOver) : '';
-        this.character.x > 1900 || this.endboss.startEndBattle
-            ? this.addStaticObjectToTheMap(this.statusBarHealthEndboss)
-            : '';
+        if (this.character.isDead()) {    
+            !this.character.audio.playAudioPlayed('audioCharacterDeadPlay') ? this.character.audio.playAudioPlayed('audioCharacterDeadPlay') : '';
+            this.character.audio.setPlayed('audioCharacterDeadPlay');
+            this.addStaticObjectToTheMap(this.gameOver) 
+        }
+        this.character.x > 1900 || this.endboss.startEndBattle ? this.addStaticObjectToTheMap(this.statusBarHealthEndboss) : '';
 
         this.ctx?.translate(this.camera_x, 0);
 

@@ -1,5 +1,6 @@
 import { Character, Chicken, DrawableObject, ThrowableObject, World } from './index.js';
 export class MovableObject extends DrawableObject {
+
     repeat = false; // Restart cloud true or false
     fps = 60;
 
@@ -109,6 +110,7 @@ export class MovableObject extends DrawableObject {
     }
 
     jump() {
+        this.audio.playAudio('audioCharacterJump');
         this.speedY = 30;
     }
 }
