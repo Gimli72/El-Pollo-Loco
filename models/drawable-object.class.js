@@ -1,10 +1,10 @@
-import { Character, Chicken, Endboss, ThrowableObject, Bottle, Coin, ChickenSmall, Music } from './index.js';
+import { Character, Chicken, Endboss, ThrowableObject, Bottle, Coin, ChickenSmall, Sound } from './index.js';
 
 export class DrawableObject {
     x = 50;
     y = 0;
 
-    audio = new Music();
+    sounds = new Sound();
 
     /** @type {HTMLImageElement} */
     img;

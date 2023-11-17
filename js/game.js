@@ -1,5 +1,5 @@
 import { Keyboard, Level, World } from "../models/index.js";
-
+import { getElementById } from "./script-utils.js";
 import { level1 } from '../levels/level1.js';
 
 /** @type {HTMLCanvasElement} */
@@ -11,11 +11,11 @@ let level = level1;
 /** @type {Keyboard} */
 let keyboard = new Keyboard();
 
-window.addEventListener("load", init);
+window.addEventListener("load", start);
 
 function init() {
     // @ts-expect-error - HTMLCanvasElement
-    canvas = document.getElementById("canvas");
+    canvas = getElementById("canvas");
     world = new World(canvas, keyboard, level);
     // console.log('My Character is', world.character);
     // console.log('My Enemies is', world.enemies);
@@ -87,8 +87,17 @@ window.addEventListener("keyup", (event) => {
     }
 });
 
-getElementById("tryAgain").addEventListener("click", test);
+getElementById("tryAgain").addEventListener("click", start);
 
-function test() {
-    init();
+getElementById("startGame").addEventListener("click", init);
+
+function start() {
+    const canvas = getElementById("canvas");
+     // @ts-expect-error - HTMLCanvasElement
+    const ctx = canvas.getContext("2d");
+    let backgroundImg = new Image();
+    backgroundImg.src = "../img/9_intro_outro_screens/start/startscreen_1.png";
+    backgroundImg.onload = function(){
+        ctx.drawImage(backgroundImg,0,0, 720, 480);
+    }
 }

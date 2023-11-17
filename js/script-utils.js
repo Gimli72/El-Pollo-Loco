@@ -11,7 +11,7 @@
  * @param {string} id
  * @returns {HTMLElement | HTMLImageElement | HTMLInputElement }
  */
-function getElementById(id) {
+export function getElementById(id) {
     const element = document.getElementById(id);
     if (!element) {
         throw new Error(`Element with id ${id} not found!`);
@@ -24,7 +24,7 @@ function getElementById(id) {
  * @param {string} id
  * @returns {HTMLImageElement}
  */
-function getImageElementById(id) {
+export function getImageElementById(id) {
     const element = document.getElementById(id);
     if (!element) {
         throw new Error(`Element with id ${id} not found!`);
@@ -38,7 +38,7 @@ function getImageElementById(id) {
  * @param {string} id
  * @returns {HTMLInputElement}
  */
-function getInputElementById(id) {
+export function getInputElementById(id) {
     const element = document.getElementById(id);
     if (!element) {
         throw new Error(`Element with id ${id} not found!`);
@@ -51,7 +51,7 @@ function getInputElementById(id) {
  * Create an UUID
  * @returns string with UUID
  */
-function getNoteByUUID() {
+export function getNoteByUUID() {
     const webCrypto = globalThis.crypto;
     return webCrypto.randomUUID();
 }

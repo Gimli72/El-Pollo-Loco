@@ -1,9 +1,16 @@
-export class Music {
-    audios = [
+export class Sound {
+    /**
+     * @typedef {'audioBottleSplash' | 'audioBottleBrokenGlas' | 'audioBottleCollect' | 'audioCoins' | 'audioCharacterJump' | 'audioCharacterDead' | 'audioChickenDead' | 'audioBackgroundMusic'} SoundName
+     */
+    /**
+     * Array of sound objects.
+     * @type {Array<{name: SoundName, src: string, volume: number, played: boolean}>}
+     */
+    sounds = [
         {
             name: 'audioBottleSplash',
             src: '../audio/audio_throwable-object_splash.mp3',
-            volume: 0.7,
+            volume: 0.8,
             played: false
         },
         {
@@ -21,7 +28,7 @@ export class Music {
         {
             name: 'audioCoins',
             src: '../audio/audio_coins.mp3',
-            volume: 0.7,
+            volume: 0.8,
             played: false
         },
         {
@@ -61,7 +68,7 @@ export class Music {
      * @param {string} audioName
      */
     playAudio(audioName) {
-        const audioObject = this.audios.find((audio) => audio.name === audioName);
+        const audioObject = this.sounds.find((audio) => audio.name === audioName);
         if (audioObject) {
             const audioElement = new Audio(audioObject.src);
             audioElement.volume = audioObject.volume;  
@@ -75,7 +82,7 @@ export class Music {
      * @returns
      */
     playAudioPlayed(audioName) {
-        const audioObject = this.audios.find((audio) => audio.name === audioName);
+        const audioObject = this.sounds.find((audio) => audio.name === audioName);
         if (audioObject) {
             return audioObject.played;
         }
@@ -86,7 +93,7 @@ export class Music {
      * @param {string} audioName
      */
     setPlayed(audioName) {
-        const audioObject = this.audios.find((audio) => audio.name === audioName);
+        const audioObject = this.sounds.find((audio) => audio.name === audioName);
         if (audioObject) {
             audioObject.played = true;
         }

@@ -25,8 +25,4 @@ export class Level {
         this.bottles = bottles;
         this.coins = coins;
     }
-
-    test() {
-        console.log("Test");
-    }
 }

@@ -46,6 +46,5 @@ canvas {
 .try_again:hover {
     cursor: pointer;
     border: 3px solid rgba(125, 47, 19, 255);
-
     scale: 0.95;
 }
