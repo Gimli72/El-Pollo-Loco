@@ -1,4 +1,4 @@
-import { MovableObject, World } from './index.js';
+import { MovableObject, World, Character } from './index.js';
 
 export class Endboss extends MovableObject {
     height = 400;
@@ -61,15 +61,20 @@ export class Endboss extends MovableObject {
                 if (!this.startEndBattle) {
                     this.playAnimation(this.IMAGES_ALERTNESS);
                     this.currentImage++;
-                    if (this.world.character.x > 1900) {
+                    if (this.world.character.x >= 1900) {
                         this.startEndBattle = true;
                     }
                 } else {
                     if (this.isDead()) {
                         this.playAnimation(this.IMAGES_DEAD);
+                        if (!this.sounds.playAudioPlayed('soundEndbossDead')) {
+                            this.sounds.playAudio('soundEndbossDead');
+                            this.sounds.setPlayed('soundEndbossDead');
+                        }
                         this.currentImage++;
                         this.deadImages++;
                         if (this.deadImages === this.IMAGES_DEAD.length * 2) {
+                            this.sounds.playAudio('soundEndbossDeadFloor');
                             this.stopAnimate();
                         }
                     } else if (this.isHurt()) {

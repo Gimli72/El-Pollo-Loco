@@ -1,35 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-    <title>El Pollo Loco</title>
 
-    <!-- Include the CSS files -->
-    <link rel="stylesheet" href="./css/font.css" />
-    <link rel="stylesheet" href="./css/style.css">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="Website Icon" type="png" href="./favicon.png" />
+  <title>El Pollo Loco</title>
+
+  <!-- Include the CSS files -->
+  <link rel="stylesheet" href="./css/font.css" />
+  <link rel="stylesheet" href="./css/style.css">
+
+</head>
+
+<body>
+
+  <h1>El pollo loco</h1>
+  <div id="canvasContainer">
+    <canvas id="canvas" width="720" height="480"> </canvas>
+    <!-- <div class="restart">
+      <div style="Display: block"><button id="tryAgain" class="nav_button"><img src="./img/0_icons/restart.png" alt=""><span>Try again</span></button></div>
+    </div> -->
+    <nav>
+      <div><button id="startGame" class="nav_button"><img src="./img/0_icons/play.png" alt=""><span>Let´s
+            PLAY</span></button></div>
+      <div><button id="fullscreen" class="nav_button"><img src="./img/0_icons/fullscreen.png"
+            alt=""><span>Fullscreen</span></button></div>
+      <div><button id="soundOnOff" class="nav_button"><img src="./img/0_icons/sound_true.png" alt=""><span>Sound
+            On/Off</span></button></div>
+      <div><button id="instructions" class="nav_button"><img src="./img/0_icons/instructions.png"
+            alt=""><span>Instructions</span></button></div>
+    </nav>
+  </div>
+  <div class="dialog-bg d-none" id="dialog" onclick="closeDialog()">
     
-    <!-- Include the JavaScript files -->
-    <!-- <script type="module" src="./levels/level1.js"></script> -->
-    <script type="module" src="./js/script-standard.js"></script>
-    <script type="module" src="./js/game.js"></script>
-      
-  </head>
-  <body>
-    <h1>El pollo loco</h1>
-    <div id="canvasContainer">
-      <canvas id="canvas" width="720" height="480"> </canvas>
-      <button class="try_again" id="tryAgain">Try again</button> 
-      <!-- <button class="try_again" id="tryAgain">Try again</button> -->
-      <nav>
-        <button id="startGame">Start</button>
-        <button id="fullscreen">Fullscreen</button>
-        <button id="soundOnOff">Sound on/off</button>
-        <button id="instructions">Anleitung</button>
-      </nav>
-    </div>    
-  </body>
+  </div>
+  </div>
+</body>
+
+<!-- Include the JavaScript files -->
+<script type="module" src="./js/game.js"></script>
+
 </html>

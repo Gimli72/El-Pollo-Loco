@@ -1,13 +1,14 @@
 import { Character, MovableObject, Keyboard, StatusBar, ThrowableObject, StatusBarHealth, StatusBarCoin, StatusBarBottle, StatusBarHealthEndboss, Level, GameOver, Sound } from './index.js';
 
 export class World {
-    // level = level1;
-    // endboss = this.level.endboss[0];
-
+    /** @type {Keyboard} */
     keyboard;
+    /** @type {HTMLCanvasElement} */
     canvas;
+
     ctx;
     camera_x = 0;
+    fps = 60;
 
     character = new Character();
     statusBarHealth = new StatusBarHealth();
@@ -18,8 +19,6 @@ export class World {
 
     /** @type {ThrowableObject[]} */
     throwableObjects = [];
-
-    fps = 60;
 
     /**
      * @param {Keyboard} keyboard
@@ -101,6 +100,11 @@ export class World {
             }
             if (this.character.isColliding(enemy) && !this.character.isDead() && enemy.alive) {
                 this.character.damagedCharacter();
+                this.character.isHurt() ? '' : enemy.sounds.setPlayed('soundCharacterDamaged');
+                if (!enemy.sounds.playAudioPlayed('soundCharacterDamaged')) {
+                    enemy.sounds.playAudio('soundCharacterDamaged');
+                    enemy.sounds.setPlayed('soundCharacterDamaged');
+                }
                 this.statusBarHealth.setPercentage(this.character.energy, this.statusBarHealth.IMAGES_HEALTH);
             }
         });
@@ -112,7 +116,7 @@ export class World {
 
     checkCollisionsItems() {
         this.level.bottles.forEach((bottle, index) => {
-            if (this.character.isColliding(bottle) && this.statusBarBottle.levelStatusBar < 100) {                
+            if (this.character.isColliding(bottle) && this.statusBarBottle.levelStatusBar < 100) {
                 this.statusBarBottle.levelStatusBar >= 100 ? '' : (this.statusBarBottle.levelStatusBar += 20);
                 this.statusBarBottle.setPercentage(this.statusBarBottle.levelStatusBar, this.statusBarBottle.IMAGES_BOTTLE);
                 bottle.sounds.playAudio('audioBottleCollect');
@@ -146,10 +150,10 @@ export class World {
         this.addStaticObjectToTheMap(this.statusBarHealth);
         this.addStaticObjectToTheMap(this.statusBarCoin);
         this.addStaticObjectToTheMap(this.statusBarBottle);
-        if (this.character.isDead()) {    
+        if (this.character.isDead()) {
             !this.character.sounds.playAudioPlayed('audioCharacterDeadPlay') ? this.character.sounds.playAudioPlayed('audioCharacterDeadPlay') : '';
             this.character.sounds.setPlayed('audioCharacterDeadPlay');
-            this.addStaticObjectToTheMap(this.gameOver) 
+            this.addStaticObjectToTheMap(this.gameOver);
         }
         this.character.x > 1900 || this.endboss.startEndBattle ? this.addStaticObjectToTheMap(this.statusBarHealthEndboss) : '';
 
