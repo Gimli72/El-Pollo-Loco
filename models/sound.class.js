@@ -1,6 +1,6 @@
 export class Sound {
     /**
-     * @typedef {'audioBottleSplash' | 'audioBottleBrokenGlas' | 'audioBottleCollect' | 'audioCoins' | 'audioCharacterJump' | 'audioCharacterDead' | 'audioChickenDead' | 'soundBackgroundMusic' | 'soundEndbossDead' | 'soundEndbossDeadFloor' | 'soundCharacterDamaged' | 'soundCharacterWalking'} SoundName
+     * @typedef {'soundBottleSplash' | 'soundBottleBrokenGlas' | 'soundBottleCollect' | 'soundCoins' | 'soundCharacterJump' | 'soundCharacterDead' | 'soundChickenDead' | 'soundBackgroundMusic' | 'soundEndbossDead' | 'soundEndbossDeadFloor' | 'soundCharacterDamaged' | 'soundCharacterWalking'} SoundName
      */
     /**
      * Array of sound objects.
@@ -8,43 +8,43 @@ export class Sound {
      */
     sounds = [
         {
-            name: 'audioBottleSplash',
+            name: 'soundBottleSplash',
             src: '../audio/audio_throwable-object_splash.mp3',
             volume: 0.8,
             played: false,
         },
         {
-            name: 'audioBottleBrokenGlas',
+            name: 'soundBottleBrokenGlas',
             src: '../audio/audio_throwable-object_broken-glas.mp3',
             volume: 0.7,
             played: false,
         },
         {
-            name: 'audioBottleCollect',
+            name: 'soundBottleCollect',
             src: '../audio/audio_throwable-object_collect.mp3',
             volume: 0.7,
             played: false,
         },
         {
-            name: 'audioCoins',
+            name: 'soundCoins',
             src: '../audio/audio_pickUpCoin.mp3',
             volume: 0.8,
             played: false,
         },
         {
-            name: 'audioCharacterJump',
+            name: 'soundCharacterJump',
             src: '../audio/audio_character-jump.mp3',
             volume: 0.2,
             played: false,
         },
         {
-            name: 'audioCharacterDead',
+            name: 'soundCharacterDead',
             src: '../audio/audio_character-dead.mp3',
             volume: 0.7,
             played: false,
         },
         {
-            name: 'audioChickenDead',
+            name: 'soundChickenDead',
             src: '../audio/audio_chicken-dead.mp3',
             volume: 0.7,
             played: false,
