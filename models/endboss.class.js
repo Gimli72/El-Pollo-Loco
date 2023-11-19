@@ -1,4 +1,4 @@
-import { MovableObject, World, Character } from './index.js';
+import { MovableObject, World } from './index.js';
 
 export class Endboss extends MovableObject {
     height = 400;
@@ -15,6 +15,13 @@ export class Endboss extends MovableObject {
     deadImages = 0;
     hurtImages = 0;
     attackTimer = 0;
+
+    alive = true;
+    startEndBattle = false;
+    speed = 10;
+
+    /** @type {World} */
+    world;
 
     IMAGES_WALKING = Array.from({ length: 4 }, (_, index) => {
         return `img/4_enemie_boss_chicken/1_walk/G${index + 1}.png`;
@@ -36,13 +43,6 @@ export class Endboss extends MovableObject {
         return `img/4_enemie_boss_chicken/5_dead/G${index + 24}.png`;
     });
 
-    alive = true;
-    startEndBattle = false;
-    speed = 10;
-
-    /** @type {World} */
-    world;
-
     constructor() {
         super();
         this.loadImage(this.IMAGES_WALKING[0]);
@@ -58,7 +58,7 @@ export class Endboss extends MovableObject {
     animate() {
         this.intervalIds.push(
             setInterval(() => {
-                if (!this.startEndBattle) {
+                if (!this.startEndBattle) {                    
                     this.playAnimation(this.IMAGES_ALERTNESS);
                     this.currentImage++;
                     if (this.world.character.x >= 1900) {
