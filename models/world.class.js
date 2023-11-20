@@ -100,10 +100,10 @@ export class World {
             }
             if (this.character.isColliding(enemy) && !this.character.isDead() && enemy.alive) {
                 this.character.damagedCharacter();
-                this.character.isHurt() ? '' : enemy.sounds.setPlayed('soundCharacterDamaged');
+                this.character.isHurt() ? '' : enemy.sounds.togglePlayback('soundCharacterDamaged');
                 if (!enemy.sounds.playAudioPlayed('soundCharacterDamaged')) {
                     enemy.sounds.playAudio('soundCharacterDamaged');
-                    enemy.sounds.setPlayed('soundCharacterDamaged');
+                    enemy.sounds.togglePlayback('soundCharacterDamaged');
                 }
                 this.statusBarHealth.setPercentage(this.character.energy, this.statusBarHealth.IMAGES_HEALTH);
             }
@@ -151,8 +151,8 @@ export class World {
         this.addStaticObjectToTheMap(this.statusBarCoin);
         this.addStaticObjectToTheMap(this.statusBarBottle);
         if (this.character.isDead()) {
-            !this.character.sounds.playAudioPlayed('soundCharacterDeadPlay') ? this.character.sounds.playAudioPlayed('soundCharacterDeadPlay') : '';
-            this.character.sounds.setPlayed('soundCharacterDeadPlay');
+            !this.character.sounds.playAudioPlayed('soundCharacterDead') ? this.character.sounds.playAudioPlayed('soundCharacterDead') : '';
+            this.character.sounds.togglePlayback('soundCharacterDead');
             this.addStaticObjectToTheMap(this.gameOver);
         }
         this.character.x > 1900 || this.endboss.startEndBattle ? this.addStaticObjectToTheMap(this.statusBarHealthEndboss) : '';

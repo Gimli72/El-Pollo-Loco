@@ -58,7 +58,7 @@ export class Endboss extends MovableObject {
     animate() {
         this.intervalIds.push(
             setInterval(() => {
-                if (!this.startEndBattle) {                    
+                if (!this.startEndBattle) {
                     this.playAnimation(this.IMAGES_ALERTNESS);
                     this.currentImage++;
                     if (this.world.character.x >= 1900) {
@@ -69,7 +69,7 @@ export class Endboss extends MovableObject {
                         this.playAnimation(this.IMAGES_DEAD);
                         if (!this.sounds.playAudioPlayed('soundEndbossDead')) {
                             this.sounds.playAudio('soundEndbossDead');
-                            this.sounds.setPlayed('soundEndbossDead');
+                            this.sounds.togglePlayback('soundEndbossDead');
                         }
                         this.currentImage++;
                         this.deadImages++;
