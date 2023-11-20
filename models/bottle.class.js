@@ -1,7 +1,6 @@
-import { MovableObject } from './index.js';
+import { MovableObject, Sound } from './index.js';
 
 export class Bottle extends MovableObject {
-
     imagePaths = ['img/6_salsa_bottle/2_salsa_bottle_on_ground.png', 'img/6_salsa_bottle/1_salsa_bottle_on_ground.png'];
 
     randomImgIndex = Math.floor(Math.random() * this.imagePaths.length);
@@ -12,6 +11,8 @@ export class Bottle extends MovableObject {
         right: 25 + this.randomImgIndex * 10,
         bottom: 10,
     };
+
+    soundBottleCollect = new Sound('soundBottleCollect');
 
     /**
      *

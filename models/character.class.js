@@ -1,4 +1,4 @@
-import { World, MovableObject } from './index.js';
+import { World, MovableObject, Sound } from './index.js';
 
 export class Character extends MovableObject {
     height = 300;
@@ -44,6 +44,12 @@ export class Character extends MovableObject {
     idleCounter = 0;
     goInSleepMode = 20;
 
+    soundCharacterWalking = new Sound('soundCharacterWalking');
+    soundCharacterDamaged = new Sound('soundCharacterDamaged');
+    soundCharacterDead = new Sound('soundCharacterDead');
+    soundCharacterJump = new Sound('soundCharacterJump');
+    soundBottleThrow = new Sound('soundBottleThrow');
+
     constructor() {
         super();
         this.loadImage(this.IMAGES_IDLE[0]);
@@ -61,16 +67,17 @@ export class Character extends MovableObject {
         setInterval(() => {
             if (!this.isDead()) {
                 if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-                    this.sounds.playAudio('soundCharacterWalking');
+                    this.soundCharacterWalking.play();
                     this.moveRight();
                     this.otherDirection = false;
-                } 
+                }
                 if (this.world.keyboard.LEFT && this.x > 0) {
-                    this.sounds.playAudio('soundCharacterWalking');
+                    this.soundCharacterWalking.play();
                     this.moveLeft();
                     this.otherDirection = true;
                 }
                 if (this.world.keyboard.SPACE && !this.isAboveGround()) {
+                    this.soundCharacterJump.play();
                     this.jump();
                 }
                 this.world.camera_x = -this.x + 100;

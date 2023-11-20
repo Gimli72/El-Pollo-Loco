@@ -1,4 +1,4 @@
-import { MovableObject, World } from './index.js';
+import { MovableObject, Sound, World } from './index.js';
 
 export class Endboss extends MovableObject {
     height = 400;
@@ -43,6 +43,10 @@ export class Endboss extends MovableObject {
         return `img/4_enemie_boss_chicken/5_dead/G${index + 24}.png`;
     });
 
+    soundEndbossDead = new Sound('soundEndbossDead');
+    soundEndbossDeadFloor = new Sound('soundEndbossDeadFloor');
+    soundEndbossEndGame = new Sound('soundEndbossEndGame', true);
+
     constructor() {
         super();
         this.loadImage(this.IMAGES_WALKING[0]);
@@ -62,19 +66,21 @@ export class Endboss extends MovableObject {
                     this.playAnimation(this.IMAGES_ALERTNESS);
                     this.currentImage++;
                     if (this.world.character.x >= 1900) {
+                        this.soundEndbossEndGame.play();
+                        this.world.soundBackgroundMusic.toggleMute();
                         this.startEndBattle = true;
                     }
                 } else {
                     if (this.isDead()) {
                         this.playAnimation(this.IMAGES_DEAD);
-                        if (!this.sounds.playAudioPlayed('soundEndbossDead')) {
-                            this.sounds.playAudio('soundEndbossDead');
-                            this.sounds.togglePlayback('soundEndbossDead');
+                        if (!this.soundEndbossDead.ended()) {
+                            this.soundEndbossEndGame.stop();                            
+                            this.soundEndbossDead.play();
                         }
                         this.currentImage++;
                         this.deadImages++;
                         if (this.deadImages === this.IMAGES_DEAD.length * 2) {
-                            this.sounds.playAudio('soundEndbossDeadFloor');
+                            this.soundEndbossDeadFloor.play();                            
                             this.stopAnimate();
                         }
                     } else if (this.isHurt()) {

@@ -1,4 +1,4 @@
-import { MovableObject } from './index.js';
+import { MovableObject, Sound } from './index.js';
 
 export class ChickenSmall extends MovableObject {
     height = 60;
@@ -16,9 +16,11 @@ export class ChickenSmall extends MovableObject {
         return `img/3_enemies_chicken/chicken_small/1_walk/${index + 1}_w.png`;
     });
 
+    soundChickenDead = new Sound('soundChickenDead');
+
     /**
-     * 
-     * @param {number} start_x 
+     *
+     * @param {number} start_x
      */
     constructor(start_x = 200) {
         super();
@@ -47,7 +49,7 @@ export class ChickenSmall extends MovableObject {
 
     stopAnimate() {
         this.intervalIds.forEach(clearInterval);
-        this.alive ? this.y += 10 : ''; 
+        this.alive ? (this.y += 10) : '';
         this.loadImage('img/3_enemies_chicken/chicken_small/2_dead/dead.png', this.x);
-     }
+    }
 }

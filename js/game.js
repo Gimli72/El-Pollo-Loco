@@ -1,5 +1,5 @@
 import { Keyboard, Level, World } from '../models/index.js';
-import { getElementById } from './script-utils.js';
+import { getElementById, getImageElementById } from './script-utils.js';
 import { dialogTemplate } from './script-templates.js';
 import { level1 } from '../levels/level1.js';
 
@@ -96,6 +96,8 @@ getElementById('fullscreen').addEventListener('click', fullScreenCanvas);
 getElementById('dialog').addEventListener('click', closeDialog);
 //
 getElementById('instructions').addEventListener('click', instructions);
+//
+getElementById('soundOnOff').addEventListener('click', soundOnOff);
 
 function init() {
     let backgroundImg = new Image();
@@ -109,7 +111,8 @@ function init() {
  * Start the game
  */
 function start() {
-    getElementById('startGame').classList.add('d-none');
+    getElementById('startGameDiv').classList.add('d-none');
+    getElementById('soundOnOffDiv').classList.remove('d-none');
     getElementById('canvas').focus();
 
     world = new World(canvas, keyboard, level);
@@ -121,12 +124,17 @@ function start() {
 function fullScreenCanvas() {
     canvas.requestFullscreen();
     keyboard.W = false;
+    getElementById('canvas').focus();
 }
 
 /**
  * Switch sound on/off
  */
-function soundOnOff() {}
+function soundOnOff() {
+    world.soundBackgroundMusic.toggleMute();
+    getImageElementById('soundOnOffImage').src = `./img/0_icons/sound_${!world.soundBackgroundMusic.element.muted}.png`;
+    getElementById('canvas').focus();
+}
 
 /**
  * Opens the instruction dialogue
@@ -135,6 +143,7 @@ function instructions() {
     getElementById('dialog').innerHTML = '';
     getElementById('dialog').innerHTML = dialogTemplate();
     getElementById('dialog').classList.remove('d-none');
+    getElementById('canvas').focus();
 }
 
 /**
@@ -142,4 +151,5 @@ function instructions() {
  */
 function closeDialog() {
     getElementById('dialog').classList.add('d-none');
+    getElementById('canvas').focus();
 }

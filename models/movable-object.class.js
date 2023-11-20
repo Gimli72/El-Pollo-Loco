@@ -109,7 +109,6 @@ export class MovableObject extends DrawableObject {
     }
 
     jump() {
-        this.sounds.playAudio('soundCharacterJump');
         this.speedY = 30;
     }
 }
