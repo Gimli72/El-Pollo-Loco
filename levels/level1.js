@@ -23,7 +23,7 @@ export const level1 = new Level(
     [
         new Endboss()
     ],
-    new BottleGroup(7, 12, 1300, 0).bottles,
+    new BottleGroup(7, 12, 1600).bottles,
     [
         new CoinsPyramid(300).coins,
         new CoinsLine(750).coins,

@@ -11,7 +11,7 @@ export class BottleGroup {
      * @param {number} levelWidth
      * @param {number} startAt
      */
-    constructor(minBottles, maxBottles, levelWidth, startAt = 400) {
+    constructor(minBottles, maxBottles, levelWidth, startAt = 300) {
         const bottles = [];
         // Get number of bottles (random)
         const quantity = Math.max(minBottles, Math.round(Math.random() * maxBottles));
