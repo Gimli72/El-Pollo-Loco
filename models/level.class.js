@@ -10,19 +10,19 @@ export class Level {
 
     /**
      *
-     * @param {BackGroundObject[]} backgroundObjects
-     * @param {Chicken[]} enemies
-     * @param {Cloud[]} clouds
-     * @param {Endboss[]} endboss
-     * @param {Bottle[]} bottles
-     * @param {Coin[]} coins
+     * @param {BackGroundObject[] | BackGroundObject[][]} backgroundObjects
+     * @param {Chicken[] | Chicken[][]} enemies
+     * @param {Cloud[] | Cloud[][]} clouds
+     * @param {Endboss[] | Endboss[][]} endboss
+     * @param {Bottle[] | Bottle[][]} bottles
+     * @param {Coin[] | Coin[][]} coins
      */
     constructor(backgroundObjects, enemies, clouds, endboss, bottles, coins) {
-        this.backgroundObjects = backgroundObjects;
-        this.enemies = enemies;
-        this.clouds = clouds;
-        this.endboss = endboss;
-        this.bottles = bottles;
-        this.coins = coins;
+        this.backgroundObjects = backgroundObjects.flat();
+        this.enemies = enemies.flat();
+        this.clouds = clouds.flat();
+        this.endboss = endboss.flat();
+        this.bottles = bottles.flat();
+        this.coins = coins.flat();
     }
 }
