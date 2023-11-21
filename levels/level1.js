@@ -1,4 +1,4 @@
-import { BackGroundObjectGroup, Chicken, Cloud, Level, Endboss, Bottle, Coin, ChickenSmall } from '../models/index.js';
+import { BackGroundObjectGroup, Chicken, Cloud, Level, Endboss, Bottle, Coin, ChickenSmall, BottleGroup } from '../models/index.js';
 
 //TODO: Funktionen ausgliedern in eigene Klasse !
 
@@ -18,25 +18,9 @@ export const level1 = new Level(
     ],
     [new Cloud(-400), new Cloud(1000), new Cloud(2000), new Cloud(3000)],
     [new Endboss()],
-    [new Bottle(400)],
+    new BottleGroup(12, 1300, 0).bottles,
     []
 );
-
-/**
- * @description Random arrangement of bottles (7 to max. 12 pieces)
- */
-function bottlePush() {
-    // Get number of bottles (random)
-    const quantity = Math.max(7, Math.round(Math.random() * 12));
-    // Calculate the space between the bottles
-    const space = 1300 / quantity;
-    // Create X (quantity) new bottles with a Y (space) spacing
-    for (let i = 1; i < quantity; i++) {
-        level1.bottles.push(new Bottle(400 + i * space));
-    }
-}
-
-bottlePush();
 
 /**
  * 
