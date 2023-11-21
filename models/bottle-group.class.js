@@ -12,7 +12,7 @@ export class BottleGroup {
      * @param {number} startAt
      */
     constructor(minBottles, maxBottles, levelWidth, startAt = 400) {
-        const bottles = []
+        const bottles = [];
         // Get number of bottles (random)
         const quantity = Math.max(minBottles, Math.round(Math.random() * maxBottles));
         // Calculate the space between the bottles
@@ -21,6 +21,6 @@ export class BottleGroup {
         for (let i = 1; i < quantity; i++) {
             bottles.push(new Bottle(startAt + i * space));
         }
-        this.bottles = bottles
+        this.bottles = bottles;
     }
 }

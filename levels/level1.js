@@ -1,6 +1,4 @@
-import { BackGroundObjectGroup, Chicken, Cloud, Level, Endboss, Bottle, Coin, ChickenSmall, BottleGroup } from '../models/index.js';
-
-//TODO: Funktionen ausgliedern in eigene Klasse !
+import { BackGroundObjectGroup, Chicken, Cloud, Level, Endboss, Bottle, Coin, ChickenSmall, BottleGroup, CoinsPyramid, CoinsLine } from '../models/index.js';
 
 /**
  * @description Structure of level architecture
@@ -14,43 +12,23 @@ export const level1 = new Level(
         new Chicken(),
         new Chicken(),
         new ChickenSmall(),
-        new Chicken(),
+        new Chicken()
     ],
-    [new Cloud(-400), new Cloud(1000), new Cloud(2000), new Cloud(3000)],
-    [new Endboss()],
+    [
+        new Cloud(-400),
+        new Cloud(1000),
+        new Cloud(2000),
+        new Cloud(3000)
+    ],
+    [
+        new Endboss()
+    ],
     new BottleGroup(7, 12, 1300, 0).bottles,
-    []
+    [
+        new CoinsPyramid(300).coins,
+        new CoinsLine(750).coins,
+        new CoinsPyramid(1000).coins,
+        new CoinsLine(1400).coins,
+        new CoinsPyramid(1700).coins
+    ]
 );
-
-/**
- * 
- * @param {Number} startX 
- */
-function coinsPyramid(startX) {
-    const coinOffsets = [120, 80, 40, 80, 120];
-
-    for (let i = 0; i < 5; i++) {
-        const position_x = startX + i * 50;
-        const position_y = coinOffsets[i];
-        level1.coins.push(new Coin(position_x, position_y));
-    }
-}
-
-/**
- * 
- * @param {Number} startX 
- */
-function coinsInLine(startX) {
-
-    for (let i = 0; i < 5; i++) {
-        const position_x = startX;
-        const position_y = 20 + (i * 45);
-        level1.coins.push(new Coin(position_x, position_y));
-    }
-}
-
-coinsPyramid(300);
-coinsInLine(750);
-coinsPyramid(1000);
-coinsInLine(1400);
-coinsPyramid(1700);       
