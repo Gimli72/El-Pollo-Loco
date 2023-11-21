@@ -1,17 +1,11 @@
 import { Keyboard, Level, World } from '../models/index.js';
-import { getElementById, getImageElementById } from './script-utils.js';
-import { dialogTemplate } from './script-templates.js';
+import { getElementById, getImageElementById, getCanvasElementById } from './utils.js';
+import { dialogTemplate } from './templates.js';
 import { level1 } from '../levels/level1.js';
 
 /** @type {HTMLCanvasElement} */
-let canvas;
-let ctx;
-
-let canvasElement = getElementById('canvas');
-if (canvasElement && canvasElement instanceof HTMLCanvasElement) {
-    canvas = canvasElement;
-    ctx = canvas.getContext('2d');
-}
+const canvas = getCanvasElementById('canvas');
+const ctx = canvas.getContext('2d');
 
 /** @type {World} */
 let world;
@@ -88,23 +82,23 @@ window.addEventListener('keyup', (event) => {
     }
 });
 
-//
+
 getElementById('startGame').addEventListener('click', start);
-//
+
 getElementById('fullscreen').addEventListener('click', fullScreenCanvas);
-//
+
 getElementById('dialog').addEventListener('click', closeDialog);
-//
+
 getElementById('instructions').addEventListener('click', instructions);
-//
+
 getElementById('soundOnOff').addEventListener('click', soundOnOff);
 
 function init() {
-    let backgroundImg = new Image();
+    const backgroundImg = new Image();
     backgroundImg.src = '../img/9_intro_outro_screens/start/startscreen_3.png';
-    backgroundImg.onload = function () {
-        ctx.drawImage(backgroundImg, 0, 0, 720, 480);
-    };
+    backgroundImg.onload = () => {
+        ctx?.drawImage(backgroundImg, 0, 0, 720, 480);
+    }
 }
 
 /**
@@ -114,7 +108,6 @@ function start() {
     getElementById('startGameDiv').classList.add('d-none');
     getElementById('soundOnOffDiv').classList.remove('d-none');
     getElementById('canvas').focus();
-
     world = new World(canvas, keyboard, level);
 }
 
@@ -133,7 +126,7 @@ function fullScreenCanvas() {
 function soundOnOff() {
     world.soundBackgroundMusic.toggleMute();
     getImageElementById('soundOnOffImage').src = `./img/0_icons/sound_${!world.soundBackgroundMusic.element.muted}.png`;
-    getElementById('canvas').focus();
+    getCanvasElementById('canvas').focus();
 }
 
 /**
@@ -143,7 +136,7 @@ function instructions() {
     getElementById('dialog').innerHTML = '';
     getElementById('dialog').innerHTML = dialogTemplate();
     getElementById('dialog').classList.remove('d-none');
-    getElementById('canvas').focus();
+    getCanvasElementById('canvas').focus();
 }
 
 /**
@@ -151,5 +144,5 @@ function instructions() {
  */
 function closeDialog() {
     getElementById('dialog').classList.add('d-none');
-    getElementById('canvas').focus();
+    getCanvasElementById('canvas').focus();
 }

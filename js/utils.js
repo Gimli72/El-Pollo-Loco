@@ -48,6 +48,21 @@ export function getInputElementById(id) {
 }
 
 /**
+ * Checks whether the passed ID exists and returns the canvas element.
+ * @param {string} id
+ * @returns {HTMLCanvasElement}
+ */
+export function getCanvasElementById(id) {
+    const element = getElementById(id);
+    if (element instanceof HTMLCanvasElement) {
+        return element;
+    } else {
+        throw new Error(`Element with id ${id} is not an canvas!`);
+    }
+}
+
+
+/**
  * Create an UUID
  * @returns string with UUID
  */
