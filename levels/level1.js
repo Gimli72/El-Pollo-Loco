@@ -1,4 +1,4 @@
-import { BackGroundObjectGroup, Chicken, Cloud, Level, Endboss, Bottle, Coin, ChickenSmall, BottleGroup } from '../models/index.js';
+import { BackGroundObjectGroup, Chicken, Cloud, Level, Endboss, Bottle, Coin, ChickenNormal, ChickenSmall, BottleGroup } from '../models/index.js';
 
 //TODO: Funktionen ausgliedern in eigene Klasse !
 
@@ -8,13 +8,13 @@ import { BackGroundObjectGroup, Chicken, Cloud, Level, Endboss, Bottle, Coin, Ch
 export const level1 = new Level(
     new BackGroundObjectGroup([-1439, 0, 1439]).backgrounds,
     [
-        new Chicken(),
-        new ChickenSmall(),
-        new ChickenSmall(),
-        new Chicken(),
-        new Chicken(),
-        new ChickenSmall(),
-        new Chicken(),
+        new ChickenNormal('normal'),
+        new ChickenSmall('small'),
+        new ChickenSmall('small'),
+        new ChickenNormal('normal'),
+        new ChickenNormal('normal'),
+        new ChickenSmall('small'),
+        new ChickenNormal('normal'),
     ],
     [new Cloud(-400), new Cloud(1000), new Cloud(2000), new Cloud(3000)],
     [new Endboss()],
