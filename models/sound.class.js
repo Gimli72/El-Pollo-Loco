@@ -4,92 +4,78 @@ export class Sound {
      */
     /**
      * Array of sound objects.
-     * @type {Array<{name: SoundName, src: string, volume: number, loop: boolean}>}
+     * @type {Array<{name: SoundName, path: string, volume: number}>}
      */
     sounds = [
         {
             name: 'soundBottleSplash',
-            src: '../audio/audio_throwable-object_splash.mp3',
+            path: '../audio/audio_throwable-object_splash.mp3',
             volume: 0.8,
-            loop: false,
         },
         {
             name: 'soundBottleBrokenGlas',
-            src: '../audio/audio_throwable-object_broken-glas.mp3',
+            path: '../audio/audio_throwable-object_broken-glas.mp3',
             volume: 0.7,
-            loop: false,
         },
         {
             name: 'soundBottleCollect',
-            src: '../audio/audio_throwable-object_collect.mp3',
+            path: '../audio/audio_throwable-object_collect.mp3',
             volume: 0.7,
-            loop: false,
         },
         {
             name: 'soundCoins',
-            src: '../audio/audio_pickUpCoin.mp3',
+            path: '../audio/audio_pickUpCoin.mp3',
             volume: 0.8,
-            loop: false,
         },
         {
             name: 'soundCharacterJump',
-            src: '../audio/audio_character-jump.mp3',
+            path: '../audio/audio_character-jump.mp3',
             volume: 0.1,
-            loop: false,
         },
         {
             name: 'soundCharacterDead',
-            src: '../audio/audio_character-dead.mp3',
+            path: '../audio/audio_character-dead.mp3',
             volume: 0.7,
-            loop: false,
         },
         {
             name: 'soundChickenDead',
-            src: '../audio/audio_chicken-dead.mp3',
+            path: '../audio/audio_chicken-dead.mp3',
             volume: 0.7,
-            loop: false,
         },
         {
             name: 'soundBackgroundMusic',
-            src: '../audio/audio_background-musik4.mp3',
+            path: '../audio/audio_background-musik4.mp3',
             volume: 0.5,
-            loop: true,
         },
         {
             name: 'soundEndbossDead',
-            src: '../audio/audio_endboss-dead.mp3',
+            path: '../audio/audio_endboss-dead.mp3',
             volume: 0.9,
-            loop: false,
         },
         {
             name: 'soundEndbossDeadFloor',
-            src: '../audio/audio_endboss-dead-floor.mp3',
+            path: '../audio/audio_endboss-dead-floor.mp3',
             volume: 0.8,
-            loop: false,
         },
         {
             name: 'soundCharacterDamaged',
-            src: '../audio/audio_character-damaged.mp3',
+            path: '../audio/audio_character-damaged.mp3',
             volume: 0.8,
-            loop: false,
         },
         {
             name: 'soundCharacterWalking',
-            src: '../audio/audio_character-walking.mp3',
+            path: '../audio/audio_character-walking.mp3',
             volume: 1,
-            loop: false,
         },
         {
             name: 'soundEndbossEndGame',
-            src: '../audio/audio_endboss-endgame2.mp3',
+            path: '../audio/audio_endboss-endgame2.mp3',
             volume: 0.5,
-            loop: true,
         },
         {
             name: 'soundBottleThrow',
-            src: '../audio/audio_throwable-object_throw.mp3',
+            path: '../audio/audio_throwable-object_throw.mp3',
             volume: 1,
-            loop: false,
         },
     ];
 
@@ -119,11 +105,11 @@ export class Sound {
     createElement() {
         const soundObject = this.sounds.find((soundObject) => soundObject.name === this.sound);
         if (soundObject) {
-            this.element = new Audio(soundObject.src);
+            this.element = new Audio(soundObject.path);
             this.element.volume = soundObject.volume;
-            this.element.loop = soundObject.loop;
+            this.element.loop = this.loop;
         } else {
-            console.log('Fehler', this.sound);
+            throw new Error(`Sound ${this.sound} not found!`);
         }
     }
 
