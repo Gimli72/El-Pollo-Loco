@@ -47,7 +47,11 @@ export class Endboss extends MovableObject {
     soundEndbossDeadFloor = new Sound('soundEndbossDeadFloor');
     soundEndbossEndGame = new Sound('soundEndbossEndGame', true);
 
-    constructor() {
+    /**
+     * 
+     * @param {number} startAt 
+     */
+    constructor(startAt) {
         super();
         this.loadImage(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);
@@ -55,7 +59,7 @@ export class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
-        this.x = 2350;
+        this.x = startAt;
         this.animate();
     }
 

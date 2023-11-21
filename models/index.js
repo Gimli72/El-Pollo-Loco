@@ -21,6 +21,7 @@ import { ThrowableObject } from './throwable-object.class.js';
 import { GameOver } from './game-over.class.js';
 import { BackGroundObjectGroup } from './background-object-group.class.js';
 import { BottleGroup } from './bottle-group.class.js';
+import { CoinsGroup } from './coins-object-group.class.js';
 import { CoinsPyramid } from './coins-pyramid.class.js';
 import { CoinsLine } from './coins-line.class.js';
 
@@ -47,6 +48,7 @@ export {
     Coin,
     GameOver,
     BackGroundObjectGroup,
+    CoinsGroup,
     BottleGroup,
     CoinsPyramid,
     CoinsLine,
