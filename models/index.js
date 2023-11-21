@@ -19,6 +19,7 @@ import { Level } from './level.class.js';
 import { Endboss } from './endboss.class.js';
 import { ThrowableObject } from './throwable-object.class.js';
 import { GameOver } from './game-over.class.js';
+import { BackGroundObjectGroup } from './background-object-group.class.js';
 
 export {
     MovableObject,
@@ -42,4 +43,5 @@ export {
     Bottle,
     Coin,
     GameOver,
+    BackGroundObjectGroup
 };

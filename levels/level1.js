@@ -1,4 +1,4 @@
-import { BackGroundObject, Chicken, Cloud, Level, Endboss, Bottle, Coin, ChickenSmall } from '../models/index.js';
+import { BackGroundObjectGroup, Chicken, Cloud, Level, Endboss, Bottle, Coin, ChickenSmall } from '../models/index.js';
 
 //TODO: Funktionen ausgliedern in eigene Klasse !
 
@@ -6,14 +6,7 @@ import { BackGroundObject, Chicken, Cloud, Level, Endboss, Bottle, Coin, Chicken
  * @description Structure of level architecture
  */
 export const level1 = new Level(
-    [-1439, 0, 1439]
-        .map((x) => [
-            new BackGroundObject('./img/5_background/layers/air.png', x),
-            new BackGroundObject('./img/5_background/layers/3_third_layer/full.png', x),
-            new BackGroundObject('./img/5_background/layers/2_second_layer/full.png', x),
-            new BackGroundObject('./img/5_background/layers/1_first_layer/full.png', x),
-        ])
-        .flat(),
+    new BackGroundObjectGroup([-1439, 0, 1439]).backgrounds,
     [
         new Chicken(),
         new ChickenSmall(),
@@ -36,14 +29,14 @@ function bottlePush() {
     // Get number of bottles (random)
     const quantity = Math.max(7, Math.round(Math.random() * 12));
     // Calculate the space between the bottles
-    const space = 1300 / quantity;    
+    const space = 1300 / quantity;
     // Create X (quantity) new bottles with a Y (space) spacing
     for (let i = 1; i < quantity; i++) {
         level1.bottles.push(new Bottle(400 + i * space));
     }
 }
 
-bottlePush(); 
+bottlePush();
 
 /**
  * 
@@ -67,13 +60,13 @@ function coinsInLine(startX) {
 
     for (let i = 0; i < 5; i++) {
         const position_x = startX;
-        const position_y = 20 + (i*45);
+        const position_y = 20 + (i * 45);
         level1.coins.push(new Coin(position_x, position_y));
     }
 }
-   
-coinsPyramid(300);  
+
+coinsPyramid(300);
 coinsInLine(750);
-coinsPyramid(1000);  
+coinsPyramid(1000);
 coinsInLine(1400);
 coinsPyramid(1700);       
