@@ -7,7 +7,7 @@ export class Chicken extends MovableObject {
 
     startAt = 200;
 
-    /** @type {'normal' | 'small'} */
+    /** @type {'normal' | 'small' | string & {}} */
     size = 'small';
 
     offset = {
@@ -22,17 +22,12 @@ export class Chicken extends MovableObject {
 
     soundChickenDead = new Sound('soundChickenDead');
 
-    /**
-     *
-     * @param {'normal' | 'small'} size
-     */
-    constructor(size) {
+    constructor() {
         super();
-        this.size = size;
         this.loadImage(`img/3_enemies_chicken/chicken_${this.size}/1_walk/1_w.png`);
         this.createImagesArray();
         this.loadImages(this.IMAGES_WALKING);
-        this.x = this.startAt + (Math.random() * this.startAt) + (Math.random() * 2000);
+        this.x = this.startAt + Math.random() * this.startAt + Math.random() * 2000;
         this.speed = 0.15 + Math.random() * 0.2;
 
         this.animate();
