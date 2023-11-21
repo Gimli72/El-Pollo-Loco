@@ -1,3 +1,4 @@
+import { gameMuted } from '../js/muted.js';
 export class Sound {
     /**
      * @typedef {'soundBottleSplash' | 'soundBottleBrokenGlas' | 'soundBottleCollect' | 'soundCoins' | 'soundCharacterJump' | 'soundCharacterDead' | 'soundChickenDead' | 'soundBackgroundMusic' | 'soundEndbossDead' | 'soundEndbossDeadFloor' | 'soundCharacterDamaged' | 'soundCharacterWalking' | 'soundEndbossEndGame' | 'soundBottleThrow'} SoundName
@@ -79,8 +80,8 @@ export class Sound {
         },
     ];
 
-    /** @type {boolean} */
-    muted = false;
+    /** @type {number} */
+    volume = 1;
 
     /** @type {SoundName} */
     sound;
@@ -100,6 +101,9 @@ export class Sound {
         this.sound = sound;
         this.loop = loop;
         this.createElement();
+        document.body.addEventListener('global-mute', () => {
+            this.element.muted = gameMuted;
+        });
     }
 
     createElement() {
@@ -108,6 +112,8 @@ export class Sound {
             this.element = new Audio(soundObject.path);
             this.element.volume = soundObject.volume;
             this.element.loop = this.loop;
+            this.volume = soundObject.volume;
+            this.element.muted = gameMuted;
         } else {
             throw new Error(`Sound ${this.sound} not found!`);
         }
@@ -119,10 +125,11 @@ export class Sound {
 
     play() {
         this.element.play();
+        this.element.muted = gameMuted;
     }
 
     toggleMute() {
-        this.element.muted = !this.element.muted;
+        this.element.volume = this.element.volume === 0 ? this.volume : 0;
     }
 
     ended() {

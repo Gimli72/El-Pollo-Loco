@@ -1,3 +1,5 @@
+
+import { gameMuted, setMuted, gameMutedEvent } from './muted.js'
 import { Keyboard, Level, World } from '../models/index.js';
 import { getElementById, getImageElementById, getCanvasElementById } from './utils.js';
 import { dialogTemplate } from './templates.js';
@@ -120,12 +122,15 @@ function fullScreenCanvas() {
     getElementById('canvas').focus();
 }
 
+
+
 /**
  * Switch sound on/off
  */
 function soundOnOff() {
-    world.soundBackgroundMusic.toggleMute();
-    getImageElementById('soundOnOffImage').src = `./img/0_icons/sound_${!world.soundBackgroundMusic.element.muted}.png`;
+    setMuted(!gameMuted);
+    document.body.dispatchEvent(gameMutedEvent);
+    getImageElementById('soundOnOffImage').src = `./img/0_icons/sound_${!gameMuted}.png`;
     getCanvasElementById('canvas').focus();
 }
 
