@@ -1,15 +1,9 @@
-// @ts-check
-
-// ******************
-//
-// Standard Function
-//
-// ******************
-
 /**
- * Checks whether the passed ID exists and returns the element.
- * @param {string} id
- * @returns {HTMLElement}
+ * Retrieves an HTMLElement by its ID.
+ *
+ * @param {string} id - The ID of the HTMLElement to retrieve.
+ * @returns {HTMLElement} The HTMLElement object with the specified ID.
+ * @throws {Error} If no element with the specified ID is found.
  */
 export function getElementById(id) {
     const element = document.getElementById(id);
@@ -19,10 +13,13 @@ export function getElementById(id) {
     return element;
 }
 
+
 /**
- * Checks whether the passed ID exists and returns the image element.
- * @param {string} id
- * @returns {HTMLImageElement}
+ * Retrieves an HTMLImageElement by its ID.
+ * 
+ * @param {string} id - The ID of the HTML image element.
+ * @returns {HTMLImageElement} The HTML image element.
+ * @throws {Error} If the element with the provided ID is not an image.
  */
 export function getImageElementById(id) {
     const element = getElementById(id);
@@ -33,10 +30,13 @@ export function getImageElementById(id) {
     }
 }
 
+
 /**
- * Checks whether the passed ID exists and returns the input element.
- * @param {string} id
- * @returns {HTMLInputElement}
+ * Retrieves an HTMLInputElement by its ID.
+ *
+ * @param {string} id - The ID of the HTMLInputElement to retrieve.
+ * @returns {HTMLInputElement} The HTMLInputElement object with the specified ID.
+ * @throws {Error} If the element with the specified ID is not an HTMLInputElement.
  */
 export function getInputElementById(id) {
     const element = getElementById(id);
@@ -47,24 +47,29 @@ export function getInputElementById(id) {
     }
 }
 
+
 /**
- * Checks whether the passed ID exists and returns the canvas element.
- * @param {string} id
- * @returns {HTMLCanvasElement}
+ * Retrieves an HTMLCanvasElement by its ID.
+ *
+ * @param {string} id - The ID of the HTMLCanvasElement to retrieve.
+ * @returns {HTMLCanvasElement} The HTMLCanvasElement object with the specified ID.
+ * @throws {Error} If the element with the specified ID is not an HTMLCanvasElement.
  */
 export function getCanvasElementById(id) {
     const element = getElementById(id);
     if (element instanceof HTMLCanvasElement) {
         return element;
     } else {
-        throw new Error(`Element with id ${id} is not an canvas!`);
+        throw new Error(`Element with id ${id} is not a canvas!`);
     }
 }
 
 
+
 /**
- * Create an UUID
- * @returns string with UUID
+ * Generates a random UUID using the Web Cryptography API.
+ *
+ * @returns {string} The generated UUID.
  */
 export function randomUUID() {
     const webCrypto = globalThis.crypto;

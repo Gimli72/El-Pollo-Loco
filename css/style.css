@@ -1,6 +1,8 @@
 * {
     padding: 0;
-    margin: 0;
+    margin: 0
+    --color-primary: rgba(255, 191, 2, 1);
+    --color-secondary: rgba(125, 48, 18, 1);
 }
 
 body {
@@ -29,7 +31,7 @@ h1 {
 }
 
 .dialog {
-    background-color: rgba(255, 191, 2, 0.8);
+    background-color: var(--color-primary);
     width: 720px;
     height: 480px;
     border-radius: 10px;
@@ -63,7 +65,7 @@ h1 {
 }
 
 canvas {
-    border: 10px solid rgba(125, 48, 18, 1);
+    border: 10px solid var(--color-secondary);
     border-radius: 20px;
     background-color: black;
 }
@@ -94,12 +96,12 @@ nav>div>button,
 
 nav>div>button>img,
 .restart>div>button>img {
-    background-color: rgba(255, 191, 2, 1);
+    background-color: var(--color-primary);
     padding: 5px;
     border-radius: 50%;
     width: 20px;
     height: 20px;
-    border: 2px solid rgba(125, 48, 18, 1);
+    border: 2px solid var(--color-secondary);
 }
 
 nav>div>button:hover,
@@ -115,7 +117,7 @@ nav>div>button:hover,
 
 .nav_button span,
 .restart span {
-    color: rgba(255, 191, 2, 1);
+    color: var(--color-secondary);
     font-family: 'Kenia', Arial, Helvetica, sans-serif;
     font-size: 20px;
     margin-left: 10px;
