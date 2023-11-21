@@ -60,8 +60,8 @@ export class World {
     checkThrowObjects() {
         if (this.keyboard.D && this.statusBarBottle.levelStatusBar > 0) {
             // + or - depends where the character looks
-            let addition = !this.character.otherDirection ? 100 : -30;
-            let bottle = new ThrowableObject(this.character.x + addition, this.character.y + 80, this.character.otherDirection);
+            const addition = !this.character.otherDirection ? 100 : -30;
+            const bottle = new ThrowableObject(this.character.x + addition, this.character.y + 80, this.character.otherDirection);
             this.bottles.push(bottle);
             this.character.soundBottleThrow.play();
             this.statusBarBottle.levelStatusBar -= 20;

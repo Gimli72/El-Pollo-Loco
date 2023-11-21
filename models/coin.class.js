@@ -12,7 +12,7 @@ export class Coin extends MovableObject {
         bottom: 40,
     };
 
-     soundCoins = new Sound('soundCoins');
+    soundCoins = new Sound('soundCoins');
 
     /**
      *
@@ -27,7 +27,7 @@ export class Coin extends MovableObject {
         this.y = start_y;
         this.width = 120;
         this.height = 120;
-       
+
         this.animate();
     }
 
