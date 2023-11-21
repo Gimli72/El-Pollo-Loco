@@ -18,7 +18,7 @@ export const level1 = new Level(
     ],
     [new Cloud(-400), new Cloud(1000), new Cloud(2000), new Cloud(3000)],
     [new Endboss()],
-    new BottleGroup(12, 1300, 0).bottles,
+    new BottleGroup(7, 12, 1300, 0).bottles,
     []
 );
 
