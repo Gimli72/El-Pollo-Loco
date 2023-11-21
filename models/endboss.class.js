@@ -65,7 +65,7 @@ export class Endboss extends MovableObject {
                 if (!this.startEndBattle) {
                     this.playAnimation(this.IMAGES_ALERTNESS);
                     this.currentImage++;
-                    if (this.world.character.x >= 1900) {
+                    if (this.world && this.world.character && this.world.character.x >= 1900) {
                         this.soundEndbossEndGame.play();
                         this.world.soundBackgroundMusic.toggleMute();
                         this.startEndBattle = true;
