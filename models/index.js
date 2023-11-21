@@ -12,6 +12,7 @@ import { BackGroundObject } from './background-object.class.js';
 import { Character } from './character.class.js';
 import { Chicken } from './chicken.class.js';
 import { ChickenSmall } from './chicken-small.class.js';
+import { ChickenNormal } from './chicken-normal.class.js';
 import { World } from './world.class.js';
 import { Cloud } from './cloud.class.js';
 import { Keyboard } from './keyboard.class.js';
@@ -33,6 +34,7 @@ export {
     BackGroundObject,
     Chicken,
     ChickenSmall,
+    ChickenNormal,
     World,
     Keyboard,
     Level,

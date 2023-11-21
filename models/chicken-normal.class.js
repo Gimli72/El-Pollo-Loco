@@ -1,9 +1,9 @@
 import { Chicken } from './index.js';
 
-export class ChickenSmall extends Chicken {
-    height = 60;
-    width = 60;
-    y = 365;
+export class ChickenNormal extends Chicken {
+    height = 90;
+    width = 90;
+    y = 335;
 
     /**
      *

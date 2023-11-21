@@ -5,6 +5,11 @@ export class Chicken extends MovableObject {
     width = 90;
     y = 335;
 
+    startAt = 200;
+
+    /** @type {'normal' | 'small'} */
+    size = 'small';
+
     offset = {
         left: 0,
         top: 5,
@@ -12,24 +17,31 @@ export class Chicken extends MovableObject {
         bottom: 5,
     };
 
-    IMAGES_WALKING = Array.from({ length: 3 }, (_, index) => {
-        return `img/3_enemies_chicken/chicken_normal/1_walk/${index + 1}_w.png`;
-    });
+    /** @type {string[]} */
+    IMAGES_WALKING = [];
 
     soundChickenDead = new Sound('soundChickenDead');
 
     /**
      *
-     * @param {number} start_x
+     * @param {'normal' | 'small'} size
      */
-    constructor(start_x = 200) {
+    constructor(size) {
         super();
-        this.loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
+        this.size = size;
+        this.loadImage(`img/3_enemies_chicken/chicken_${this.size}/1_walk/1_w.png`);
+        this.createImagesArray();
         this.loadImages(this.IMAGES_WALKING);
-        this.x = start_x + Math.random() * 2200; // Zahl zwischen 200 und 700
+        this.x = this.startAt + (Math.random() * this.startAt) + (Math.random() * 2000);
         this.speed = 0.15 + Math.random() * 0.2;
 
         this.animate();
+    }
+
+    createImagesArray() {
+        this.IMAGES_WALKING = Array.from({ length: 3 }, (_, index) => {
+            return `img/3_enemies_chicken/chicken_${this.size}/1_walk/${index + 1}_w.png`;
+        });
     }
 
     animate() {
@@ -50,6 +62,6 @@ export class Chicken extends MovableObject {
     stopAnimate() {
         this.intervalIds.forEach(clearInterval);
         this.alive ? (this.y += 10) : '';
-        this.loadImage('img/3_enemies_chicken/chicken_normal/2_dead/dead.png', this.x);
+        this.loadImage(`img/3_enemies_chicken/chicken_${this.size}/2_dead/dead.png`, this.x);
     }
 }
