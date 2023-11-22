@@ -107,9 +107,16 @@ function start() {
     getElementById('startGameDiv').classList.add('d-none');
     getElementById('soundOnOffDiv').classList.remove('d-none');
     getElementById('canvas').focus();
-    /** @type {Level} */
-    let level = level1();
-    world = new World(canvas, keyboard, level);
+    const firstLevel = level1();
+    loadLevel(firstLevel);
+}
+
+/**
+ * 
+ * @param {Level} level 
+ */
+function loadLevel(level) {
+    world = new World(canvas, keyboard, level)
 }
 
 /**
