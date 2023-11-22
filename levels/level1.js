@@ -7,7 +7,7 @@ export const level1 = new Level(
     [
         new BackGroundObjectGroup(-1439).background,
         new BackGroundObjectGroup(0).background,
-        new BackGroundObjectGroup(1439).background,
+        new BackGroundObjectGroup(1439).background
     ],
     [
         new Chicken('normal'),
@@ -16,7 +16,7 @@ export const level1 = new Level(
         new Chicken('normal'),
         new Chicken('normal'),
         new Chicken('small'),
-        new Chicken('normal'),
+        new Chicken('normal')
     ],
     [
         new Cloud(-400),
@@ -28,7 +28,10 @@ export const level1 = new Level(
         new Endboss(2350)
     ],
     [
-        new BottleGroup(7, 12, 1300, 0).bottles,
+        new BottleGroup(200, 3).bottles,
+        new BottleGroup(400, 2).bottles,
+        new BottleGroup(1000, 4).bottles,
+        new BottleGroup(1400, 2).bottles
     ],
     [
         new CoinsPyramid(300).coins,
