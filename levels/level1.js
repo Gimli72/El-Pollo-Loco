@@ -4,7 +4,11 @@ import { BackGroundObjectGroup, CoinsPyramid, Cloud, Level, Endboss, CoinsLine, 
  * @description Structure of level architecture
  */
 export const level1 = new Level(
-    new BackGroundObjectGroup([-1439, 0, 1439]).backgrounds,
+    [
+        new BackGroundObjectGroup(-1439).background,
+        new BackGroundObjectGroup(0).background,
+        new BackGroundObjectGroup(1439).background,
+    ],
     [
         new Chicken('normal'),
         new Chicken('small'),
@@ -23,7 +27,9 @@ export const level1 = new Level(
     [
         new Endboss(2350)
     ],
-    new BottleGroup(7, 12, 1300, 0).bottles,
+    [
+        new BottleGroup(7, 12, 1300, 0).bottles,
+    ],
     [
         new CoinsPyramid(300).coins,
         new CoinsLine(750).coins,
@@ -31,5 +37,4 @@ export const level1 = new Level(
         new CoinsLine(1400).coins,
         new CoinsPyramid(1700).coins
     ]
-    // new CoinsGroup(300).coins,
 );
