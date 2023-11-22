@@ -1,4 +1,4 @@
-import { Character, Chicken, Endboss, ThrowableObject, Bottle, Coin, ChickenSmall } from './index.js';
+import { Character, Chicken, Endboss, ThrowableObject, Bottle, Coin } from './index.js';
 
 export class DrawableObject {
     x = 50;
@@ -67,7 +67,6 @@ export class DrawableObject {
         if (
             this instanceof Character ||
             this instanceof Chicken ||
-            this instanceof ChickenSmall ||
             this instanceof ThrowableObject ||
             this instanceof Endboss ||
             this instanceof Bottle ||

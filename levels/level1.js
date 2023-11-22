@@ -1,4 +1,4 @@
-import { BackGroundObjectGroup, CoinsPyramid, Cloud, Level, Endboss, CoinsLine, ChickenNormal, ChickenSmall, BottleGroup } from '../models/index.js';
+import { BackGroundObjectGroup, CoinsPyramid, Cloud, Level, Endboss, CoinsLine, Chicken, BottleGroup } from '../models/index.js';
 
 /**
  * @description Structure of level architecture
@@ -6,13 +6,13 @@ import { BackGroundObjectGroup, CoinsPyramid, Cloud, Level, Endboss, CoinsLine, 
 export const level1 = new Level(
     new BackGroundObjectGroup([-1439, 0, 1439]).backgrounds,
     [
-        new ChickenNormal(),
-        new ChickenSmall(),
-        new ChickenSmall(),
-        new ChickenNormal(),
-        new ChickenNormal(),
-        new ChickenSmall(),
-        new ChickenNormal(),
+        new Chicken('normal'),
+        new Chicken('small'),
+        new Chicken('small'),
+        new Chicken('normal'),
+        new Chicken('normal'),
+        new Chicken('small'),
+        new Chicken('normal'),
     ],
     [
         new Cloud(-400),
