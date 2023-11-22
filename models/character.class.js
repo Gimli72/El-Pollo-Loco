@@ -1,5 +1,4 @@
 import { World, MovableObject, Sound } from './index.js';
-
 export class Character extends MovableObject {
     height = 300;
     width = 150;
@@ -86,6 +85,7 @@ export class Character extends MovableObject {
 
         setInterval(() => {
             if (this.isDead()) {
+                this.alive = false;
                 this.playAnimation(this.IMAGES_DEAD);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);

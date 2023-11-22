@@ -18,22 +18,27 @@
   <h1>El pollo loco</h1>
   <div id="canvasContainer">
     <canvas id="canvas" width="720" height="480"> </canvas>
-    <!-- <div class="restart">
-      <div style="Display: block"><button id="tryAgain" class="nav_button"><img src="./img/0_icons/restart.png" alt=""><span>Try again</span></button></div>
-    </div> -->
-    <nav>
-      <div id="startGameDiv"><button id="startGame" class="nav_button"><img src="./img/0_icons/play.png" alt=""><span>Let´s
+    <div class="gameOver d-none" id="gameOver">
+      <div>
+        <button id="tryAgain" class="nav_button"><img id="buttonImage" src="./img/0_icons/restart.png" alt=""><span
+            id="buttonText">Try again</span></button>
+      </div>
+    </div>
+    <nav class="" id="nav">
+      <div id="startGameDiv"><button id="startGame" class="nav_button"><img src="./img/0_icons/play.png"
+            alt=""><span>Let´s
             PLAY</span></button></div>
       <div><button id="fullscreen" class="nav_button"><img src="./img/0_icons/fullscreen.png"
             alt=""><span>Fullscreen</span></button></div>
-      <div  id="soundOnOffDiv" class="d-none"><button id="soundOnOff" class="nav_button"><img id="soundOnOffImage" src="./img/0_icons/sound_true.png" alt=""><span>Music
+      <div id="soundOnOffDiv" class="d-none"><button id="soundOnOff" class="nav_button"><img id="soundOnOffImage"
+            src="./img/0_icons/sound_true.png" alt=""><span>Music
             On/Off</span></button></div>
       <div><button id="instructions" class="nav_button"><img src="./img/0_icons/instructions.png"
             alt=""><span>Instructions</span></button></div>
     </nav>
   </div>
   <div class="dialog-bg d-none" id="dialog">
-    
+
   </div>
   </div>
 </body>

@@ -1,5 +1,5 @@
-import { Character, MovableObject, Keyboard, StatusBar, ThrowableObject, StatusBarHealth, StatusBarCoin, StatusBarBottle, StatusBarHealthEndboss, Level, GameOver, Sound } from './index.js';
-
+import { Character, MovableObject, Keyboard, StatusBar, ThrowableObject, StatusBarHealth, StatusBarCoin, StatusBarBottle, StatusBarHealthEndboss, Level, GameOver, Sound, Lost } from './index.js';
+import { gameOver, lost } from '../js/game.js';
 export class World {
     /** @type {Keyboard} */
     keyboard;
@@ -15,7 +15,9 @@ export class World {
     statusBarCoin = new StatusBarCoin();
     statusBarBottle = new StatusBarBottle();
     statusBarHealthEndboss = new StatusBarHealthEndboss();
-    gameOver = new GameOver();
+
+    outroScreenGameOver = new GameOver();
+    outroScreenLost = new Lost();
 
     /** @type {ThrowableObject[]} */
     bottles = [];
@@ -134,12 +136,10 @@ export class World {
     }
 
     draw() {
+        this.outroScreen = this.character.isDead() ? new GameOver() : new Lost();
         this.ctx?.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
         this.ctx?.translate(this.camera_x, 0);
-
         this.addObjectsToMap(this.level.backgroundObjects);
-
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.endboss);
@@ -150,22 +150,26 @@ export class World {
         this.addStaticObjectToTheMap(this.statusBarHealth);
         this.addStaticObjectToTheMap(this.statusBarCoin);
         this.addStaticObjectToTheMap(this.statusBarBottle);
-        if (this.character.isDead()) {
-            !this.character.soundCharacterDead.ended() ? this.character.soundCharacterDead.play() : '';
-            this.addStaticObjectToTheMap(this.gameOver);
-        }
         this.character.x > 1900 || this.endboss.startEndBattle ? this.addStaticObjectToTheMap(this.statusBarHealthEndboss) : '';
-
         this.ctx?.translate(this.camera_x, 0);
-
         this.addToMapMovableObject(this.character);
-
         this.ctx?.translate(-this.camera_x, 0);
-        // Draw() wird immer wieder aufgerufen
-        let self = this;
-        requestAnimationFrame(function () {
-            self.draw();
-        });
+        // Draw() wird immer wieder aufgerufen bis Character oder Endboss "tot" ist.
+        if (!this.character.isDead() && this.endboss.alive) {
+            let self = this;
+            requestAnimationFrame(function () {
+                self.draw();
+            });
+        } else if (!this.endboss.alive) {
+            this.addStaticObjectToTheMap(this.outroScreenLost);
+            lost();
+        } else {
+            this.character.soundCharacterDead.play();
+            this.addStaticObjectToTheMap(this.outroScreenGameOver);
+            this.soundBackgroundMusic.stop();
+            this.endboss.soundEndbossEndGame.stop();
+            gameOver();
+        }
     }
 
     /**
@@ -199,7 +203,7 @@ export class World {
 
     /**
      *
-     * @param {StatusBar | GameOver} item
+     * @param {StatusBar | GameOver | Lost} item
      */
     addStaticObjectToTheMap(item) {
         if (this.ctx) {

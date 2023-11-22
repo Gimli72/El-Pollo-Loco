@@ -76,7 +76,7 @@ export class MovableObject extends DrawableObject {
      *
      * @returns {boolean}
      */
-    isDead() {
+    isDead() {        
         return this.energy == 0;
     }
 

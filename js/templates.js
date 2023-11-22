@@ -1,10 +1,9 @@
-
 /**
  * Generates a dialog template in HTML.
  * @returns {string} The HTML string for the dialog template.
  */
 export function dialogTemplate() {
-  return /*html*/ `
+    return /*html*/ `
     <div class="dialog">
       <h2>Instruction</h2>
       <div>

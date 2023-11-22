@@ -1,5 +1,4 @@
-
-import { gameMuted, setMuted, gameMutedEvent } from './muted.js'
+import { gameMuted, setMuted, gameMutedEvent } from './muted.js';
 import { Keyboard, Level, World } from '../models/index.js';
 import { getElementById, getImageElementById, getCanvasElementById } from './utils.js';
 import { dialogTemplate } from './templates.js';
@@ -81,7 +80,6 @@ window.addEventListener('keyup', (event) => {
     }
 });
 
-
 getElementById('startGame').addEventListener('click', start);
 
 getElementById('fullscreen').addEventListener('click', fullScreenCanvas);
@@ -90,14 +88,19 @@ getElementById('dialog').addEventListener('click', closeDialog);
 
 getElementById('instructions').addEventListener('click', instructions);
 
-getElementById('soundOnOff').addEventListener('click', soundOnOff);
+getElementById('soundOnOff').addEventListener('click', function () {
+    soundOnOff();
+    this.blur();
+});
+
+getElementById('tryAgain').addEventListener('click', restart);
 
 function init() {
     const backgroundImg = new Image();
     backgroundImg.src = '../img/9_intro_outro_screens/start/startscreen_3.png';
     backgroundImg.onload = () => {
         ctx?.drawImage(backgroundImg, 0, 0, 720, 480);
-    }
+    };
 }
 
 /**
@@ -112,11 +115,11 @@ function start() {
 }
 
 /**
- * 
- * @param {Level} level 
+ *
+ * @param {Level} level
  */
 function loadLevel(level) {
-    world = new World(canvas, keyboard, level)
+    world = new World(canvas, keyboard, level);
 }
 
 /**
@@ -127,8 +130,6 @@ function fullScreenCanvas() {
     keyboard.W = false;
     getElementById('canvas').focus();
 }
-
-
 
 /**
  * Switch sound on/off
@@ -156,4 +157,35 @@ function instructions() {
 function closeDialog() {
     getElementById('dialog').classList.add('d-none');
     getCanvasElementById('canvas').focus();
+}
+
+/**
+ * Restart the game
+ */
+function restart() {
+    getElementById('nav').classList.remove('d-none');
+    getElementById('gameOver').classList.add('d-none');
+    start();
+}
+
+/**
+ * Game over screen
+ */
+export function gameOver() {
+    getElementById('buttonText').textContent = 'Try again';
+    getImageElementById('buttonImage').src = '../img/0_icons/restart.png';
+    getElementById('nav').classList.add('d-none');
+    getElementById('gameOver').classList.remove('d-none');
+    getElementById('canvas').focus();
+}
+
+/**
+ * Win the game and play again.
+ */
+export function lost() {
+    getElementById('buttonText').textContent = 'Play again';
+    getImageElementById('buttonImage').src = '../img/0_icons/play.png';
+    getElementById('nav').classList.add('d-none');
+    getElementById('gameOver').classList.remove('d-none');
+    getElementById('canvas').focus();
 }

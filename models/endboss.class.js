@@ -75,7 +75,7 @@ export class Endboss extends MovableObject {
                         this.startEndBattle = true;
                     }
                 } else {
-                    if (this.isDead()) {
+                    if (this.isDead()) {                        
                         this.playAnimation(this.IMAGES_DEAD);
                         if (!this.soundEndbossDead.ended()) {
                             this.soundEndbossEndGame.stop();                            

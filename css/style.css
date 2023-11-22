@@ -3,6 +3,7 @@
     margin: 0;
     --color-primary: rgba(255, 191, 2, 1);
     --color-secondary: rgba(125, 48, 18, 1);
+    --color-tertiary: rgb(255, 255, 255, 0.7);
 }
 
 body {
@@ -79,7 +80,7 @@ canvas {
 }
 
 nav,
-.restart {
+.gameOver {
     position: absolute;
     width: 100%;
     display: flex;
@@ -89,13 +90,13 @@ nav,
 }
 
 nav>div>button,
-.restart>div>button {
+.gameOver>div>button {
     border: 0;
     background-color: transparent;
 }
 
 nav>div>button>img,
-.restart>div>button>img {
+.gameOver>div>button>img {
     background-color: var(--color-primary);
     padding: 5px;
     border-radius: 50%;
@@ -105,7 +106,7 @@ nav>div>button>img,
 }
 
 nav>div>button:hover,
-.restart>div>button:hover {
+.gameOver>div>button:hover {
     cursor: pointer;
     scale: 0.95;
 }
@@ -115,9 +116,15 @@ nav>div>button:hover,
     align-items: center;
 }
 
-.nav_button span,
-.restart span {
+.nav_button span {
     color: var(--color-secondary);
+    font-family: 'Kenia', Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.gameOver span {
+    color: var(--color-tertiary);
     font-family: 'Kenia', Arial, Helvetica, sans-serif;
     font-size: 20px;
     margin-left: 10px;
