@@ -154,14 +154,18 @@ export class World {
         this.ctx?.translate(this.camera_x, 0);
         this.addToMapMovableObject(this.character);
         this.ctx?.translate(-this.camera_x, 0);
+        this.continueOrStop();
+    }
+
+    continueOrStop() {
         // Draw() wird immer wieder aufgerufen bis Character oder Endboss "tot" ist.
         if (!this.character.isDead() && this.endboss.alive) {
             let self = this;
             requestAnimationFrame(function () {
                 self.draw();
             });
-        } else if (!this.endboss.alive) {
-            this.addStaticObjectToTheMap(this.outroScreenLost);
+        } else if (!this.endboss.alive && !this.endboss.alive) {
+            this.addStaticObjectToTheMap(this.outroScreenLost);            
             lost();
         } else {
             this.character.soundCharacterDead.play();
