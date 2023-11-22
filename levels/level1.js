@@ -3,7 +3,8 @@ import { BackGroundObjectGroup, CoinsPyramid, Cloud, Level, Endboss, CoinsLine, 
 /**
  * @description Structure of level architecture
  */
-export const level1 = new Level(
+export function level1() {
+    return new Level(
     [
         new BackGroundObjectGroup(-1439).background,
         new BackGroundObjectGroup(0).background,
@@ -41,3 +42,4 @@ export const level1 = new Level(
         new CoinsPyramid(1700).coins
     ]
 );
+}

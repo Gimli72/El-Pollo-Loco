@@ -12,9 +12,6 @@ const ctx = canvas.getContext('2d');
 /** @type {World} */
 let world;
 
-/** @type {Level} */
-let level = level1;
-
 /** @type {Keyboard} */
 let keyboard = new Keyboard();
 
@@ -110,6 +107,8 @@ function start() {
     getElementById('startGameDiv').classList.add('d-none');
     getElementById('soundOnOffDiv').classList.remove('d-none');
     getElementById('canvas').focus();
+    /** @type {Level} */
+    let level = level1();
     world = new World(canvas, keyboard, level);
 }
 
