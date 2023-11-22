@@ -97,7 +97,7 @@ getElementById('tryAgain').addEventListener('click', restart);
 
 function init() {
     const backgroundImg = new Image();
-    backgroundImg.src = '../img/9_intro_outro_screens/start/startscreen_3.png';
+    backgroundImg.src = './img/9_intro_outro_screens/start/startscreen_3.png';
     backgroundImg.onload = () => {
         ctx?.drawImage(backgroundImg, 0, 0, 720, 480);
     };
@@ -173,7 +173,7 @@ function restart() {
  */
 export function gameOver() {
     getElementById('buttonText').textContent = 'Try again';
-    getImageElementById('buttonImage').src = '../img/0_icons/restart.png';
+    getImageElementById('buttonImage').src = './img/0_icons/restart.png';
     getElementById('nav').classList.add('d-none');
     getElementById('gameOver').classList.remove('d-none');
     getElementById('canvas').focus();
@@ -184,7 +184,7 @@ export function gameOver() {
  */
 export function lost() {
     getElementById('buttonText').textContent = 'Play again';
-    getImageElementById('buttonImage').src = '../img/0_icons/play.png';
+    getImageElementById('buttonImage').src = './img/0_icons/play.png';
     getElementById('nav').classList.add('d-none');
     getElementById('gameOver').classList.remove('d-none');
     getElementById('canvas').focus();

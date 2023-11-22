@@ -10,72 +10,72 @@ export class Sound {
     sounds = [
         {
             name: 'soundBottleSplash',
-            path: '../audio/audio_throwable-object_splash.mp3',
+            path: './audio/audio_throwable-object_splash.mp3',
             volume: 0.8,
         },
         {
             name: 'soundBottleBrokenGlas',
-            path: '../audio/audio_throwable-object_broken-glas.mp3',
+            path: './audio/audio_throwable-object_broken-glas.mp3',
             volume: 0.7,
         },
         {
             name: 'soundBottleCollect',
-            path: '../audio/audio_throwable-object_collect.mp3',
+            path: './audio/audio_throwable-object_collect.mp3',
             volume: 0.7,
         },
         {
             name: 'soundCoins',
-            path: '../audio/audio_pickUpCoin.mp3',
+            path: './audio/audio_pickUpCoin.mp3',
             volume: 0.8,
         },
         {
             name: 'soundCharacterJump',
-            path: '../audio/audio_character-jump.mp3',
+            path: './audio/audio_character-jump.mp3',
             volume: 0.1,
         },
         {
             name: 'soundCharacterDead',
-            path: '../audio/audio_character-dead.mp3',
+            path: './audio/audio_character-dead.mp3',
             volume: 0.7,
         },
         {
             name: 'soundChickenDead',
-            path: '../audio/audio_chicken-dead.mp3',
+            path: './audio/audio_chicken-dead.mp3',
             volume: 0.7,
         },
         {
             name: 'soundBackgroundMusic',
-            path: '../audio/audio_background-musik4.mp3',
+            path: './audio/audio_background-musik4.mp3',
             volume: 0.5,
         },
         {
             name: 'soundEndbossDead',
-            path: '../audio/audio_endboss-dead.mp3',
+            path: './audio/audio_endboss-dead.mp3',
             volume: 0.9,
         },
         {
             name: 'soundEndbossDeadFloor',
-            path: '../audio/audio_endboss-dead-floor.mp3',
+            path: './audio/audio_endboss-dead-floor.mp3',
             volume: 0.8,
         },
         {
             name: 'soundCharacterDamaged',
-            path: '../audio/audio_character-damaged.mp3',
+            path: './audio/audio_character-damaged.mp3',
             volume: 0.8,
         },
         {
             name: 'soundCharacterWalking',
-            path: '../audio/audio_character-walking.mp3',
+            path: './audio/audio_character-walking.mp3',
             volume: 1,
         },
         {
             name: 'soundEndbossEndGame',
-            path: '../audio/audio_endboss-endgame2.mp3',
+            path: './audio/audio_endboss-endgame2.mp3',
             volume: 0.5,
         },
         {
             name: 'soundBottleThrow',
-            path: '../audio/audio_throwable-object_throw.mp3',
+            path: './audio/audio_throwable-object_throw.mp3',
             volume: 1,
         },
     ];
