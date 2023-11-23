@@ -131,6 +131,7 @@ export class Sound {
 
     stop() {
         this.element.pause();
+        this.element.currentTime = 0;
     }
 
     play() {

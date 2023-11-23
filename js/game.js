@@ -165,6 +165,7 @@ function closeDialog() {
 function restart() {
     getElementById('nav').classList.remove('d-none');
     getElementById('gameOver').classList.add('d-none');
+    world.soundGameOver.stop();
     start();
 }
 
