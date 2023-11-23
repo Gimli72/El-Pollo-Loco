@@ -5,6 +5,8 @@ export class World {
     keyboard;
     /** @type {HTMLCanvasElement} */
     canvas;
+    /** @type {number[]} */
+    intervalIds = [];
 
     ctx;
     camera_x = 0;
@@ -47,15 +49,19 @@ export class World {
 
     run() {
         this.soundBackgroundMusic.play();
-        setInterval(() => {
-            // Check collision
-            this.checkCollisions();
-            this.checkCollisionsItems();
-            this.fullScreenCheck();
-        }, 100);
-        setInterval(() => {
-            this.checkThrowObjects();
-        }, 250);
+        this.intervalIds.push(
+            setInterval(() => {
+                // Check collision
+                this.checkCollisions();
+                this.checkCollisionsItems();
+                this.fullScreenCheck();
+            }, 100)
+        );
+        this.intervalIds.push(
+            setInterval(() => {
+                this.checkThrowObjects();
+            }, 250)
+        );
     }
 
     fullScreenCheck() {
@@ -165,13 +171,15 @@ export class World {
                 self.draw();
             });
         } else if (!this.endboss.alive && !this.endboss.alive) {
-            this.addStaticObjectToTheMap(this.outroScreenLost);            
+            this.addStaticObjectToTheMap(this.outroScreenLost);
+            this.stopInterval();
             lost();
         } else {
             this.character.soundCharacterDead.play();
             this.addStaticObjectToTheMap(this.outroScreenGameOver);
             this.soundBackgroundMusic.stop();
             this.endboss.soundEndbossEndGame.stop();
+            this.stopInterval();
             gameOver();
         }
     }
@@ -237,5 +245,9 @@ export class World {
             movableObject.x = movableObject.x * -1;
             this.ctx.restore();
         }
+    }
+
+    stopInterval() {
+        this.intervalIds.forEach(clearInterval);
     }
 }

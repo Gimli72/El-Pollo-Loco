@@ -8,6 +8,6 @@ export class Lost extends MovableObject {
 
     constructor() {
         super();
-        this.loadImage('img/9_intro_outro_screens/game_over/game over.png');
+        this.loadImage('img/9_intro_outro_screens/game_over/youwin2.png');
     }
 }
