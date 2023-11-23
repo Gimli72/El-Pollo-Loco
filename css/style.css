@@ -20,7 +20,7 @@ body {
 h1 {
     font-family: 'Kenia', Arial, Helvetica, sans-serif;
     font-size: 72px;
-    
+
 }
 
 .dialog-bg {
@@ -38,15 +38,15 @@ h1 {
     height: 480px;
     border-radius: 10px;
     display: flex;
-    justify-content:center ;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
 }
 
 .dialog h2 {
-        font-family: 'Kenia', Arial, Helvetica, sans-serif;
-            font-size: 62px;
-            margin-bottom: 20px;
+    font-family: 'Kenia', Arial, Helvetica, sans-serif;
+    font-size: 62px;
+    margin-bottom: 20px;
 }
 
 .dialog_line {
@@ -57,22 +57,23 @@ h1 {
 
 .dialog_line span {
     font-family: 'Kenia', Arial, Helvetica, sans-serif;
-        font-size: 36px;
-        margin-left: 30px;
- 
+    font-size: 36px;
+    margin-left: 30px;
+
 }
 
 .d-none {
     display: none !important;
 }
+
 .canvas_border {
     /* margin-top: 10px; */
     border: 10px solid var(--color-secondary);
-        /* border-radius: 20px; */
+    /* border-radius: 20px; */
 }
 
 canvas {
-margin-bottom: -4px;
+    margin-bottom: -4px;
     background-color: black;
 }
 
@@ -133,4 +134,40 @@ nav>div>button:hover,
     font-family: 'Kenia', Arial, Helvetica, sans-serif;
     font-size: 20px;
     margin-left: 10px;
+}
+
+@media only screen and (max-width: 720px) {
+    h1 {
+        display: none;
+    }
+
+    canvas {
+        width: 100%;
+    }
+
+    #nav {
+        display: none;
+    }
+
+}
+
+@media only screen and (max-height: 480px) {
+    h1 {
+        display: none;
+    }
+
+    canvas {
+        height: 100vh;
+    }
+
+    #nav {
+        display: none;
+    }
+
+    .canvas_border {
+        border-top: none;
+        border-left: 10px solid var(--color-secondary);
+        border-right: 10px solid var(--color-secondary);
+        border-bottom: none;
+    }
 }
