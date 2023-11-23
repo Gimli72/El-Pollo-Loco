@@ -1,6 +1,6 @@
 import { MovableObject } from './index.js';
 
-export class Lost extends MovableObject {
+export class YouWon extends MovableObject {
     y = 0;
     x = 0;
     width = 720;
@@ -8,6 +8,6 @@ export class Lost extends MovableObject {
 
     constructor() {
         super();
-        this.loadImage('img/9_intro_outro_screens/game_over/youwin2.png');
+        this.loadImage('img/9_intro_outro_screens/game_over/you-won.png');
     }
 }

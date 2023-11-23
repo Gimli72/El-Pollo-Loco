@@ -18,7 +18,7 @@ import { Level } from './level.class.js';
 import { Endboss } from './endboss.class.js';
 import { ThrowableObject } from './throwable-object.class.js';
 import { GameOver } from './game-over.class.js';
-import { Lost } from './lost.class.js';
+import { YouWon } from './you-won.class.js';
 import { BackGroundObjectGroup } from './background-object-group.class.js';
 import { BottleGroup } from './bottle-group.class.js';
 import { CoinsGroup } from './coins-object-group.class.js';
@@ -46,7 +46,7 @@ export {
     Bottle,
     Coin,
     GameOver,
-    Lost,
+    YouWon as Lost,
     BackGroundObjectGroup,
     CoinsGroup,
     BottleGroup,

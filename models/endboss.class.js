@@ -46,7 +46,7 @@ export class Endboss extends MovableObject {
     soundEndbossDead = new Sound('soundEndbossDead');
     soundEndbossDeadFloor = new Sound('soundEndbossDeadFloor');
     soundEndbossEndGame = new Sound('soundEndbossEndGame', true);
-    soundYouWin = new Sound('soundYouWin');
+    soundYouWon = new Sound('soundYouWon');
 
     /**
      *
@@ -86,7 +86,7 @@ export class Endboss extends MovableObject {
                         this.deadImages++;
                         if (this.deadImages === this.IMAGES_DEAD.length * 2) {
                             this.soundEndbossDeadFloor.play();
-                            this.soundYouWin.play();
+                            this.soundYouWon.play();
                             this.stopAnimate();
                         }
                     } else if (this.isHurt()) {
