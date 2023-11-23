@@ -1,7 +1,7 @@
 import { gameMuted } from '../js/muted.js';
 export class Sound {
     /**
-     * @typedef {'soundBottleSplash' | 'soundBottleBrokenGlas' | 'soundBottleCollect' | 'soundCoins' | 'soundCharacterJump' | 'soundCharacterDead' | 'soundChickenDead' | 'soundBackgroundMusic' | 'soundEndbossDead' | 'soundEndbossDeadFloor' | 'soundCharacterDamaged' | 'soundCharacterWalking' | 'soundEndbossEndGame' | 'soundBottleThrow'} SoundName
+     * @typedef {'soundBottleSplash' | 'soundBottleBrokenGlas' | 'soundBottleCollect' | 'soundCoins' | 'soundCharacterJump' | 'soundCharacterDead' | 'soundChickenDead' | 'soundBackgroundMusic' | 'soundEndbossDead' | 'soundEndbossDeadFloor' | 'soundCharacterDamaged' | 'soundCharacterWalking' | 'soundEndbossEndGame' | 'soundBottleThrow' | 'soundGameOver' | 'soundYouWin'} SoundName
      */
     /**
      * Array of sound objects.
@@ -76,6 +76,16 @@ export class Sound {
         {
             name: 'soundBottleThrow',
             path: './audio/audio_throwable-object_throw.mp3',
+            volume: 1,
+        },
+        {
+            name: 'soundGameOver',
+            path: './audio/audio_game_over.mp3',
+            volume: 1,
+        },
+        {
+            name: 'soundYouWin',
+            path: './audio/audio_win.mp3',
             volume: 1,
         },
     ];

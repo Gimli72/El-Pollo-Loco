@@ -25,6 +25,7 @@ export class World {
     bottles = [];
 
     soundBackgroundMusic = new Sound('soundBackgroundMusic', true);
+    soundGameOver = new Sound('soundGameOver');    
 
     /**
      * @param {Keyboard} keyboard
@@ -175,7 +176,7 @@ export class World {
             this.stopInterval();
             lost();
         } else {
-            this.character.soundCharacterDead.play();
+            this.soundGameOver.play();
             this.addStaticObjectToTheMap(this.outroScreenGameOver);
             this.soundBackgroundMusic.stop();
             this.endboss.soundEndbossEndGame.stop();

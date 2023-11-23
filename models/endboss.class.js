@@ -46,10 +46,11 @@ export class Endboss extends MovableObject {
     soundEndbossDead = new Sound('soundEndbossDead');
     soundEndbossDeadFloor = new Sound('soundEndbossDeadFloor');
     soundEndbossEndGame = new Sound('soundEndbossEndGame', true);
+    soundYouWin = new Sound('soundYouWin');
 
     /**
-     * 
-     * @param {number} startAt 
+     *
+     * @param {number} startAt
      */
     constructor(startAt) {
         super();
@@ -75,16 +76,17 @@ export class Endboss extends MovableObject {
                         this.startEndBattle = true;
                     }
                 } else {
-                    if (this.isDead()) {                        
+                    if (this.isDead()) {
                         this.playAnimation(this.IMAGES_DEAD);
                         if (!this.soundEndbossDead.ended()) {
-                            this.soundEndbossEndGame.stop();                            
+                            this.soundEndbossEndGame.stop();
                             this.soundEndbossDead.play();
                         }
                         this.currentImage++;
                         this.deadImages++;
                         if (this.deadImages === this.IMAGES_DEAD.length * 2) {
-                            this.soundEndbossDeadFloor.play();                            
+                            this.soundEndbossDeadFloor.play();
+                            this.soundYouWin.play();
                             this.stopAnimate();
                         }
                     } else if (this.isHurt()) {
