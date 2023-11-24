@@ -45,7 +45,6 @@ export class Endboss extends MovableObject {
 
     soundEndbossDead = new Sound('soundEndbossDead');
     soundEndbossDeadFloor = new Sound('soundEndbossDeadFloor');
-    soundEndbossEndGame = new Sound('soundEndbossEndGame', true);
     soundYouWon = new Sound('soundYouWon');
 
     /**
@@ -71,15 +70,13 @@ export class Endboss extends MovableObject {
                     this.playAnimation(this.IMAGES_ALERTNESS);
                     this.currentImage++;
                     if (this.world && this.world.character && this.world.character.x >= 1900) {
-                        this.soundEndbossEndGame.play();
-                        this.world.soundBackgroundMusic.toggleMute();
+                        // this.world.soundBackgroundMusic.toggleMute();
                         this.startEndBattle = true;
                     }
                 } else {
                     if (this.isDead()) {
                         this.playAnimation(this.IMAGES_DEAD);
                         if (!this.soundEndbossDead.ended()) {
-                            this.soundEndbossEndGame.stop();
                             this.soundEndbossDead.play();
                         }
                         this.currentImage++;

@@ -8,6 +8,8 @@ export class World {
     canvas;
     /** @type {number[]} */
     intervalIds = [];
+    /** @type {boolean} */
+    userPlays = false;
 
     ctx;
     camera_x = 0;
@@ -181,7 +183,6 @@ export class World {
             this.soundGameOver.play();
             this.addStaticObjectToTheMap(this.outroScreenGameOver);
             this.soundBackgroundMusic.stop();
-            this.endboss.soundEndbossEndGame.stop();
             this.stopInterval();
             gameOver();
         }

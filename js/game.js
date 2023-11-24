@@ -20,18 +20,18 @@ window.addEventListener('load', init);
  * Navigation for mobile phones - left panel
  */
 function mobilTouchPanelLeftEvents() {
-        getElementById('btnMoveleft').addEventListener('pointerdown', (event) => {
-            keyboard.LEFT = true;
-        });
-        getElementById('btnMoveleft').addEventListener('pointerup', (event) => {
-            keyboard.LEFT = false;
-        });
-        getElementById('btnMoveRight').addEventListener('pointerdown', (event) => {
-            keyboard.RIGHT = true;
-        });
-        getElementById('btnMoveRight').addEventListener('pointerup', (event) => {
-            keyboard.RIGHT = false;
-        });
+    getElementById('btnMoveleft').addEventListener('pointerdown', (event) => {
+        keyboard.LEFT = true;
+    });
+    getElementById('btnMoveleft').addEventListener('pointerup', (event) => {
+        keyboard.LEFT = false;
+    });
+    getElementById('btnMoveRight').addEventListener('pointerdown', (event) => {
+        keyboard.RIGHT = true;
+    });
+    getElementById('btnMoveRight').addEventListener('pointerup', (event) => {
+        keyboard.RIGHT = false;
+    });
 }
 
 /**
@@ -177,7 +177,8 @@ function init() {
 function start() {
     getElementById('canvas').focus();
     const firstLevel = level1();
-    loadLevel(firstLevel);
+    loadLevel(firstLevel);    
+    world.userPlays = true;
 }
 
 /**
@@ -232,7 +233,7 @@ function restart() {
     getElementById('nav').classList.remove('d-none');
     getElementById('gameOver').classList.add('d-none');
     getElementById('panel').classList.remove('d-none');
-    world.endboss.soundEndbossEndGame.stop();
+    getElementById('btnPlay').classList.add('d-none');
     world.soundBackgroundMusic.stop();
     world.soundGameOver.stop();
     world.endboss.soundYouWon.stop();
@@ -262,3 +263,20 @@ export function youWon() {
     getElementById('gameOver').classList.remove('d-none');
     getElementById('canvas').focus();
 }
+
+window.addEventListener('resize', function (event) {
+    getImageElementById('mobilSoundOnOffImage').src = `./img/0_icons/sound_${!gameMuted}.png`;
+    getImageElementById('soundOnOffImage').src = `./img/0_icons/sound_${!gameMuted}.png`;
+    if (window.innerWidth < 750 || world.userPlays) {
+        getElementById('btnPlay').classList.add('d-none');
+    } else {
+        getElementById('btnPlay').classList.remove('d-none');
+    }
+    if (window.innerWidth > 750 || world.userPlays) {
+        getElementById('startGameDiv').classList.add('d-none');
+        getElementById('soundOnOffDiv').classList.remove('d-none');
+    } else {
+        getElementById('startGameDiv').classList.remove('d-none');
+        getElementById('soundOnOffDiv').classList.add('d-none');
+    }
+});
