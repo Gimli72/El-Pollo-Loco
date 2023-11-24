@@ -16,7 +16,35 @@
   <h1>El pollo loco</h1>
   <div id="canvasContainer">
     <div class="canvas_border">
-      <canvas id="canvas" width="720" height="480"> </canvas>
+      <canvas id="canvas" width="720" height="480"></canvas>
+    </div>
+    <div id="panel">
+      <div id="panel2">
+        <div id="panel2Left">
+          <button id="btnMoveleft">
+            <img class="mobilbutton" src="./img/0_icons/run-left.png">
+          </button>
+          <button id="btnMoveRight">
+            <img class="mobilbutton" src="./img/0_icons/run-right.png">
+          </button>
+        </div>
+        <div id="panel2Middle">
+          <button id="btnSoundOnOff">
+            <img class="mobilbutton" id="mobilSoundOnOffImage" src="./img/0_icons/sound_true.png">
+          </button>
+          <button id="btnPlay">
+            <img class="mobilbutton" src="./img/0_icons/play.png">
+          </button>
+        </div>
+        <div id="panel2Right">
+          <button id="btnThrow">
+            <img class="mobilbutton" src="./img/0_icons/throw.png">
+          </button>
+          <button id="btnJump">
+            <img class="mobilbutton" src="./img/0_icons/jump.png">
+          </button>
+        </div>
+      </div>
     </div>
     <div class="gameOver d-none" id="gameOver">
       <div>
@@ -26,7 +54,7 @@
         </button>
       </div>
     </div>
-    <nav class="" id="nav">
+    <nav id="nav">
       <div id="startGameDiv">
         <button id="startGame" class="nav_button">
           <img src="./img/0_icons/play.png">
@@ -36,15 +64,15 @@
       <div>
         <button id="fullscreen" class="nav_button">
           <img src="./img/0_icons/fullscreen.png">
-            <span>Fullscreen</span>
-          </button>
-        </div>
+          <span>Fullscreen</span>
+        </button>
+      </div>
       <div id="soundOnOffDiv" class="d-none">
         <button id="soundOnOff" class="nav_button">
           <img id="soundOnOffImage" src="./img/0_icons/sound_true.png">
-            <span>Music On/Off</span>
-          </button>
-        </div>
+          <span>Music On/Off</span>
+        </button>
+      </div>
       <div>
         <button id="instructions" class="nav_button">
           <img src="./img/0_icons/instructions.png">
@@ -53,7 +81,7 @@
       </div>
     </nav>
   </div>
-  <div class="dialog-bg d-none" id="dialog">  </div>
+  <div class="dialog-bg d-none" id="dialog"> </div>
   </div>
 </body>
 

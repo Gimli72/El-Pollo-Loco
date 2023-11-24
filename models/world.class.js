@@ -1,5 +1,5 @@
-import { Character, MovableObject, Keyboard, StatusBar, ThrowableObject, StatusBarHealth, StatusBarCoin, StatusBarBottle, StatusBarHealthEndboss, Level, GameOver, Sound, Lost } from './index.js';
-import { gameOver, lost } from '../js/game.js';
+import { Character, MovableObject, Keyboard, StatusBar, ThrowableObject, StatusBarHealth, StatusBarCoin, StatusBarBottle, StatusBarHealthEndboss, Level, GameOver, Sound, YouWon } from './index.js';
+import { gameOver, youWon } from '../js/game.js';
 export class World {
     /** @type {Keyboard} */
     keyboard;
@@ -19,7 +19,7 @@ export class World {
     statusBarHealthEndboss = new StatusBarHealthEndboss();
 
     outroScreenGameOver = new GameOver();
-    outroScreenLost = new Lost();
+    outroScreenLost = new YouWon();
 
     /** @type {ThrowableObject[]} */
     bottles = [];
@@ -143,7 +143,7 @@ export class World {
     }
 
     draw() {
-        this.outroScreen = this.character.isDead() ? new GameOver() : new Lost();
+        this.outroScreen = this.character.isDead() ? new GameOver() : new YouWon();
         this.ctx?.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx?.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObjects);
@@ -174,7 +174,7 @@ export class World {
         } else if (!this.endboss.alive && !this.endboss.alive) {
             this.addStaticObjectToTheMap(this.outroScreenLost);
             this.stopInterval();
-            lost();
+            youWon();
         } else {
             this.soundGameOver.play();
             this.addStaticObjectToTheMap(this.outroScreenGameOver);
@@ -216,7 +216,7 @@ export class World {
 
     /**
      *
-     * @param {StatusBar | GameOver | Lost} item
+     * @param {StatusBar | GameOver | YouWon} item
      */
     addStaticObjectToTheMap(item) {
         if (this.ctx) {

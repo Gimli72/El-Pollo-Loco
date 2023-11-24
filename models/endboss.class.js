@@ -86,6 +86,7 @@ export class Endboss extends MovableObject {
                         this.deadImages++;
                         if (this.deadImages === this.IMAGES_DEAD.length * 2) {
                             this.soundEndbossDeadFloor.play();
+                            this.world.soundBackgroundMusic.stop();
                             this.soundYouWon.play();
                             this.stopAnimate();
                         }

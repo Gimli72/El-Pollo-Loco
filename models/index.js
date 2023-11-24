@@ -46,7 +46,7 @@ export {
     Bottle,
     Coin,
     GameOver,
-    YouWon as Lost,
+    YouWon,
     BackGroundObjectGroup,
     CoinsGroup,
     BottleGroup,

@@ -20,13 +20,12 @@ body {
 h1 {
     font-family: 'Kenia', Arial, Helvetica, sans-serif;
     font-size: 72px;
-
 }
 
-.dialog-bg {
+.dialog-bg {    
     z-index: 999;
     position: fixed;
-    margin-top: 70px;
+    /* margin-top: -65px; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,7 +35,7 @@ h1 {
     background-color: var(--color-primary);
     width: 720px;
     height: 480px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -75,24 +74,79 @@ h1 {
 canvas {
     margin-bottom: -4px;
     background-color: black;
+    z-index: 0;
 }
 
 #canvasContainer {
-    position: relative;
+    position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-nav,
-.gameOver {
+#panel1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 10px;
+    margin-right: 20px;
+}
+
+#panel2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+#panel2Left,
+#panel2Right,
+#panel2Middle {
+    display: flex;
+    gap: 10px;
+}
+
+#panel2Left>button,
+#panel2Right>button,
+#panel2Middle>button {
+    background-color: transparent;
+    border: 0;
+}
+
+
+.mobilbutton {
+    width: 35px;
+    padding: 8px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    border: 2px solid var(--color-secondary);
+}
+
+.mobilbutton:active {
+    scale: 0.95;
+}
+
+nav {
     position: absolute;
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     top: 435px;
+}
+
+.gameOver {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 70px;
 }
 
 nav>div>button,
@@ -137,6 +191,10 @@ nav>div>button:hover,
 }
 
 @media only screen and (max-width: 720px) {
+    #mobilNav {
+        display: block;
+    }
+
     h1 {
         display: none;
     }
@@ -148,7 +206,6 @@ nav>div>button:hover,
     #nav {
         display: none;
     }
-
 }
 
 @media only screen and (max-height: 480px) {
@@ -165,9 +222,46 @@ nav>div>button:hover,
     }
 
     .canvas_border {
-        border-top: none;
+        border: none;
         border-left: 10px solid var(--color-secondary);
         border-right: 10px solid var(--color-secondary);
         border-bottom: none;
+    }
+
+    #panel {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+}
+
+@media ((orientation: portrait) and (max-width: 480px)) {
+    #panel {
+        display: none;
+    }
+
+    canvas {
+        display: none;
+    }
+
+    .canvas_border {
+        border: none;
+    }
+
+    body {
+        background-image: url('../img/background_mobilephone.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        z-index: 999 !important;
+        background-color: var(--color-primary);
+    }
+}
+
+@media (min-width: 720px) and (min-height: 720px) {
+    #panel {
+        display: none;
     }
 }

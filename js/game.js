@@ -16,6 +16,62 @@ let keyboard = new Keyboard();
 
 window.addEventListener('load', init);
 
+function mobilTouchPressEvents() {
+    getElementById('btnMoveleft').addEventListener('touchstart', (event) => {
+        keyboard.LEFT = true;
+        console.log('test');
+    });
+    getElementById('btnMoveleft').addEventListener('touchend', (event) => {
+        keyboard.LEFT = false;
+    });
+    getElementById('btnMoveRight').addEventListener('touchstart', (event) => {
+        keyboard.RIGHT = true;
+    });
+    getElementById('btnMoveRight').addEventListener('touchend', (event) => {
+        keyboard.RIGHT = false;
+    });
+    getElementById('btnThrow').addEventListener('touchstart', (event) => {
+        event.preventDefault();
+        keyboard.D = true;
+    });
+    getElementById('btnThrow').addEventListener('touchend', (event) => {
+        event.preventDefault();
+        keyboard.D = false;
+    });
+    getElementById('btnJump').addEventListener('touchstart', (event) => {
+        keyboard.SPACE = true;
+    });
+    getElementById('btnJump').addEventListener('touchend', (event) => {
+        keyboard.SPACE = false;
+    });
+    getElementById('btnPlay').addEventListener('touchstart', (event) => {
+        getElementById('btnPlay').classList.add('d-none');
+        event.preventDefault();
+        start();
+    });
+    getElementById('btnSoundOnOff').addEventListener('touchstart', (event) => {
+        event.preventDefault();
+        soundOnOff('mobilSoundOnOffImage');
+    });
+}
+
+function desktopClickEvents() {
+    getElementById('startGame').addEventListener('click', (event) => {
+        getElementById('startGameDiv').classList.add('d-none');
+        getElementById('soundOnOffDiv').classList.remove('d-none');
+        event.preventDefault();
+        start();
+    });
+    getElementById('fullscreen').addEventListener('click', fullScreenCanvas);
+    getElementById('dialog').addEventListener('click', closeDialog);
+    getElementById('instructions').addEventListener('click', instructions);
+    getElementById('soundOnOff').addEventListener('click', function () {
+        soundOnOff('soundOnOffImage');
+        this.blur();
+    });
+    getElementById('tryAgain').addEventListener('click', restart);
+}
+
 //
 window.addEventListener('keydown', (event) => {
     switch (event.key) {
@@ -80,35 +136,20 @@ window.addEventListener('keyup', (event) => {
     }
 });
 
-getElementById('startGame').addEventListener('click', start);
-
-getElementById('fullscreen').addEventListener('click', fullScreenCanvas);
-
-getElementById('dialog').addEventListener('click', closeDialog);
-
-getElementById('instructions').addEventListener('click', instructions);
-
-getElementById('soundOnOff').addEventListener('click', function () {
-    soundOnOff();
-    this.blur();
-});
-
-getElementById('tryAgain').addEventListener('click', restart);
-
 function init() {
     const backgroundImg = new Image();
     backgroundImg.src = './img/9_intro_outro_screens/start/startscreen_3.png';
     backgroundImg.onload = () => {
         ctx?.drawImage(backgroundImg, 0, 0, 720, 480);
     };
+    mobilTouchPressEvents();
+    desktopClickEvents();
 }
 
 /**
  * Start the game
  */
 function start() {
-    getElementById('startGameDiv').classList.add('d-none');
-    getElementById('soundOnOffDiv').classList.remove('d-none');
     getElementById('canvas').focus();
     const firstLevel = level1();
     loadLevel(firstLevel);
@@ -134,10 +175,10 @@ function fullScreenCanvas() {
 /**
  * Switch sound on/off
  */
-function soundOnOff() {
+function soundOnOff(id) {
     setMuted(!gameMuted);
     document.body.dispatchEvent(gameMutedEvent);
-    getImageElementById('soundOnOffImage').src = `./img/0_icons/sound_${!gameMuted}.png`;
+    getImageElementById(id).src = `./img/0_icons/sound_${!gameMuted}.png`;
     getCanvasElementById('canvas').focus();
 }
 
@@ -165,7 +206,11 @@ function closeDialog() {
 function restart() {
     getElementById('nav').classList.remove('d-none');
     getElementById('gameOver').classList.add('d-none');
+    getElementById('panel').classList.remove('d-none');
+    world.endboss.soundEndbossEndGame.stop();
+    world.soundBackgroundMusic.stop();
     world.soundGameOver.stop();
+    world.endboss.soundYouWon.stop();
     start();
 }
 
@@ -176,6 +221,7 @@ export function gameOver() {
     getElementById('buttonText').textContent = 'Try again';
     getImageElementById('buttonImage').src = './img/0_icons/restart.png';
     getElementById('nav').classList.add('d-none');
+    getElementById('panel').classList.add('d-none');
     getElementById('gameOver').classList.remove('d-none');
     getElementById('canvas').focus();
 }
@@ -183,10 +229,11 @@ export function gameOver() {
 /**
  * Win the game and play again.
  */
-export function lost() {
+export function youWon() {
     getElementById('buttonText').textContent = 'Play again';
     getImageElementById('buttonImage').src = './img/0_icons/play.png';
     getElementById('nav').classList.add('d-none');
+    getElementById('panel').classList.add('d-none');
     getElementById('gameOver').classList.remove('d-none');
     getElementById('canvas').focus();
 }
