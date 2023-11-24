@@ -17,21 +17,42 @@ let keyboard = new Keyboard();
 window.addEventListener('load', init);
 
 /**
- * Navigation for mobile phones
+ * Navigation for mobile phones - left panel
  */
-function mobilTouchPressEvents() {
-    getElementById('btnMoveleft').addEventListener('pointerdown', (event) => {
-        keyboard.LEFT = true;
+function mobilTouchPanelLeftEvents() {
+        getElementById('btnMoveleft').addEventListener('pointerdown', (event) => {
+            keyboard.LEFT = true;
+        });
+        getElementById('btnMoveleft').addEventListener('pointerup', (event) => {
+            keyboard.LEFT = false;
+        });
+        getElementById('btnMoveRight').addEventListener('pointerdown', (event) => {
+            keyboard.RIGHT = true;
+        });
+        getElementById('btnMoveRight').addEventListener('pointerup', (event) => {
+            keyboard.RIGHT = false;
+        });
+}
+
+/**
+ * Navigation for mobile phones - middle panel
+ */
+function mobilTouchPanelMiddleEvents() {
+    getElementById('btnPlay').addEventListener('pointerdown', (event) => {
+        getElementById('btnPlay').classList.add('d-none');
+        event.preventDefault();
+        start();
     });
-    getElementById('btnMoveleft').addEventListener('pointerup', (event) => {
-        keyboard.LEFT = false;
+    getElementById('btnSoundOnOff').addEventListener('pointerdown', (event) => {
+        event.preventDefault();
+        soundOnOff('mobilSoundOnOffImage');
     });
-    getElementById('btnMoveRight').addEventListener('pointerdown', (event) => {
-        keyboard.RIGHT = true;
-    });
-    getElementById('btnMoveRight').addEventListener('pointerup', (event) => {
-        keyboard.RIGHT = false;
-    });
+}
+
+/**
+ * Navigation for mobile phones - right panel
+ */
+function mobilTouchPanelRightEvents() {
     getElementById('btnThrow').addEventListener('pointerdown', (event) => {
         event.preventDefault();
         keyboard.D = true;
@@ -46,15 +67,6 @@ function mobilTouchPressEvents() {
     getElementById('btnJump').addEventListener('pointerup', (event) => {
         keyboard.SPACE = false;
     });
-    getElementById('btnPlay').addEventListener('pointerdown', (event) => {
-        getElementById('btnPlay').classList.add('d-none');
-        event.preventDefault();
-        start();
-    });
-    getElementById('btnSoundOnOff').addEventListener('pointerdown', (event) => {
-        event.preventDefault();
-        soundOnOff('mobilSoundOnOffImage');
-    });
 }
 
 /**
@@ -63,7 +75,6 @@ function mobilTouchPressEvents() {
 function desktopClickEvents() {
     //
     getElementById('tryAgain').addEventListener('click', restart);
-
     //
     getElementById('fullscreen').addEventListener('click', fullScreenCanvas);
     //
@@ -154,7 +165,9 @@ function init() {
     backgroundImg.onload = () => {
         ctx?.drawImage(backgroundImg, 0, 0, 720, 480);
     };
-    mobilTouchPressEvents();
+    mobilTouchPanelLeftEvents();
+    mobilTouchPanelMiddleEvents();
+    mobilTouchPanelRightEvents();
     desktopClickEvents();
 }
 
