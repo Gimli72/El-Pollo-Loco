@@ -57,7 +57,7 @@ function mobilTouchPanelRightEvents() {
         event.preventDefault();
         keyboard.D = true;
     });
-    getElementById('btnThrow').addEventListener('pointerdown', (event) => {
+    getElementById('btnThrow').addEventListener('pointerup', (event) => {
         event.preventDefault();
         keyboard.D = false;
     });
