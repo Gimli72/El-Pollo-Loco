@@ -43,6 +43,7 @@ export class Character extends MovableObject {
     idleCounter = 0;
     goInSleepMode = 20;
 
+    // Sounds
     soundCharacterWalking = new Sound('soundCharacterWalking');
     soundCharacterDamaged = new Sound('soundCharacterDamaged');
     soundCharacterDead = new Sound('soundCharacterDead');

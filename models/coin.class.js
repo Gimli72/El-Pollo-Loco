@@ -1,6 +1,7 @@
 import { MovableObject, Sound } from './index.js';
 
 export class Coin extends MovableObject {
+    
     IMAGES_COIN = Array.from({ length: 2 }, (_, index) => {
         return `img/8_coin/coin_${index + 1}.png`;
     });
@@ -27,7 +28,6 @@ export class Coin extends MovableObject {
         this.y = start_y;
         this.width = 120;
         this.height = 120;
-
         this.animate();
     }
 

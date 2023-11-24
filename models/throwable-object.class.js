@@ -9,6 +9,7 @@ export class ThrowableObject extends MovableObject {
         return `img/6_salsa_bottle/bottle_rotation/bottle_splash/${index + 1}_bottle_splash.png`;
     });
 
+    // Sounds
     soundBottleSplash = new Sound('soundBottleSplash');
     soundBottleBrokenGlas = new Sound('soundBottleBrokenGlas');
     

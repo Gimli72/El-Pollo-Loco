@@ -20,39 +20,38 @@ window.addEventListener('load', init);
  * Navigation for mobile phones
  */
 function mobilTouchPressEvents() {
-    getElementById('btnMoveleft').addEventListener('touchstart', (event) => {
+    getElementById('btnMoveleft').addEventListener('pointerdown', (event) => {
         keyboard.LEFT = true;
-        console.log('test');
     });
-    getElementById('btnMoveleft').addEventListener('touchend', (event) => {
+    getElementById('btnMoveleft').addEventListener('pointerup', (event) => {
         keyboard.LEFT = false;
     });
-    getElementById('btnMoveRight').addEventListener('touchstart', (event) => {
+    getElementById('btnMoveRight').addEventListener('pointerdown', (event) => {
         keyboard.RIGHT = true;
     });
-    getElementById('btnMoveRight').addEventListener('touchend', (event) => {
+    getElementById('btnMoveRight').addEventListener('pointerup', (event) => {
         keyboard.RIGHT = false;
     });
-    getElementById('btnThrow').addEventListener('touchstart', (event) => {
+    getElementById('btnThrow').addEventListener('pointerdown', (event) => {
         event.preventDefault();
         keyboard.D = true;
     });
-    getElementById('btnThrow').addEventListener('touchend', (event) => {
+    getElementById('btnThrow').addEventListener('pointerdown', (event) => {
         event.preventDefault();
         keyboard.D = false;
     });
-    getElementById('btnJump').addEventListener('touchstart', (event) => {
+    getElementById('btnJump').addEventListener('pointerdown', (event) => {
         keyboard.SPACE = true;
     });
-    getElementById('btnJump').addEventListener('touchend', (event) => {
+    getElementById('btnJump').addEventListener('pointerup', (event) => {
         keyboard.SPACE = false;
     });
-    getElementById('btnPlay').addEventListener('touchstart', (event) => {
+    getElementById('btnPlay').addEventListener('pointerdown', (event) => {
         getElementById('btnPlay').classList.add('d-none');
         event.preventDefault();
         start();
     });
-    getElementById('btnSoundOnOff').addEventListener('touchstart', (event) => {
+    getElementById('btnSoundOnOff').addEventListener('pointerdown', (event) => {
         event.preventDefault();
         soundOnOff('mobilSoundOnOffImage');
     });
@@ -62,20 +61,27 @@ function mobilTouchPressEvents() {
  * Desktop navigation
  */
 function desktopClickEvents() {
+    //
+    getElementById('tryAgain').addEventListener('click', restart);
+
+    //
+    getElementById('fullscreen').addEventListener('click', fullScreenCanvas);
+    //
+    getElementById('dialog').addEventListener('click', closeDialog);
+    //
+    getElementById('instructions').addEventListener('click', instructions);
+    //
+    getElementById('soundOnOff').addEventListener('click', function () {
+        soundOnOff('soundOnOffImage');
+        this.blur();
+    });
+    //
     getElementById('startGame').addEventListener('click', (event) => {
         getElementById('startGameDiv').classList.add('d-none');
         getElementById('soundOnOffDiv').classList.remove('d-none');
         event.preventDefault();
         start();
     });
-    getElementById('fullscreen').addEventListener('click', fullScreenCanvas);
-    getElementById('dialog').addEventListener('click', closeDialog);
-    getElementById('instructions').addEventListener('click', instructions);
-    getElementById('soundOnOff').addEventListener('click', function () {
-        soundOnOff('soundOnOffImage');
-        this.blur();
-    });
-    getElementById('tryAgain').addEventListener('click', restart);
 }
 
 //

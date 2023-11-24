@@ -12,6 +12,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    background-color: var(--color-primary);
     background-image: url('../img/desert_background.png');
     background-repeat: no-repeat;
     background-size: cover;
@@ -20,6 +21,7 @@ body {
 h1 {
     font-family: 'Kenia', Arial, Helvetica, sans-serif;
     font-size: 72px;
+    margin-bottom: 580px;
 }
 
 .dialog-bg {    

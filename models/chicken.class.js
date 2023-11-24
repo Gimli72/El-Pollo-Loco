@@ -60,7 +60,6 @@ export class Chicken extends MovableObject {
                 this.moveLeft();
             }, 1000 / this.fps)
         );
-
         this.intervalIds.push(
             setInterval(() => {
                 this.playAnimation(this.IMAGES_WALKING);

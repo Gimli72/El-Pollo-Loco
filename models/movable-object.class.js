@@ -1,4 +1,4 @@
-import { Character, Chicken, DrawableObject, ThrowableObject, World } from './index.js';
+import { DrawableObject, ThrowableObject  } from './index.js';
 export class MovableObject extends DrawableObject {
     repeat = false; // Restart cloud true or false
     fps = 60;

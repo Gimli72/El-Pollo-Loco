@@ -1,4 +1,5 @@
 import { Character, MovableObject, Keyboard, StatusBar, ThrowableObject, StatusBarHealth, StatusBarCoin, StatusBarBottle, StatusBarHealthEndboss, Level, GameOver, Sound, YouWon } from './index.js';
+
 import { gameOver, youWon } from '../js/game.js';
 export class World {
     /** @type {Keyboard} */
@@ -24,8 +25,9 @@ export class World {
     /** @type {ThrowableObject[]} */
     bottles = [];
 
+    // Sounds
     soundBackgroundMusic = new Sound('soundBackgroundMusic', true);
-    soundGameOver = new Sound('soundGameOver');    
+    soundGameOver = new Sound('soundGameOver');
 
     /**
      * @param {Keyboard} keyboard
