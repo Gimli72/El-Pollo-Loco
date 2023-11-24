@@ -76,13 +76,19 @@ export class Character extends MovableObject {
                     this.moveLeft();
                     this.otherDirection = true;
                 }
+                this.world.camera_x = -this.x + 100;
+            }
+        }, 1000 / 60);
+
+        setInterval(() => {
+            if (!this.isDead()) {
                 if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                     this.soundCharacterJump.play();
                     this.jump();
                 }
-                this.world.camera_x = -this.x + 100;
             }
-        }, 1000 / this.fps);
+
+        }, 1000 / 90)
 
         setInterval(() => {
             if (this.isDead()) {
