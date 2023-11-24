@@ -16,6 +16,9 @@ let keyboard = new Keyboard();
 
 window.addEventListener('load', init);
 
+/**
+ * Navigation for mobile phones
+ */
 function mobilTouchPressEvents() {
     getElementById('btnMoveleft').addEventListener('touchstart', (event) => {
         keyboard.LEFT = true;
@@ -55,6 +58,9 @@ function mobilTouchPressEvents() {
     });
 }
 
+/**
+ * Desktop navigation
+ */
 function desktopClickEvents() {
     getElementById('startGame').addEventListener('click', (event) => {
         getElementById('startGameDiv').classList.add('d-none');

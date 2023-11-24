@@ -25,7 +25,6 @@ h1 {
 .dialog-bg {    
     z-index: 999;
     position: fixed;
-    /* margin-top: -65px; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,7 +34,6 @@ h1 {
     background-color: var(--color-primary);
     width: 720px;
     height: 480px;
-    /* border-radius: 10px; */
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -66,9 +64,7 @@ h1 {
 }
 
 .canvas_border {
-    /* margin-top: 10px; */
     border: 10px solid var(--color-secondary);
-    /* border-radius: 20px; */
 }
 
 canvas {
