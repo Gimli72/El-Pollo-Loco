@@ -178,12 +178,14 @@ export class World {
         } else if (!this.endboss.alive && !this.endboss.alive) {
             this.addStaticObjectToTheMap(this.outroScreenLost);
             this.stopInterval();
+            this.character.stopAnimate();
             youWon();
         } else {
             this.soundGameOver.play();
             this.addStaticObjectToTheMap(this.outroScreenGameOver);
             this.soundBackgroundMusic.stop();
             this.stopInterval();
+            this.character.stopAnimate();
             gameOver();
         }
     }

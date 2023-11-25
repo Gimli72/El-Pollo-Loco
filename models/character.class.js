@@ -64,63 +64,73 @@ export class Character extends MovableObject {
     }
 
     animate() {
-        setInterval(() => {
-            if (!this.isDead()) {
-                if (this.world.keyboard.SPACE && !this.isAboveGround()) {
-                    this.soundCharacterJump.play();
-                    this.jump();
-                } else {
-                    if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-                        this.soundCharacterWalking.play();
-                        this.moveRight();
-                        this.otherDirection = false;
+        this.intervalIds.push(
+            setInterval(() => {
+                if (!this.isDead()) {
+                    if (this.world.keyboard.SPACE && !this.isAboveGround()) {
+                        this.soundCharacterJump.play();
+                        this.jump();
+                    } else {
+                        if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x ) {
+                            this.soundCharacterWalking.play();
+                            this.moveRight();
+                            this.otherDirection = false;
+                        }
+                        if (this.world.keyboard.LEFT && this.x > 0) {
+                            this.soundCharacterWalking.play();
+                            this.moveLeft();
+                            this.otherDirection = true;
+                        }
                     }
-                    if (this.world.keyboard.LEFT && this.x > 0) {
-                        this.soundCharacterWalking.play();
-                        this.moveLeft();
-                        this.otherDirection = true;
-                    }
+
+                    this.world.camera_x = -this.x + 100;
                 }
+            }, 1000 / 60)
+        );
 
-                this.world.camera_x = -this.x + 100;
-            }
-        }, 1000 / 60);
-
-        setInterval(() => {
-            if (this.isDead()) {
-                this.alive = false;
-                this.playAnimation(this.IMAGES_DEAD);
-            } else if (this.isHurt()) {
-                this.playAnimation(this.IMAGES_HURT);
-            } else if (this.isAboveGround()) {
-                this.idleCounter = 0;
-                this.playAnimation(this.IMAGES_JUMPING);
-            } else {
-                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                    this.playAnimation(this.IMAGES_WALKING);
-                    this.currentImage++;
+        this.intervalIds.push(
+            setInterval(() => {
+                if (this.isDead()) {
+                    this.alive = false;
+                    this.playAnimation(this.IMAGES_DEAD);
+                } else if (this.isHurt()) {
+                    this.playAnimation(this.IMAGES_HURT);
+                } else if (this.isAboveGround()) {
                     this.idleCounter = 0;
-                }
-            }
-        }, 60);
-
-        setInterval(() => {
-            if (this.world.keyboard.IDLE && !this.isDead()) {
-                // IDLE & LONG_IDLE animation
-                this.idleCounter += 1;
-                this.idleCounter == 30 ? (this.currentImage = 0) : this.currentImage++;
-                if (this.idleCounter > this.goInSleepMode) {
-                    this.playAnimation(this.IMAGES_LONG_IDLE);
+                    this.playAnimation(this.IMAGES_JUMPING);
                 } else {
-                    this.playAnimation(this.IMAGES_IDLE);
+                    if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+                        this.playAnimation(this.IMAGES_WALKING);
+                        this.currentImage++;
+                        this.idleCounter = 0;
+                    }
                 }
-            }
-        }, 200);
+            }, 60)
+        );
+
+        this.intervalIds.push(
+            setInterval(() => {
+                if (this.world.keyboard.IDLE && !this.isDead()) {
+                    // IDLE & LONG_IDLE animation
+                    this.idleCounter += 1;
+                    this.idleCounter == 30 ? (this.currentImage = 0) : this.currentImage++;
+                    if (this.idleCounter > this.goInSleepMode) {
+                        this.playAnimation(this.IMAGES_LONG_IDLE);
+                    } else {
+                        this.playAnimation(this.IMAGES_IDLE);
+                    }
+                }
+            }, 200)
+        );
     }
 
     damagedCharacter() {
         // When damage and character sleeps wake up
         this.idleCounter = 0;
         this.hit();
+    }
+
+    stopAnimate() {
+        this.intervalIds.forEach(clearInterval);
     }
 }
