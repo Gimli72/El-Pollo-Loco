@@ -63,15 +63,3 @@ export function getCanvasElementById(id) {
         throw new Error(`Element with id ${id} is not a canvas!`);
     }
 }
-
-
-
-/**
- * Generates a random UUID using the Web Cryptography API.
- *
- * @returns {string} The generated UUID.
- */
-export function randomUUID() {
-    const webCrypto = globalThis.crypto;
-    return webCrypto.randomUUID();
-}
