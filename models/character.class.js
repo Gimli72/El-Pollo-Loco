@@ -18,8 +18,8 @@ export class Character extends MovableObject {
         return `img/2_character_pepe/1_idle/long_idle/I-${index + 11}.png`;
     });
 
-    IMAGES_JUMPING = Array.from({ length: 9 }, (_, index) => {
-        return `img/2_character_pepe/3_jump/J-${index + 31}.png`;
+    IMAGES_JUMPING = Array.from({ length: 7 }, (_, index) => {
+        return `img/2_character_pepe/3_jump/J-${index + 32}.png`;
     });
 
     IMAGES_HURT = Array.from({ length: 3 }, (_, index) => {
@@ -66,29 +66,25 @@ export class Character extends MovableObject {
     animate() {
         setInterval(() => {
             if (!this.isDead()) {
-                if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-                    this.soundCharacterWalking.play();
-                    this.moveRight();
-                    this.otherDirection = false;
-                }
-                if (this.world.keyboard.LEFT && this.x > 0) {
-                    this.soundCharacterWalking.play();
-                    this.moveLeft();
-                    this.otherDirection = true;
-                }
-                this.world.camera_x = -this.x + 100;
-            }
-        }, 1000 / 60);
-
-        setInterval(() => {
-            if (!this.isDead()) {
                 if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                     this.soundCharacterJump.play();
                     this.jump();
+                } else {
+                    if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+                        this.soundCharacterWalking.play();
+                        this.moveRight();
+                        this.otherDirection = false;
+                    }
+                    if (this.world.keyboard.LEFT && this.x > 0) {
+                        this.soundCharacterWalking.play();
+                        this.moveLeft();
+                        this.otherDirection = true;
+                    }
                 }
-            }
 
-        }, 1000 / 90)
+                this.world.camera_x = -this.x + 100;
+            }
+        }, 1000 / 60);
 
         setInterval(() => {
             if (this.isDead()) {
